@@ -1,0 +1,10 @@
+# foundry vtt
+foundry.js
+.vscode/launch.json
+Thumbs.db
+
+node_modules/
+/packs
+
+
+foundry-dumping-ground.lock
