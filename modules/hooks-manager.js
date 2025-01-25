@@ -2,6 +2,8 @@ import { Utils } from "./utils.js";
 import { registerSettings } from "./settings.js";
 import * as CONFIG from "./config.js";
 import { Teleporter } from "./teleporter.js";
+import { SUCC } from "./succ.js";
+import { Misc } from "./misc.js";
 
 export class HooksManager {
     /**
@@ -16,6 +18,10 @@ export class HooksManager {
 
             // Expose API methods
             game.foundryDumpingGround.startTeleport = Teleporter.startTeleport;
+            game.foundryDumpingGround.addCondition = SUCC.addCondition;
+            game.foundryDumpingGround.addConditionAsUser = SUCC.addConditionAsUser;
+            game.foundryDumpingGround.healWounds = Misc.healWounds;
+            game.foundryDumpingGround.getSelected = Utils.getSelected;
 
             Utils.loadTemplates();
             registerSettings();
@@ -27,6 +33,13 @@ export class HooksManager {
             game.foundryDumpingGround.socket = socketlib.registerModule(CONFIG.NAME);
             game.foundryDumpingGround.socket.register("executeTeleport", Teleporter.executeTeleport);
             game.foundryDumpingGround.socket.register("toggleVis", Teleporter.toggleVis);
+            game.foundryDumpingGround.socket.register("executeHealWounds", Misc.executeHealWounds);
+        });
+        
+        Hooks.on("succReady", () => {
+            if (game.foundryDumpingGround?.socket) {
+                game.foundryDumpingGround.socket.register("executeAddCondition", SUCC.executeAddCondition);
+            }
         });
     }
 }

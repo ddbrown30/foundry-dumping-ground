@@ -105,4 +105,24 @@ export class Utils {
             return null;
         }
     }
+
+    static getSelected() {
+        let targets = Array.from(game.user.targets);
+        return targets.length ? targets : canvas.tokens.controlled;
+    }
+
+    static getDocumentOwners(document) {
+        const permissions = document.ownership ?? document.data?.ownership;
+        if (!permissions) return null;
+        const owners = [];
+        for (const userId in permissions) {
+            if (permissions[userId] === foundry.CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+                let user = game.users.get(userId);
+                if (!user.isGM) {
+                    owners.push(user);
+                }
+            } 
+        }
+        return owners;
+    }
 }
