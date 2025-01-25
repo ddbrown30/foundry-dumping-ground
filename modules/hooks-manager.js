@@ -22,6 +22,7 @@ export class HooksManager {
             game.foundryDumpingGround.addConditionAsUser = SUCC.addConditionAsUser;
             game.foundryDumpingGround.healWounds = Misc.healWounds;
             game.foundryDumpingGround.getSelected = Utils.getSelected;
+            game.foundryDumpingGround.blind = SUCC.blind;
 
             Utils.loadTemplates();
             registerSettings();

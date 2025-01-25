@@ -100,4 +100,44 @@ export class SUCC {
             game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, actorIds, options);
         }
     }
+
+    static async blind(entities) {
+        let condition = game.succ.getCondition("blind");
+        const numbData = { condition };
+        const content = await renderTemplate(CONFIG.DEFAULT_CONFIG.templates.blindDialog, numbData);
+
+        let result = await foundry.applications.api.DialogV2.wait({
+            window: { title: "Blind" },
+            position: { width: 400 },
+            content: content,
+            classes: ["succ-dialog"],
+            rejectClose: false,
+            buttons: [
+                {
+                    label: "Success",
+                    action: "success",
+                    callback: () => { return { degree: "success" }; }
+                },
+                {
+                    label: "Raise",
+                    action: "raise",
+                    callback: () => { return { degree: "raise" }; }
+                },
+                {
+                    label: "Cancel",
+                    action: "cancel",
+                    callback: () => false
+                }
+            ]
+        });
+        
+        if (!result) {
+            return;
+        }
+        
+        SUCC.addCondition("blind", entities);
+        if (result.degree == "raise") {
+            SUCC.addCondition("blind-raise", entities);
+        }
+    }
 }

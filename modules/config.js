@@ -11,6 +11,9 @@ export const CONST = {
 }
 
 export const DEFAULT_CONFIG = {
+    templates: {
+        blindDialog: `${PATH}/templates/blind-dialog.hbs`
+    },
 }
 
 export const FLAGS = {
