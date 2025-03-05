@@ -1,0 +1,29 @@
+{
+  "name": "Copy and updatemap image",
+  "type": "script",
+  "scope": "global",
+  "author": "26zedh1nuCLjFH0V",
+  "img": "icons/svg/bridge.svg",
+  "command": "let worldPath = \"modules/swade-ootd/assets/scenes/\";\nvar filename = decodeURI(canvas.scene.background.src.replace(/^.*[\\\\\\/]/, ''));\nvar filenameWithoutExt = filename.replace(/\\.[^/.]+$/, \"\");\nconst extension = filename.slice(filename.lastIndexOf(\".\"));\nvar fullName = worldPath + filename;\n\nlet exists = true;\nvar num = 0;\nwhile (exists) {\n    try {\n        await FilePicker.browse(\"data\", fullName);\n        let newName = filenameWithoutExt + num;\n        ++num;\n        filename = newName + extension;\n        fullName = worldPath + filename;\n    }\n    catch { exists = false }\n}\n\nconsole.log(fullName );\n\nconst bgFile = await fetch(canvas.scene.background.src);\nconst bgBlob = await bgFile.blob();\nlet bgFileNew = new File([bgBlob], filename);\n\nawait FilePicker.upload(\"data\", worldPath, bgFileNew, {}, {notify:false});\n\nawait canvas.scene.update({img: fullName});",
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "sort": 112500,
+  "ownership": {
+    "default": 0,
+    "imUDcCtCX3TtgvI1": 3,
+    "OqoOYpjGAZ5j35VP": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738628161613,
+    "modifiedTime": 1738628161613,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "iTIwYkBsRwtwRVsC",
+  "_key": "!macros!iTIwYkBsRwtwRVsC"
+}

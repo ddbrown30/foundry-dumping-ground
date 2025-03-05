@@ -1,0 +1,22 @@
+{
+  "name": "Animations",
+  "sorting": "a",
+  "folder": null,
+  "type": "Macro",
+  "_id": "hjhOd8k1Xw1YaBDf",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738628153880,
+    "modifiedTime": 1738628153896,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_key": "!folders!hjhOd8k1Xw1YaBDf"
+}

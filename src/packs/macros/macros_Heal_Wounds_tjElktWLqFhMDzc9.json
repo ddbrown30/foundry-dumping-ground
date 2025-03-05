@@ -1,0 +1,27 @@
+{
+  "name": "Heal Wounds",
+  "type": "script",
+  "command": "game.foundryDumpingGround.healWounds(Array.from(game.user.targets));",
+  "img": "icons/magic/life/heart-glowing-red.webp",
+  "author": "OqoOYpjGAZ5j35VP",
+  "scope": "global",
+  "folder": "Un40NvcdunD2KEqb",
+  "ownership": {
+    "default": 3,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626846756,
+    "modifiedTime": 1738628191873,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "tjElktWLqFhMDzc9",
+  "sort": 50391,
+  "_key": "!macros!tjElktWLqFhMDzc9"
+}

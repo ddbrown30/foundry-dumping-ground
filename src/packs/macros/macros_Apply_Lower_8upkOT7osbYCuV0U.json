@@ -1,0 +1,27 @@
+{
+  "name": "Apply Lower",
+  "img": "assets/icons/lower-trait.png",
+  "type": "script",
+  "command": "let selected = game.foundryDumpingGround.getSelected();\nlet result = await game.succ.boostLowerTraitDialog(selected[0].actor, \"lower\");\nif (!result) { return; }\nlet lowerData = {lower: result};\ngame.foundryDumpingGround.addCondition(\"lower\", selected, {effectOptions: lowerData});",
+  "scope": "global",
+  "ownership": {
+    "default": 1,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "OqoOYpjGAZ5j35VP",
+  "sort": 200000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Macro.c51W6sUib71uw2ra",
+    "duplicateSource": "Macro.qiSgyGNR6CQ6qNRA",
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626733094,
+    "modifiedTime": 1738626829706,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_id": "8upkOT7osbYCuV0U",
+  "_key": "!macros!8upkOT7osbYCuV0U"
+}

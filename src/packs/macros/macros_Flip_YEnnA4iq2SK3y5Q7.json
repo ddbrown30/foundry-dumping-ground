@@ -1,0 +1,27 @@
+{
+  "name": "Flip",
+  "type": "script",
+  "scope": "global",
+  "_id": "YEnnA4iq2SK3y5Q7",
+  "author": "OqoOYpjGAZ5j35VP",
+  "img": "icons/svg/daze.svg",
+  "command": "await token.document.update({\"texture.scaleX\": -token.document.texture.scaleX}, {animation: {duration: 0}});",
+  "folder": "Un40NvcdunD2KEqb",
+  "sort": 400000,
+  "ownership": {
+    "default": 2,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626731555,
+    "modifiedTime": 1738626731555,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_key": "!macros!YEnnA4iq2SK3y5Q7"
+}

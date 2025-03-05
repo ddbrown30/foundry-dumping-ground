@@ -1,0 +1,22 @@
+{
+  "name": "Weather",
+  "sorting": "a",
+  "folder": null,
+  "type": "Macro",
+  "_id": "8NelX6ChoL6N3P91",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738628172061,
+    "modifiedTime": 1738628172061,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_key": "!folders!8NelX6ChoL6N3P91"
+}

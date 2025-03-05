@@ -1,0 +1,28 @@
+{
+  "name": "Screen Shake",
+  "type": "script",
+  "command": "let shakeSeq = new Sequence();\nshakeSeq.canvasPan().shake();\nshakeSeq.play();",
+  "img": "icons/magic/earth/projectile-stone-landslide.webp",
+  "_id": "PdSJVAvE5yP3QckB",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "hjhOd8k1Xw1YaBDf",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "OqoOYpjGAZ5j35VP": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738628153888,
+    "modifiedTime": 1738628153888,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_key": "!macros!PdSJVAvE5yP3QckB"
+}

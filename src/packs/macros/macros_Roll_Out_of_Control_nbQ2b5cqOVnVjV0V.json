@@ -1,0 +1,27 @@
+{
+  "name": "Roll Out of Control",
+  "type": "script",
+  "img": "modules/swade-ootd/assets/icons/vehicle_ooc.webp",
+  "command": "const table = await fromUuid(\"Compendium.swade-core-rules.swade-tables.RollTable.Jg8oLO3b9iMjvB6B\");\nawait table.draw({roll: true, displayChat: true});",
+  "_id": "nbQ2b5cqOVnVjV0V",
+  "author": "OqoOYpjGAZ5j35VP",
+  "scope": "global",
+  "folder": "Un40NvcdunD2KEqb",
+  "sort": 106250,
+  "ownership": {
+    "default": 2,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626731555,
+    "modifiedTime": 1738626731555,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_key": "!macros!nbQ2b5cqOVnVjV0V"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Apply Sanctuary",
+  "img": "modules/succ/assets/icons/m-sanctuary.svg",
+  "type": "script",
+  "command": "game.foundryDumpingGround.addCondition(\"sanctuary\", game.foundryDumpingGround.getSelected());",
+  "scope": "global",
+  "ownership": {
+    "default": 1,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "OqoOYpjGAZ5j35VP",
+  "sort": 1000000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Macro.t8nkQhyOPj42phuQ",
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626733094,
+    "modifiedTime": 1738626829706,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_id": "pkslsE40rtdUC1bj",
+  "_key": "!macros!pkslsE40rtdUC1bj"
+}

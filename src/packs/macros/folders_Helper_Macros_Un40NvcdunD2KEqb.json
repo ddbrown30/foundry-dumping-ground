@@ -1,0 +1,22 @@
+{
+  "name": "Helper Macros",
+  "sorting": "a",
+  "folder": null,
+  "type": "Macro",
+  "_id": "Un40NvcdunD2KEqb",
+  "sort": 200000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626731543,
+    "modifiedTime": 1738628129306,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "description": "",
+  "_key": "!folders!Un40NvcdunD2KEqb"
+}

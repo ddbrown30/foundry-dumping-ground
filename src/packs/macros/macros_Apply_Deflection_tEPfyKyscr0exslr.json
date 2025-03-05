@@ -1,0 +1,27 @@
+{
+  "name": "Apply Deflection",
+  "img": "modules/succ/assets/icons/m-deflection.svg",
+  "type": "script",
+  "command": "let result = await game.succ.deflectionDialog();\nif (!result) { return; }\nlet deflectionData = {deflection: result};\ngame.foundryDumpingGround.addCondition(\"deflection\", game.foundryDumpingGround.getSelected(), {effectOptions: deflectionData });",
+  "scope": "global",
+  "ownership": {
+    "default": 1,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "OqoOYpjGAZ5j35VP",
+  "sort": 1400000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Macro.rc6kHkVsUAPPIv6g",
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626733094,
+    "modifiedTime": 1738626829706,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_id": "tEPfyKyscr0exslr",
+  "_key": "!macros!tEPfyKyscr0exslr"
+}

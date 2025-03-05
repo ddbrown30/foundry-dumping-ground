@@ -1,0 +1,27 @@
+{
+  "name": "Calculate Fall Damage",
+  "type": "script",
+  "command": "new Dialog({\n    title: 'Calculate Fall Damage',\n    content: `<form>\n                <div class=\"form-group\">\n                    <label>Distance in feet</label>\n                    <input type='number' name='feetField'></input>\n                </div>\n                <div class=\"form-group\">\n                    <label>Distance in table inches</label>\n                    <input type='number' name='inchField'></input>\n                </div>\n            </form>`,\n    buttons: {\n        confirm: {\n            icon: '<i class=\"fas fa-check\"></i>',\n            label: 'Confirm',\n            callback: async html => {\n                let damIncrements = 0;\n                let feet = html.find('input[name=\\'feetField\\']').val();\n                if (feet > 0) {\n                    damIncrements = Math.min(Math.floor(feet / 10), 10);\n                } else {\n                    let inch = html.find('input[name=\\'inchField\\']').val();\n                    damIncrements = Math.min(Math.floor(inch / 2), 10);\n                }\n                let output = damIncrements ? ('<p>' + damIncrements + 'd6 + ' + damIncrements + '<p>') : \"0\";\n                new Dialog({\n                    title: 'Fall Damage',\n                    content: output,\n\n                    buttons: {\n                        ok: {\n                            label: \"OK\"\n                        }\n                    }\n                }).render(true);\n            }\n        }\n    }\n}).render(true);",
+  "img": "icons/svg/falling.svg",
+  "_id": "JaUsAx8kbjYvCPyM",
+  "author": "OqoOYpjGAZ5j35VP",
+  "scope": "global",
+  "folder": "Un40NvcdunD2KEqb",
+  "sort": 100782,
+  "ownership": {
+    "default": 2,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626731555,
+    "modifiedTime": 1738626731555,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_key": "!macros!JaUsAx8kbjYvCPyM"
+}

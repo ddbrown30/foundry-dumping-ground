@@ -1,0 +1,28 @@
+{
+  "type": "script",
+  "name": "Lightning Storm Weather",
+  "command": "Hooks.call('fxmaster.updateParticleEffects', [{\"type\":\"clouds\",\"options\":{\"scale\":4.4,\"direction\":155,\"speed\":4,\"lifetime\":2.1,\"density\":0.016,\"alpha\":1,\"tint\":{\"apply\":true,\"value\":\"#6d6d7e\"}}},{\"type\":\"rain\",\"options\":{\"scale\":3,\"direction\":140,\"speed\":0.6,\"lifetime\":0.7,\"density\":0.5,\"alpha\":1,\"tint\":{\"apply\":false,\"value\":\"#ffffff\"}}}]);\nFXMASTER.filters.setFilters([{\"type\":\"lightning\",\"options\":{\"frequency\":920,\"spark_duration\":325,\"brightness\":2}}]);",
+  "img": "icons/magic/lightning/bolt-cloud-sky-green.webp",
+  "_id": "dz2TRdp9I5RIYORM",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "8NelX6ChoL6N3P91",
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "imUDcCtCX3TtgvI1": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738628172072,
+    "modifiedTime": 1738628172072,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_key": "!macros!dz2TRdp9I5RIYORM"
+}

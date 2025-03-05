@@ -6,7 +6,7 @@ export class Misc {
     static async healWounds(targets) {
         const wounds = await Dialog.wait({
             title: "Healing Result",
-            content: "<label><p>Wounds to remove (put -1 if a critical failure increases the target's wounds level by one)</p><input type='number' id='wounds' value=1/></label>",
+            content: "<label><p>Wounds to remove (put -1 if a critical failure increases the target's wounds level by one)</p><input type='number' id='wounds' value='1'/></label>",
             buttons: {
                 default: {
                     icon: '<i class="fa-solid fa-kit-medical"></i>',

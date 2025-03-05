@@ -1,0 +1,27 @@
+{
+  "name": "Apply Environmental Protection",
+  "img": "modules/succ/assets/icons/m-environmental-protection.svg",
+  "type": "script",
+  "command": "game.foundryDumpingGround.addCondition(\"environmental-protection\", game.foundryDumpingGround.getSelected());",
+  "scope": "global",
+  "ownership": {
+    "default": 1,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "OqoOYpjGAZ5j35VP",
+  "sort": 700000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Macro.NemAPPGihsNEhwSl",
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626733094,
+    "modifiedTime": 1738626829706,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_id": "gEcC2YGAC5O73TNn",
+  "_key": "!macros!gEcC2YGAC5O73TNn"
+}

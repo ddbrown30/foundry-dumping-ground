@@ -1,0 +1,27 @@
+{
+  "name": "Teleport",
+  "type": "script",
+  "command": "let target = Array.from(game.user.targets)[0];\ngame.foundryDumpingGround.startTeleport(target ?? token)",
+  "img": "icons/magic/movement/portal-vortex-orange.webp",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "Un40NvcdunD2KEqb",
+  "ownership": {
+    "default": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738627001244,
+    "modifiedTime": 1738628193720,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "JC1GZ7zJsJlGkbe7",
+  "sort": 25196,
+  "_key": "!macros!JC1GZ7zJsJlGkbe7"
+}

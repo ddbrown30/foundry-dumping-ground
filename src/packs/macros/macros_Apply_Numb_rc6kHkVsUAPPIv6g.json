@@ -1,0 +1,27 @@
+{
+  "name": "Apply Numb",
+  "img": "modules/succ/assets/icons/m-numb.svg",
+  "type": "script",
+  "command": "let result = await game.succ.numbDialog();\nif (!result) { return; }\nlet numbData = {numb: result};\ngame.foundryDumpingGround.addCondition(\"numb\", game.foundryDumpingGround.getSelected(), {effectOptions: numbData });",
+  "scope": "global",
+  "ownership": {
+    "default": 1,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "OqoOYpjGAZ5j35VP",
+  "sort": 1200000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Macro.t8nkQhyOPj42phuQ",
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626733094,
+    "modifiedTime": 1738626829706,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_id": "rc6kHkVsUAPPIv6g",
+  "_key": "!macros!rc6kHkVsUAPPIv6g"
+}

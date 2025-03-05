@@ -7,13 +7,24 @@
   },
   "packs": [
     {
-      "name": "foundry-dumping-ground-macros",
-      "label": "Foundry Dumping Ground Macros",
-      "path": "packs/macros",
+      "name": "fdg-macros-gm",
+      "label": "FDG GM Macros",
+      "path": "packs/macros-gm",
       "type": "Macro",
       "ownership": {
         "PLAYER": "NONE",
         "TRUSTED": "NONE",
+        "ASSISTANT": "OWNER"
+      }
+    }, 
+    {
+      "name": "fdg-macros",
+      "label": "FDG Macros",
+      "path": "packs/macros",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "TRUSTED": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
     }

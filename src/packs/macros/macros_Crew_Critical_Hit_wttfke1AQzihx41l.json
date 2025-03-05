@@ -1,0 +1,28 @@
+{
+  "name": "Crew Critical Hit",
+  "type": "script",
+  "scope": "global",
+  "_id": "wttfke1AQzihx41l",
+  "author": "OqoOYpjGAZ5j35VP",
+  "img": "modules/swade-ootd/assets/icons/crew_crit.webp",
+  "command": "const table = await fromUuid(\"Compendium.swade-core-rules.swade-tables.RollTable.ZLo2xbHyFzoVj8Lh\");\nconst roll = new Roll(\"9\");\nawait table.draw({roll: roll});",
+  "folder": "Un40NvcdunD2KEqb",
+  "sort": 101563,
+  "ownership": {
+    "default": 0,
+    "imUDcCtCX3TtgvI1": 3,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738626731555,
+    "modifiedTime": 1738626731555,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_key": "!macros!wttfke1AQzihx41l"
+}
