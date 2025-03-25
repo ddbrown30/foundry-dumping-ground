@@ -1,9 +1,9 @@
 import { Utils } from "./utils.js";
 import { registerSettings } from "./settings.js";
-import * as CONFIG from "./config.js";
 import { Teleporter } from "./teleporter.js";
 import { SUCC } from "./succ.js";
 import { Misc } from "./misc.js";
+import { NAME } from "./module-config.js";
 
 export class HooksManager {
     /**
@@ -23,6 +23,7 @@ export class HooksManager {
             game.foundryDumpingGround.healWounds = Misc.healWounds;
             game.foundryDumpingGround.getSelected = Utils.getSelected;
             game.foundryDumpingGround.blind = SUCC.blind;
+            //game.foundryDumpingGround.summon = Misc.summon;
 
             Utils.loadTemplates();
             registerSettings();
@@ -31,7 +32,7 @@ export class HooksManager {
         Hooks.once("socketlib.ready", () => {
             game.foundryDumpingGround = game.foundryDumpingGround ?? {};
         
-            game.foundryDumpingGround.socket = socketlib.registerModule(CONFIG.NAME);
+            game.foundryDumpingGround.socket = socketlib.registerModule(NAME);
             game.foundryDumpingGround.socket.register("executeTeleport", Teleporter.executeTeleport);
             game.foundryDumpingGround.socket.register("toggleVis", Teleporter.toggleVis);
             game.foundryDumpingGround.socket.register("executeHealWounds", Misc.executeHealWounds);

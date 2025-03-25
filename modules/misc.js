@@ -1,4 +1,3 @@
-import * as CONFIG from "./config.js";
 import { Utils } from "./utils.js";
 
 export class Misc {

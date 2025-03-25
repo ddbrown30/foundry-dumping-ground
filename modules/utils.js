@@ -1,4 +1,4 @@
-import * as CONFIG from "./config.js";
+import * as MODULE_CONFIG from "./module-config.js";
 
 /**
  * Provides helper methods for use elsewhere in the module
@@ -11,7 +11,7 @@ export class Utils {
      * @returns {Object} setting
      */
     static getSetting(key) {
-        return game.settings.get(CONFIG.NAME, key);
+        return game.settings.get(MODULE_CONFIG.NAME, key);
     }
 
     /**
@@ -23,10 +23,10 @@ export class Utils {
      */
     static async setSetting(key, value, awaitResult=false) {
         if (!awaitResult) {
-            return game.settings.set(CONFIG.NAME, key, value);
+            return game.settings.set(MODULE_CONFIG.NAME, key, value);
         }
 
-        await game.settings.set(CONFIG.NAME, key, value).then(result => {
+        await game.settings.set(MODULE_CONFIG.NAME, key, value).then(result => {
             return result;
         }).catch(rejected => {
             throw rejected;
@@ -40,7 +40,7 @@ export class Utils {
      * @returns {ClientSettings.register}
      */
     static registerSetting(key, metadata) {
-        return game.settings.register(CONFIG.NAME, key, metadata);
+        return game.settings.register(MODULE_CONFIG.NAME, key, metadata);
     }
 
     /**
@@ -50,7 +50,7 @@ export class Utils {
      * @returns {ClientSettings.registerMenu}
      */
     static registerMenu(key, metadata) {
-        return game.settings.registerMenu(CONFIG.NAME, key, metadata);
+        return game.settings.registerMenu(MODULE_CONFIG.NAME, key, metadata);
     }
 
     /**
@@ -59,16 +59,17 @@ export class Utils {
     static async loadTemplates() {
         const templates = [
         ];
-        await loadTemplates(templates)
+        //let ret = await loadTemplates(templates);
+        //Handlebars.registerPartial("creatureBoxTemplate", ret[0]);
     }
 
     static showNotification(type, message, options) {
-        const msg = `${CONFIG.SHORT_TITLE} | ${message}`;
+        const msg = `${MODULE_CONFIG.SHORT_TITLE} | ${message}`;
         return ui.notifications[type](msg, options);
     }
     
     static consoleMessage(type, {objects=[], message="", subStr=[]}) {
-        const msg = `${CONFIG.TITLE} | ${message}`;
+        const msg = `${MODULE_CONFIG.TITLE} | ${message}`;
         const params = [];
         if (objects && objects.length) params.push(objects);
         if (msg) params.push(msg);
@@ -81,7 +82,7 @@ export class Utils {
             return false;
         }
 
-        return obj.flags[CONFIG.NAME] ? true : false;
+        return obj.flags[MODULE_CONFIG.NAME] ? true : false;
     }
 
     static getModuleFlag(obj, flag) {
@@ -89,11 +90,11 @@ export class Utils {
             return;
         }
 
-        return obj.flags[CONFIG.NAME][flag];
+        return obj.flags[MODULE_CONFIG.NAME][flag];
     }
 
     static async setModuleFlag(obj, flag, data) {
-        return await obj.setFlag(CONFIG.NAME, flag, data);
+        return await obj.setFlag(MODULE_CONFIG.NAME, flag, data);
     }
 
     static parseJson(str) {

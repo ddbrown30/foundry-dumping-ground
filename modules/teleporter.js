@@ -1,11 +1,11 @@
-import * as CONFIG from "./config.js";
+import * as MODULE_CONFIG from "./module-config.js";
 import { Utils } from "./utils.js";
 
 export class Teleporter {
 
     static async startTeleport(token) {
-        const successRadius = 0.5 + CONFIG.CONST.teleportSuccessDist;
-        const raiseRadius = 0.5 + CONFIG.CONST.teleportRaiseDist;
+        const successRadius = 0.5 + MODULE_CONFIG.CONST.teleportSuccessDist;
+        const raiseRadius = 0.5 + MODULE_CONFIG.CONST.teleportRaiseDist;
         const raiseCircleData = {
             lineSize: 4,
             lineColor: "#FFFFFF",
@@ -48,7 +48,7 @@ export class Teleporter {
 
         rangeSeq.play();
 
-        const crosshair = await Sequencer.Crosshair.show();
+        const crosshair = await Sequencer.Crosshair.show({ snap: { resolution: 1 } });
 
         Sequencer.EffectManager.endEffects({ name: "teleportation" })
 

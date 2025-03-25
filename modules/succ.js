@@ -1,4 +1,4 @@
-import * as CONFIG from "./config.js";
+import { DEFAULT_CONFIG } from "./module-config.js";
 import { Utils } from "./utils.js";
 
 export class SUCC {
@@ -104,7 +104,7 @@ export class SUCC {
     static async blind(entities) {
         let condition = game.succ.getCondition("blind");
         const numbData = { condition };
-        const content = await renderTemplate(CONFIG.DEFAULT_CONFIG.templates.blindDialog, numbData);
+        const content = await renderTemplate(DEFAULT_CONFIG.templates.blindDialog, numbData);
 
         let result = await foundry.applications.api.DialogV2.wait({
             window: { title: "Blind" },

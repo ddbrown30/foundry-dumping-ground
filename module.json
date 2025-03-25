@@ -45,6 +45,14 @@
 			{
 				"id": "socketlib",
 				"type": "module"
+			},
+			{
+				"id": "tcal",
+				"type": "module"
+			},
+			{
+				"id": "actor-browser",
+				"type": "module"
 			}
 		]
 	},
