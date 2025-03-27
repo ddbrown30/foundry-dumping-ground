@@ -1,0 +1,28 @@
+{
+  "name": "Apply Fly",
+  "img": "modules/succ/assets/icons/1-flying.svg",
+  "type": "script",
+  "command": "game.foundryDumpingGround.addCondition(\"flying\", game.foundryDumpingGround.getSelected());",
+  "scope": "global",
+  "ownership": {
+    "default": 1,
+    "OqoOYpjGAZ5j35VP": 3,
+    "imUDcCtCX3TtgvI1": 3
+  },
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "imUDcCtCX3TtgvI1",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.3.0",
+    "createdTime": 1738644319825,
+    "modifiedTime": 1738644319825,
+    "lastModifiedBy": "imUDcCtCX3TtgvI1"
+  },
+  "_id": "ScuiJVDfIzMfhy6a",
+  "sort": 0,
+  "_key": "!macros!ScuiJVDfIzMfhy6a"
+}

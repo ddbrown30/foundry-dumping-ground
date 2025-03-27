@@ -1,0 +1,27 @@
+{
+  "name": "Summon",
+  "type": "script",
+  "command": "game.foundryDumpingGround.startSummon(token);",
+  "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "Un40NvcdunD2KEqb",
+  "ownership": {
+    "default": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "swade",
+    "systemVersion": "4.4.0",
+    "createdTime": 1743106549529,
+    "modifiedTime": 1743106549529,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "G6Beiftn0iS6XAr6",
+  "sort": 0,
+  "_key": "!macros!G6Beiftn0iS6XAr6"
+}
