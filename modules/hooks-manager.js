@@ -4,6 +4,7 @@ import { Teleporter } from "./teleporter.js";
 import { SUCC } from "./succ.js";
 import { Misc } from "./misc.js";
 import { NAME } from "./module-config.js";
+import { Summoner } from "./summoner.js";
 
 export class HooksManager {
     /**
@@ -23,7 +24,7 @@ export class HooksManager {
             game.foundryDumpingGround.healWounds = Misc.healWounds;
             game.foundryDumpingGround.getSelected = Utils.getSelected;
             game.foundryDumpingGround.blind = SUCC.blind;
-            //game.foundryDumpingGround.summon = Misc.summon;
+            game.foundryDumpingGround.startSummon = Summoner.startSummon;
 
             Utils.loadTemplates();
             registerSettings();
@@ -34,6 +35,7 @@ export class HooksManager {
         
             game.foundryDumpingGround.socket = socketlib.registerModule(NAME);
             game.foundryDumpingGround.socket.register("executeTeleport", Teleporter.executeTeleport);
+            game.foundryDumpingGround.socket.register("executeSummon", Summoner.executeSummon);
             game.foundryDumpingGround.socket.register("toggleVis", Teleporter.toggleVis);
             game.foundryDumpingGround.socket.register("executeHealWounds", Misc.executeHealWounds);
         });

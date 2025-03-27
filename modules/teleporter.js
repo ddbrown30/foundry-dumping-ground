@@ -64,8 +64,11 @@ export class Teleporter {
 
     static async toggleVis(sceneId, tokenId, val) {
         let token = game.scenes.find(s => s.id == sceneId).tokens.find(t => t.id == tokenId).object;
+        token.border ||= token.addChild(new PIXI.Graphics());
         token.border.alpha = val;
-        token.target.alpha = val;
+        if (token.target) {
+            token.target.alpha = val;
+        }
     }
 
     static async executeTeleport(crosshair, sceneId, tokenId) {
