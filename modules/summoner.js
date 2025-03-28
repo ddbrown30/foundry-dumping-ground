@@ -10,13 +10,13 @@ export class Summoner {
         if (!crosshair) return;
 
         if (game.user.isGM) {
-            Summoner.executeSummon(crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.id, game.user.id);
+            Summoner.executeSummon(crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id);
         } else {
-            game.foundryDumpingGround.socket.executeAsGM("executeSummon", crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.id, game.user.id);
+            game.foundryDumpingGround.socket.executeAsGM("executeSummon", crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id);
         }
     }
 
-    static async executeSummon(crosshair, sceneId, selectedActorUuid, summonerTokenId, userId) {
+    static async executeSummon(crosshair, sceneId, selectedActorUuid, summonerTokenUuid, userId) {
         let summonedActor;
         if (selectedActorUuid.startsWith("Compendium")) {
             summonedActor = await game.tcal.importTransientActor(selectedActorUuid);
@@ -28,9 +28,9 @@ export class Summoner {
 
         let scene = game.scenes.find(s => s.id == sceneId);
         let user = game.users.get(userId);
-        let disposition;
 
-        let summonerTokenDoc = summonerTokenId ? scene.tokens.find(t => t.id == summonerTokenId) : null;
+        let disposition = CONST.TOKEN_DISPOSITIONS.SECRET;
+        let summonerTokenDoc = summonerTokenUuid ? fromUuidSync(summonerTokenUuid) : null;
         if (summonerTokenDoc) {
             disposition = summonerTokenDoc.disposition;
         } else {
@@ -53,7 +53,7 @@ export class Summoner {
             actorLink: false, //We always want to unlink the actor so that we don't modify the original
         });
         let createdTokenDoc = (await canvas.scene.createEmbeddedDocuments("Token", [newTokenDoc]))[0];
-        game.foundryDumpingGround.socket.executeForEveryone("toggleVis", sceneId, createdTokenDoc.id, 0);
+        game.foundryDumpingGround.socket.executeForEveryone("toggleVis", createdTokenDoc.uuid, 0);
 
         let { x, y, width, height } = newTokenDoc;
 
@@ -82,7 +82,7 @@ export class Summoner {
             .delay(2300)
             .wait(3500)
             .thenDo(function () {
-                game.foundryDumpingGround.socket.executeForEveryone("toggleVis", sceneId, createdTokenDoc.id, 1);
+                game.foundryDumpingGround.socket.executeForEveryone("toggleVis", createdTokenDoc.uuid, 1);
 
                 let displayBars = createdTokenDoc.actor.system.wounds.max > 0 ? CONST.TOKEN_DISPLAY_MODES.ALWAYS : CONST.TOKEN_DISPLAY_MODES.NONE;
 

@@ -54,16 +54,16 @@ export class Teleporter {
 
         if (crosshair) {
             if (token.isOwner) {
-                Teleporter.executeTeleport(crosshair, token.scene.id, token.id);
+                Teleporter.executeTeleport(crosshair, token.uuid);
             } else {
-                game.foundryDumpingGround.socket.executeAsGM("executeTeleport", crosshair, token.scene.id, token.id);
+                game.foundryDumpingGround.socket.executeAsGM("executeTeleport", crosshair, token.uuid);
             }
         }
     }
 
 
-    static async toggleVis(sceneId, tokenId, val) {
-        let token = game.scenes.find(s => s.id == sceneId).tokens.find(t => t.id == tokenId).object;
+    static async toggleVis(tokenUuid, val) {
+        let token = fromUuidSync(tokenUuid).object;
         token.border ||= token.addChild(new PIXI.Graphics());
         token.border.alpha = val;
         if (token.target) {
@@ -71,8 +71,8 @@ export class Teleporter {
         }
     }
 
-    static async executeTeleport(crosshair, sceneId, tokenId) {
-        let token = game.scenes.find(s => s.id == sceneId).tokens.find(t => t.id == tokenId).object;
+    static async executeTeleport(crosshair, tokenUuid) {
+        let token = fromUuidSync(tokenUuid).object;
         let teleSeq = new Sequence();
 
         let startX = token.center?.x;
@@ -107,7 +107,7 @@ export class Teleporter {
 
         let oldDisplayBars = token.document.displayBars;
         await token.document.update({ displayBars: CONST.TOKEN_DISPLAY_MODES.NONE });
-        game.foundryDumpingGround.socket.executeForEveryone("toggleVis", sceneId, tokenId, 0);
+        game.foundryDumpingGround.socket.executeForEveryone("toggleVis", tokenUuid, 0);
 
         // Move Token
         let animSeq = teleSeq.animation();
@@ -123,7 +123,7 @@ export class Teleporter {
         tokenSeq.wait(2000);
         tokenSeq.thenDo(function () {
             token.document.update({ displayBars: oldDisplayBars });
-            game.foundryDumpingGround.socket.executeForEveryone("toggleVis", sceneId, tokenId, 1);
+            game.foundryDumpingGround.socket.executeForEveryone("toggleVis", tokenUuid, 1);
         })
 
         await teleSeq.play();

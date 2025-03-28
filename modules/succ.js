@@ -17,32 +17,31 @@ export class SUCC {
         }
 
         let actors = [];
-        let actorIds = [];
+        let actorUuids = [];
         for (let entity of entities) {
             const actor = SUCC.getActorFromEntity(entity);            
             if (actor) {
                 actors.push(actor);
-                actorIds.push(actor.id);
+                actorUuids.push(actor.uuid);
             }
         }
 
         if (entities.length == 1) {
-            let entity = entities[0];
-            let actor = SUCC.getActorFromEntity(entity);
+            let actor = SUCC.getActorFromEntity(entities[0]);
             if (actor.isOwner) {
                 game.succ.addCondition(conditionId, actors, options);
             } else {
-                game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, actorIds, options);
+                game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, actorUuids, options);
             }
         } else {
-            game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, actorIds, options);
+            game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, actorUuids, options);
         }
     }
 
-    static async executeAddCondition(conditionId, actorIds, options) {
+    static async executeAddCondition(conditionId, actorUuids, options) {
         let actors = [];
-        for (let actorId of actorIds) {
-            let actor = game.actors.get(actorId);         
+        for (let actorUuid of actorUuids) {
+            let actor = fromUuidSync(actorUuid);         
             if (actor) {
                 actors.push(actor);
             }
@@ -61,8 +60,6 @@ export class SUCC {
             entities = [entities];
         }
 
-        let actors = [];
-        let actorIds = [];
         for (let entity of entities) {
             const actor = SUCC.getActorFromEntity(entity);            
             if (actor) {
@@ -76,28 +73,16 @@ export class SUCC {
                 let handled = false;
                 for (let owner of owners) {
                     if (owner?.active) {
-                        game.foundryDumpingGround.socket.executeAsUser("executeAddCondition", owner.id, conditionId, [actor.id], options);
+                        game.foundryDumpingGround.socket.executeAsUser("executeAddCondition", owner.id, conditionId, [actor.uuid], options);
                         handled = true;
                         break;
                     }
                 }
 
                 if (!handled) {
-                    game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, [actor.id], options);
+                    game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, [actor.uuid], options);
                 }
             }
-        }
-
-        if (entities.length == 1) {
-            let entity = entities[0];
-            let actor = SUCC.getActorFromEntity(entity);
-            if (actor.isOwner) {
-                game.succ.addCondition(conditionId, actors, options);
-            } else {
-                game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, actorIds, options);
-            }
-        } else {
-            game.foundryDumpingGround.socket.executeAsGM("executeAddCondition", conditionId, actorIds, options);
         }
     }
 
