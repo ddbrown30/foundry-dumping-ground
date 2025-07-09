@@ -13,6 +13,8 @@ export const CONST = {
 export const DEFAULT_CONFIG = {
     templates: {
         blindDialog: `${PATH}/templates/blind-dialog.hbs`,
+        exportedItem: `${PATH}/templates/partials/exported-item.hbs`,
+        exportedItems: `${PATH}/templates/exported-items.hbs`,
     },
 }
 

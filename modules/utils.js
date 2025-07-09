@@ -7,7 +7,7 @@ export class Utils {
 
     /**
      * Get a single setting using the provided key
-     * @param {*} key 
+     * @param {*} key
      * @returns {Object} setting
      */
     static getSetting(key) {
@@ -16,9 +16,9 @@ export class Utils {
 
     /**
      * Sets a single game setting
-     * @param {*} key 
-     * @param {*} value 
-     * @param {*} awaitResult 
+     * @param {*} key
+     * @param {*} value
+     * @param {*} awaitResult
      * @returns {Promise | ClientSetting}
      */
     static async setSetting(key, value, awaitResult=false) {
@@ -35,8 +35,8 @@ export class Utils {
 
     /**
      * Register a single setting using the provided key and setting data
-     * @param {*} key 
-     * @param {*} metadata 
+     * @param {*} key
+     * @param {*} metadata
      * @returns {ClientSettings.register}
      */
     static registerSetting(key, metadata) {
@@ -45,8 +45,8 @@ export class Utils {
 
     /**
      * Register a menu setting using the provided key and setting data
-     * @param {*} key 
-     * @param {*} metadata 
+     * @param {*} key
+     * @param {*} metadata
      * @returns {ClientSettings.registerMenu}
      */
     static registerMenu(key, metadata) {
@@ -58,8 +58,9 @@ export class Utils {
      */
     static async loadTemplates() {
         const templates = [
+            MODULE_CONFIG.DEFAULT_CONFIG.templates.exportedItem,
         ];
-        //let ret = await loadTemplates(templates);
+        let ret = await loadTemplates(templates);
         //Handlebars.registerPartial("creatureBoxTemplate", ret[0]);
     }
 
@@ -67,7 +68,7 @@ export class Utils {
         const msg = `${MODULE_CONFIG.SHORT_TITLE} | ${message}`;
         return ui.notifications[type](msg, options);
     }
-    
+
     static consoleMessage(type, {objects=[], message="", subStr=[]}) {
         const msg = `${MODULE_CONFIG.TITLE} | ${message}`;
         const params = [];
@@ -122,7 +123,7 @@ export class Utils {
                 if (!user.isGM) {
                     owners.push(user);
                 }
-            } 
+            }
         }
         return owners;
     }

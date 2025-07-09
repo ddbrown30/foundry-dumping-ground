@@ -25,6 +25,7 @@ export class HooksManager {
             game.foundryDumpingGround.getSelected = Utils.getSelected;
             game.foundryDumpingGround.blind = SUCC.blind;
             game.foundryDumpingGround.startSummon = Summoner.startSummon;
+            game.foundryDumpingGround.exportItems = Misc.exportItems;
 
             Utils.loadTemplates();
             registerSettings();
@@ -32,14 +33,14 @@ export class HooksManager {
 
         Hooks.once("socketlib.ready", () => {
             game.foundryDumpingGround = game.foundryDumpingGround ?? {};
-        
+
             game.foundryDumpingGround.socket = socketlib.registerModule(NAME);
             game.foundryDumpingGround.socket.register("executeTeleport", Teleporter.executeTeleport);
             game.foundryDumpingGround.socket.register("executeSummon", Summoner.executeSummon);
             game.foundryDumpingGround.socket.register("toggleVis", Teleporter.toggleVis);
             game.foundryDumpingGround.socket.register("executeHealWounds", Misc.executeHealWounds);
         });
-        
+
         Hooks.on("succReady", () => {
             if (game.foundryDumpingGround?.socket) {
                 game.foundryDumpingGround.socket.register("executeAddCondition", SUCC.executeAddCondition);

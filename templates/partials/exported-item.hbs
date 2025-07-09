@@ -1,0 +1,26 @@
+<li style="list-style: none; border-bottom: solid 1px #000;">
+    <br><span><strong>Name: </strong>{{{item.name}}}</span>
+    <br><span><strong>Type: </strong>{{{item.type}}}</span>
+    {{#if item.range}}
+    <br><span><strong>Range: </strong>{{{item.range}}}</span>
+    {{/if}}
+    {{#if item.damage}}
+    <br><span><strong>Damage: </strong>{{{item.damage}}} {{#if item.ap}} AP {{item.ap}}{{/if}}</span>
+    {{/if}}
+    {{#if item.parry}}
+    <br><span><strong>Parry: </strong>{{{item.parry}}}</span>
+    {{/if}}
+    {{#if item.cover}}
+    <br><span><strong>Cover: </strong>{{{item.cover}}}</span>
+    {{/if}}
+    {{#if item.armor}}
+    <br><span><strong>Armor: </strong>{{{item.armor}}}</span>
+    {{/if}}
+    {{#if item.toughness}}
+    <br><span><strong>Toughness: </strong>{{{item.toughness}}}</span>
+    {{/if}}
+    {{#if item.minStr}}
+    <br><span><strong>MinStr: </strong>{{{item.minStr}}}</span>
+    {{/if}}
+    <span>{{{item.desc}}}</span>
+</li>

@@ -1,3 +1,4 @@
+import { DEFAULT_CONFIG, PATH } from "./module-config.js";
 import { Utils } from "./utils.js";
 
 export class Misc {
@@ -38,5 +39,28 @@ export class Misc {
                 game.succ.addCondition("incapacitated", target);
             }
         }
+    }
+
+    static async exportItems(items) {
+        const data = { items: [] };
+        for(let itemId of items) {
+            const item = fromUuidSync(itemId);
+            const itemData = {};
+            itemData.name = item.name;
+            itemData.type = item.type;
+            itemData.range = item.system.range;
+            itemData.damage = item.system.damage;
+            itemData.ap = item.system.ap;
+            itemData.parry = item.system.parry;
+            itemData.cover = item.system.cover;
+            itemData.armor = item.system.armor;
+            itemData.toughness = item.system.toughness;
+            itemData.minStr = item.system.minStr;
+            itemData.desc = item.system.description;
+
+            data.items.push(itemData);
+        }
+        const content = await renderTemplate(DEFAULT_CONFIG.templates.exportedItems, data);
+        saveDataToFile(content, "text/html", "item-export.html");
     }
 }

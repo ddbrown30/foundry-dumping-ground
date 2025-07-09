@@ -1,0 +1,7 @@
+<div>
+    <ol>
+        {{#each items as |item key|}}
+        {{> "modules/foundry-dumping-ground/templates/partials/exported-item.hbs" item=item}}
+        {{/each}}
+    </ol>
+</div>
