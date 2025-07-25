@@ -2,12 +2,10 @@
   "type": "script",
   "name": "Calm Sailing Weather",
   "command": "Hooks.call('fxmaster.updateParticleEffects', [{\"type\":\"clouds\",\"options\":{\"scale\":3.5,\"direction\":180,\"speed\":4,\"lifetime\":4,\"density\":0.001,\"alpha\":1,\"tint\":{\"apply\":false,\"value\":\"#ffffff\"}}}]);",
-  "img": "modules/fxmaster/assets/particle-effects/icons/clouds.png",
-  "_id": "feIJomqj29bCLC3Z",
+  "img": "modules/fxmaster/assets/particle-effects/icons/clouds.webp",
   "author": "26zedh1nuCLjFH0V",
   "scope": "global",
   "folder": "8NelX6ChoL6N3P91",
-  "sort": 100000,
   "ownership": {
     "default": 0,
     "imUDcCtCX3TtgvI1": 3,
@@ -17,12 +15,15 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "exportSource": null,
+    "coreVersion": "13.346",
     "systemId": "swade",
-    "systemVersion": "4.3.0",
-    "createdTime": 1738628172072,
-    "modifiedTime": 1738628172072,
+    "systemVersion": "5.0.3",
+    "createdTime": 1753470659224,
+    "modifiedTime": 1753470663177,
     "lastModifiedBy": "26zedh1nuCLjFH0V"
   },
-  "_key": "!macros!feIJomqj29bCLC3Z"
+  "_id": "poM5B1qmwDRnHQz3",
+  "sort": 300000,
+  "_key": "!macros!poM5B1qmwDRnHQz3"
 }

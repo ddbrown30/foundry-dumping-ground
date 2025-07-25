@@ -1,7 +1,7 @@
 {
   "name": "Heal Wounds",
   "type": "script",
-  "command": "game.foundryDumpingGround.healWounds(Array.from(game.user.targets));",
+  "command": "const targets = Array.from(game.user.targets);\nif (!targets.length) {\n  ui.notifications.warn('No targets selected');\n  return;\n}\ngame.foundryDumpingGround.healWounds(targets);",
   "img": "icons/magic/life/heart-glowing-red.webp",
   "author": "OqoOYpjGAZ5j35VP",
   "scope": "global",
@@ -14,12 +14,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "swade",
     "systemVersion": "4.3.0",
     "createdTime": 1738626846756,
-    "modifiedTime": 1738628191873,
-    "lastModifiedBy": "26zedh1nuCLjFH0V"
+    "modifiedTime": 1753470933870,
+    "lastModifiedBy": "26zedh1nuCLjFH0V",
+    "exportSource": null
   },
   "_id": "tjElktWLqFhMDzc9",
   "sort": 50391,

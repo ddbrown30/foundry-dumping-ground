@@ -5,18 +5,19 @@
   "type": "Macro",
   "_id": "sWoyrFbAfYPN80IW",
   "description": "",
-  "sort": 500000,
+  "sort": 300000,
   "color": null,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.346",
     "systemId": "swade",
     "systemVersion": "4.3.0",
     "createdTime": 1738626733085,
-    "modifiedTime": 1738628129306,
-    "lastModifiedBy": "26zedh1nuCLjFH0V"
+    "modifiedTime": 1753475586166,
+    "lastModifiedBy": "26zedh1nuCLjFH0V",
+    "exportSource": null
   },
   "_key": "!folders!sWoyrFbAfYPN80IW"
 }

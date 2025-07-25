@@ -16,12 +16,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.341",
     "systemId": "swade",
     "systemVersion": "4.3.0",
     "createdTime": 1738626731555,
     "modifiedTime": 1738626731555,
-    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP",
+    "exportSource": null
   },
   "_key": "!macros!YEnnA4iq2SK3y5Q7"
 }

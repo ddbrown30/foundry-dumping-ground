@@ -1,0 +1,36 @@
+{
+  "name": "Crown Glow",
+  "type": "script",
+  "author": "26zedh1nuCLjFH0V",
+  "img": "modules/tokenmagic/gui/macros/images/05%20-%20Glow.webp",
+  "scope": "global",
+  "command": "let params =\n[{\n    filterType: \"glow\",\n    filterId: \"superSpookyGlow\",\n    outerStrength: 4,\n    innerStrength: 0,\n    color: 0x5099DD,\n    quality: 0.5,\n    padding: 10,\n    animated:\n    {\n        color: \n        {\n           active: true, \n           loopDuration: 3000, \n           animType: \"colorOscillation\", \n           val1:0xffea00, \n           val2:0xff6000\n        }\n    }\n}];\n\nawait TokenMagic.addUpdateFiltersOnSelected(params);",
+  "folder": "J9SwrqqxsTT6kbrB",
+  "flags": {
+    "furnace": {
+      "runAsGM": false
+    },
+    "core": {}
+  },
+  "ownership": {
+    "default": 0,
+    "Njc5YzFjZDI5NjZl": 3,
+    "imUDcCtCX3TtgvI1": 3,
+    "Za53oo2n0szvIrpy": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "swade",
+    "systemVersion": "5.0.3",
+    "createdTime": 1753475714903,
+    "modifiedTime": 1753475714903,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "tsoEqxlcDBY9P18G",
+  "sort": 0,
+  "_key": "!macros!tsoEqxlcDBY9P18G"
+}

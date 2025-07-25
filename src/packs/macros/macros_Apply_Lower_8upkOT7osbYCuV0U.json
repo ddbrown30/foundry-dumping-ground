@@ -15,12 +15,13 @@
   "_stats": {
     "compendiumSource": "Macro.c51W6sUib71uw2ra",
     "duplicateSource": "Macro.qiSgyGNR6CQ6qNRA",
-    "coreVersion": "12.331",
+    "coreVersion": "13.341",
     "systemId": "swade",
     "systemVersion": "4.3.0",
     "createdTime": 1738626733094,
     "modifiedTime": 1738626829706,
-    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP",
+    "exportSource": null
   },
   "_id": "8upkOT7osbYCuV0U",
   "_key": "!macros!8upkOT7osbYCuV0U"

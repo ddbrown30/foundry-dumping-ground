@@ -1,0 +1,39 @@
+{
+  "name": "Team Blue",
+  "type": "script",
+  "author": "26zedh1nuCLjFH0V",
+  "img": "modules/succ/assets/icons/g-blue.svg",
+  "scope": "global",
+  "command": "let params = \n[{\n   filterType: \"outline\",\n   filterId: \"teamOutline\",\n   color: 0x0000FF,\n   thickness: 2,\n   zOrder: 9\n}];\n\nawait TokenMagic.addUpdateFiltersOnSelected(params);",
+  "folder": "J9SwrqqxsTT6kbrB",
+  "flags": {
+    "combat-utility-belt": {
+      "macroTrigger": ""
+    },
+    "furnace": {
+      "runAsGM": false
+    },
+    "core": {}
+  },
+  "ownership": {
+    "default": 0,
+    "Njc5YzFjZDI5NjZl": 3,
+    "imUDcCtCX3TtgvI1": 3,
+    "Za53oo2n0szvIrpy": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "swade",
+    "systemVersion": "5.0.3",
+    "createdTime": 1753475698057,
+    "modifiedTime": 1753475698057,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "agQ7njYjAitOGs9D",
+  "sort": 0,
+  "_key": "!macros!agQ7njYjAitOGs9D"
+}

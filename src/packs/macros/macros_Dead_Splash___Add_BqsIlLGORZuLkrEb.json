@@ -1,0 +1,29 @@
+{
+  "name": "Dead Splash - Add",
+  "type": "script",
+  "_id": "BqsIlLGORZuLkrEb",
+  "author": "Za53oo2n0szvIrpy",
+  "img": "icons/svg/skull.svg",
+  "scope": "global",
+  "command": "let params =\n    [{\n        filterType: \"splash\",\n        filterId: \"deadSplash\",\n        color: 0x900505,\n        padding: 30,\n        time: Math.random()*1000,\n        seed: Math.random()/100,\n        splashFactor: 2,\n        spread: 7,\n        blend: 1,\n        dimX: 1,\n        dimY: 1,\n        cut: true,\n        textureAlphaBlend: false\n    }];\n\nawait TokenMagic.addUpdateFilters(token, params);",
+  "folder": "GABHweZcG6pAlBE2",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "imUDcCtCX3TtgvI1": 3,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.346",
+    "systemId": "swade",
+    "systemVersion": "4.4.3",
+    "createdTime": 1748565727398,
+    "modifiedTime": 1748565727398,
+    "lastModifiedBy": "Za53oo2n0szvIrpy",
+    "exportSource": null
+  },
+  "_key": "!macros!BqsIlLGORZuLkrEb"
+}

@@ -1,23 +1,23 @@
 {
-  "name": "Helper Macros",
+  "name": "Token FX",
   "sorting": "a",
   "folder": null,
   "type": "Macro",
-  "_id": "Un40NvcdunD2KEqb",
-  "sort": 100000,
+  "_id": "GABHweZcG6pAlBE2",
+  "sort": 200000,
   "color": null,
   "flags": {},
   "_stats": {
-    "compendiumSource": null,
+    "compendiumSource": "Folder.GABHweZcG6pAlBE2",
     "duplicateSource": null,
     "coreVersion": "13.346",
     "systemId": "swade",
-    "systemVersion": "4.3.0",
-    "createdTime": 1738626731543,
+    "systemVersion": "4.4.3",
+    "createdTime": 1748565727381,
     "modifiedTime": 1753475586166,
     "lastModifiedBy": "26zedh1nuCLjFH0V",
     "exportSource": null
   },
   "description": "",
-  "_key": "!folders!Un40NvcdunD2KEqb"
+  "_key": "!folders!GABHweZcG6pAlBE2"
 }

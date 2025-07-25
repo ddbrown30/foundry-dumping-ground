@@ -1,0 +1,29 @@
+{
+  "name": "Flying - Add",
+  "type": "script",
+  "_id": "Rgpgc91oYP87C0Mp",
+  "author": "Za53oo2n0szvIrpy",
+  "img": "icons/svg/wing.svg",
+  "scope": "global",
+  "command": "let params =\n[{\n    filterType: \"shadow\",\n    filterId: \"flyShadow\",\n    rotation: 35,\n    blur: 2,\n    quality: 5,\n    distance: 20,\n    alpha: 0.7,\n    padding: 10,\n    shadowOnly: false,\n    color: 0x000000,\n    zOrder: 6000\n},\n{\n        filterType: \"transform\",\n        filterId: \"flying\",\n        padding: 50,\n        animated:\n        {\n            translationX:\n            {\n                animType: \"sinOscillation\",\n                val1: -0.015,\n                val2: +0.015,\n                loopDuration: 1400,\n            },\n            translationY:\n            {\n                animType: \"cosOscillation\",\n                val1: -0.015,\n                val2: +0.015,\n                loopDuration: 1400,\n            }\n        }\n    }];\n\nawait TokenMagic.addUpdateFilters(token, params);",
+  "folder": "GABHweZcG6pAlBE2",
+  "sort": 150000,
+  "ownership": {
+    "default": 0,
+    "imUDcCtCX3TtgvI1": 3,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.346",
+    "systemId": "swade",
+    "systemVersion": "4.4.3",
+    "createdTime": 1748565727398,
+    "modifiedTime": 1748565727398,
+    "lastModifiedBy": "Za53oo2n0szvIrpy",
+    "exportSource": null
+  },
+  "_key": "!macros!Rgpgc91oYP87C0Mp"
+}

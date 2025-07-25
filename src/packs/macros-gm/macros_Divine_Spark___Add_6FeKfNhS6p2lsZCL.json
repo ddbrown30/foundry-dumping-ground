@@ -1,0 +1,36 @@
+{
+  "name": "Divine Spark - Add",
+  "type": "script",
+  "author": "26zedh1nuCLjFH0V",
+  "img": "modules/swade-ootd/assets/items/kyrahkart/divine_spark.webp",
+  "scope": "global",
+  "command": "let params =\n[{\n    filterType: \"field\",\n    filterId: \"divineSpark\",\n    shieldType: 13,\n    gridPadding: 1,\n    color: 0xAAAAAA,\n    time: 0,\n    radius: 0.1,\n    blend: 2,\n    intensity: 1.3,\n    lightAlpha: 0,\n    lightSize: 0,\n    scale: 1,\n    radius: 1,\n    chromatic: true,\n    alphaDiscard: true,\n    discardThreshold: 0.2,\n    animated :\n    {\n      time : \n      { \n        active: true, \n        speed: 0.0045, \n        animType: \"move\" \n      }\n    }\n}];\n\nawait TokenMagic.addUpdateFiltersOnSelected(params);",
+  "folder": "J9SwrqqxsTT6kbrB",
+  "flags": {
+    "furnace": {
+      "runAsGM": false
+    },
+    "core": {}
+  },
+  "ownership": {
+    "default": 0,
+    "Njc5YzFjZDI5NjZl": 3,
+    "imUDcCtCX3TtgvI1": 3,
+    "Za53oo2n0szvIrpy": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "swade",
+    "systemVersion": "5.0.3",
+    "createdTime": 1753475693119,
+    "modifiedTime": 1753475693119,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "6FeKfNhS6p2lsZCL",
+  "sort": 0,
+  "_key": "!macros!6FeKfNhS6p2lsZCL"
+}

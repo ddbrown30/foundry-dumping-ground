@@ -1,0 +1,32 @@
+{
+  "_id": "tGHFbShsHuJKJnx0",
+  "name": "Underwater",
+  "type": "script",
+  "author": "Za53oo2n0szvIrpy",
+  "img": "modules/tokenmagic/gui/macros/images/21%20-%20Flood.webp",
+  "scope": "global",
+  "command": "let params =\n[{\n    filterType: \"flood\",\n    filterId: \"myFlood\",\n    time: 0,\n    color: 0x0020BB,\n    billowy: 0.43,\n    tintIntensity: 0.72,\n    glint: 0.31,\n    scale: 70,\n    padding: 10,\n    animated :\n    {\n      time : \n      { \n        active: true, \n        speed: 0.0006, \n        animType: \"move\"\n      }\n    }\n}];\n\nawait TokenMagic.addUpdateFiltersOnSelected(params);",
+  "folder": "GABHweZcG6pAlBE2",
+  "sort": 400000,
+  "flags": {
+    "core": {}
+  },
+  "ownership": {
+    "default": 0,
+    "Njc5YzFjZDI5NjZl": 3,
+    "imUDcCtCX3TtgvI1": 3,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.tokenmagic.tmMacros.Macro.zCCp4x0EResFji7O",
+    "duplicateSource": null,
+    "coreVersion": "13.346",
+    "systemId": "swade",
+    "systemVersion": "4.4.3",
+    "createdTime": 1748565727398,
+    "modifiedTime": 1748565727398,
+    "lastModifiedBy": "Za53oo2n0szvIrpy",
+    "exportSource": null
+  },
+  "_key": "!macros!tGHFbShsHuJKJnx0"
+}
