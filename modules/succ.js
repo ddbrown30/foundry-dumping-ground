@@ -3,10 +3,6 @@ import { Utils } from "./utils.js";
 
 export class SUCC {
 
-    static getActorFromEntity(entity) {
-        return entity instanceof Actor ? entity : entity instanceof Token || entity instanceof TokenDocument ? entity.actor : null;;
-    }
-
     static async addCondition(conditionId, entities, options) {
         if (!entities) {
             return;
@@ -19,7 +15,7 @@ export class SUCC {
         let actors = [];
         let actorUuids = [];
         for (let entity of entities) {
-            const actor = SUCC.getActorFromEntity(entity);            
+            const actor = game.succ.getActorFromEntity(entity);
             if (actor) {
                 actors.push(actor);
                 actorUuids.push(actor.uuid);
@@ -27,7 +23,7 @@ export class SUCC {
         }
 
         if (entities.length == 1) {
-            let actor = SUCC.getActorFromEntity(entities[0]);
+            let actor = game.succ.getActorFromEntity(entities[0]);
             if (actor.isOwner) {
                 game.succ.addCondition(conditionId, actors, options);
             } else {
@@ -41,7 +37,7 @@ export class SUCC {
     static async executeAddCondition(conditionId, actorUuids, options) {
         let actors = [];
         for (let actorUuid of actorUuids) {
-            let actor = fromUuidSync(actorUuid);         
+            let actor = fromUuidSync(actorUuid);
             if (actor) {
                 actors.push(actor);
             }
@@ -61,7 +57,7 @@ export class SUCC {
         }
 
         for (let entity of entities) {
-            const actor = SUCC.getActorFromEntity(entity);            
+            const actor = game.succ.getActorFromEntity(entity);
             if (actor) {
                 if (actor.canUserModify(game.user)) {
                     game.succ.addCondition(conditionId, actor, options);
@@ -115,11 +111,11 @@ export class SUCC {
                 }
             ]
         });
-        
+
         if (!result) {
             return;
         }
-        
+
         SUCC.addCondition("blind", entities);
         if (result.degree == "raise") {
             SUCC.addCondition("blind-raise", entities);
