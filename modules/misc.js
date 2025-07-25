@@ -4,16 +4,17 @@ import { Utils } from "./utils.js";
 export class Misc {
 
     static async healWounds(targets) {
-        const wounds = await Dialog.wait({
-            title: "Healing Result",
+        const wounds = await foundry.applications.api.DialogV2.wait({
+            window: { title: "Healing Result" },
             content: "<label><p>Wounds to remove (put -1 if a critical failure increases the target's wounds level by one)</p><input type='number' id='wounds' value='1'/></label>",
-            buttons: {
-                default: {
+            buttons: [
+                {
                     icon: '<i class="fa-solid fa-kit-medical"></i>',
                     label: "Heal",
-                    callback: (html) => { return html.find('#wounds')[0].value }
-                }
-            }
+                    action: "default",
+                    callback: (event, button, dialog) => { return Number(dialog.element.querySelector('#wounds').value) },
+                },
+            ]
         });
 
         if (!wounds) {

@@ -60,7 +60,7 @@ export class Utils {
         const templates = [
             MODULE_CONFIG.DEFAULT_CONFIG.templates.exportedItem,
         ];
-        let ret = await loadTemplates(templates);
+        let ret = await foundry.applications.handlebars.loadTemplates(templates);
         //Handlebars.registerPartial("creatureBoxTemplate", ret[0]);
     }
 

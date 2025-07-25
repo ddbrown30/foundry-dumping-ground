@@ -34,7 +34,7 @@ export class Teleporter {
             .belowTokens()
             .name("teleportation")
             .shape("circle", raiseCircleData);
-            
+
         rangeSeq.effect()
             .fadeIn(500)
             .fadeOut(100)
@@ -54,9 +54,9 @@ export class Teleporter {
 
         if (crosshair) {
             if (token.isOwner) {
-                Teleporter.executeTeleport(crosshair, token.uuid);
+                Teleporter.executeTeleport(crosshair, token.document.uuid);
             } else {
-                game.foundryDumpingGround.socket.executeAsGM("executeTeleport", crosshair, token.uuid);
+                game.foundryDumpingGround.socket.executeAsGM("executeTeleport", crosshair, token.document.uuid);
             }
         }
     }
@@ -66,8 +66,14 @@ export class Teleporter {
         let token = fromUuidSync(tokenUuid).object;
         token.border ||= token.addChild(new PIXI.Graphics());
         token.border.alpha = val;
-        if (token.target) {
-            token.target.alpha = val;
+        if (token.effects) {
+            token.effects.alpha = val;
+        }
+        if (token.targetArrows) {
+            token.targetArrows.alpha = val;
+        }
+        if (token.targetPips) {
+            token.targetPips.alpha = val;
         }
     }
 
