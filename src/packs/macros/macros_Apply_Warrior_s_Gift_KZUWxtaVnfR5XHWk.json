@@ -2,7 +2,7 @@
   "name": "Apply Warrior's Gift",
   "img": "modules/succ/assets/icons/m-warriors-gift.svg",
   "type": "script",
-  "command": "game.foundryDumpingGround.addCondition(\"warriors-gift\", game.foundryDumpingGround.getSelected());\ngame.swpfCore.macros.warriorsGift()",
+  "command": "game.foundryDumpingGround.warriorsGift(game.foundryDumpingGround.getSelected(), \"wg\");",
   "scope": "global",
   "ownership": {
     "default": 1,
@@ -15,12 +15,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.341",
+    "coreVersion": "13.346",
     "systemId": "swade",
     "systemVersion": "4.3.0",
     "createdTime": 1738644647266,
-    "modifiedTime": 1744841585626,
-    "lastModifiedBy": "imUDcCtCX3TtgvI1",
+    "modifiedTime": 1753497979002,
+    "lastModifiedBy": "26zedh1nuCLjFH0V",
     "exportSource": null
   },
   "_id": "KZUWxtaVnfR5XHWk",

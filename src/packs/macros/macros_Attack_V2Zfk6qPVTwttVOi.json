@@ -1,0 +1,30 @@
+{
+  "name": "Attack",
+  "type": "script",
+  "flags": {
+    "core": {}
+  },
+  "scope": "global",
+  "command": "/// Macro to start attack sequence - shows quick list of weapons/powers for actor and roll main skill\nlet actoratc = canvas.tokens.controlled[0]?.actor;\nif (!actoratc) {\n    ui.notifications.warn('NoSelectedActor');\n    return;\n}\n\nlet items = actoratc.items.filter(el => (el.type == \"power\" || el.type == \"weapon\"));\nif (!items.length) {\n    ui.notifications.warn('NoEquippedItemOrPower');\n    return;\n} \n\nitems.sort((a, b) => a.name.localeCompare(b.name));\n\nlet buttons = []\nitems.map((item) => {\n    buttons.push({\n        action: item.name,\n        label: item.name,\n        callback: (html) => { game.brsw.create_item_card(actoratc, item.id, true); }\n    })\n});\n\nfoundry.applications.api.DialogV2.wait({\n    id: \"attack-dialog\",\n    window: { title: actoratc.name + ': ' + game.i18n.localize(\"SWADE.QuickAccess\") },\n    position: { width: 400 },\n    content: `<label style=\"font-size:14px;display:flex;align-items:center;margin-bottom: 5px;\"></label>`,\n    buttons: buttons,\n    render: (event, dialog) => {\n        const form = dialog.element.querySelector(\".dialog-form\");\n        form.style[\"gap\"] = \"0\";\n        form.style[\"transition-delay\"] = \"0\";\n        const footer = dialog.element.querySelector(\".form-footer\");\n        footer.style[\"flex-direction\"] = \"column\";\n        footer.style[\"align-items\"] = \"unset\";\n        footer.style[\"gap\"] = \"0\";\n        for (const button of footer.querySelectorAll(\"button\")) {\n            button.style.setProperty('transition', \"0s\");\n            button.style.setProperty('--button-size', \"var(--input-height)\");\n        }\n    }\n});",
+  "author": "OqoOYpjGAZ5j35VP",
+  "img": "assets/icons/macro-attack.png",
+  "ownership": {
+    "default": 2,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "swade",
+    "systemVersion": "5.0.3",
+    "createdTime": 1753500650179,
+    "modifiedTime": 1753500650179,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "folder": "Un40NvcdunD2KEqb",
+  "_id": "V2Zfk6qPVTwttVOi",
+  "sort": 0,
+  "_key": "!macros!V2Zfk6qPVTwttVOi"
+}
