@@ -5,6 +5,7 @@ import { SUCC } from "./succ.js";
 import { Misc } from "./misc.js";
 import { NAME } from "./module-config.js";
 import { Summoner } from "./summoner.js";
+import { WarriorsGift } from "./warriors-gift.js";
 
 export class HooksManager {
     /**
@@ -26,6 +27,7 @@ export class HooksManager {
             game.foundryDumpingGround.blind = SUCC.blind;
             game.foundryDumpingGround.startSummon = Summoner.startSummon;
             game.foundryDumpingGround.exportItems = Misc.exportItems;
+            game.foundryDumpingGround.warriorsGift = WarriorsGift.warriorsGift;
 
             Utils.loadTemplates();
             registerSettings();
@@ -39,12 +41,17 @@ export class HooksManager {
             game.foundryDumpingGround.socket.register("executeSummon", Summoner.executeSummon);
             game.foundryDumpingGround.socket.register("toggleVis", Teleporter.toggleVis);
             game.foundryDumpingGround.socket.register("executeHealWounds", Misc.executeHealWounds);
+            game.foundryDumpingGround.socket.register("executeWarriorsGift", WarriorsGift.executeWarriorsGift);
         });
 
         Hooks.on("succReady", () => {
             if (game.foundryDumpingGround?.socket) {
                 game.foundryDumpingGround.socket.register("executeAddCondition", SUCC.executeAddCondition);
             }
+        });
+
+        Hooks.on("deleteActiveEffect", (effect, options, userId) => {
+            WarriorsGift.onDeleteActiveEffect(effect, options, userId);
         });
     }
 }

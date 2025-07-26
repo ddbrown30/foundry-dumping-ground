@@ -61,7 +61,7 @@ export class Misc {
 
             data.items.push(itemData);
         }
-        const content = await renderTemplate(DEFAULT_CONFIG.templates.exportedItems, data);
+        const content = await foundry.applications.handlebars.renderTemplate(DEFAULT_CONFIG.templates.exportedItems, data);
         saveDataToFile(content, "text/html", "item-export.html");
     }
 }

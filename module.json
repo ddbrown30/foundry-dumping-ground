@@ -35,6 +35,11 @@
   "styles": [
     "styles/foundry-dumping-ground.css"
   ],
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "hbs"]
+    }
+  },
 	"relationships": {
 		"requires": [
 			{

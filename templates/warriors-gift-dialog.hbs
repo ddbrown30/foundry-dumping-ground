@@ -1,0 +1,25 @@
+<form class="standard-form">
+    <div>
+        <h4><img src={{img}} width="30" height="30" style="border:0;" />{{title}}</h4>
+        <p>Select the Combat Edges you want to grant with <strong>{{title}}</strong>.</p>
+        <fieldset>
+            <legend>Combat Edges</legend>
+            <div class="wg-selection" name="edges">
+                {{#each edges}}
+                    <div class="edge" data-uuid="{{uuid}}">
+                        <label class="checkbox">
+                            <input type="checkbox" value="{{uuid}}">{{label}}
+                            <a data-action="toggleFavourite">
+                                <i class="{{#if favourite}}fas{{else}}far{{/if}} fa-star" aria-label="Favorite"></i>
+                            </a>
+                        </label>
+                    </div>
+                {{/each}}
+            </div>
+        </fieldset>
+    </div>
+    <footer class="form-footer">
+        <button type="button" data-action="grant">{{localize "Grant Edges"}}</button>
+        <button type="button" data-action="cancel">{{localize "Cancel"}}</button>
+    </footer>
+</form>

@@ -1,0 +1,23 @@
+.fdg h4 {
+    border-bottom: 1px solid var(--color-warm-2);
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+
+    >img {
+        margin-right: 10px;
+    }
+}
+
+.fdg-dialog {
+    gap: 0;
+}
+
+.fdg .wg-selection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}

@@ -84,8 +84,8 @@ export class SUCC {
 
     static async blind(entities) {
         let condition = game.succ.getCondition("blind");
-        const numbData = { condition };
-        const content = await renderTemplate(DEFAULT_CONFIG.templates.blindDialog, numbData);
+        const blindData = { condition };
+        const content = await foundry.applications.handlebars.renderTemplate(DEFAULT_CONFIG.templates.blindDialog, blindData);
 
         let result = await foundry.applications.api.DialogV2.wait({
             window: { title: "Blind" },

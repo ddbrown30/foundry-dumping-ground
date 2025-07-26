@@ -13,16 +13,22 @@ export const CONST = {
 export const DEFAULT_CONFIG = {
     templates: {
         blindDialog: `${PATH}/templates/blind-dialog.hbs`,
+        warriorsGiftDialog: `${PATH}/templates/warriors-gift-dialog.hbs`,
         exportedItem: `${PATH}/templates/partials/exported-item.hbs`,
         exportedItems: `${PATH}/templates/exported-items.hbs`,
+    },
+    warriorPacks: {
+        "swpf-core-rules.swpf-edges": "PF",
+        "swade-core-rules.swade-edges": "Core",
     },
 }
 
 export const FLAGS = {
+    tempEdges: "tempEdges",
 }
 
 export const SETTING_KEYS = {
-    lastGitCheck: "lastGitCheck",
-    viewedReleaseUpdate: "viewedReleaseUpdate",
+    warriorFavourites: "warriorFavourites",
+    warriorPack: "warriorPack",
 }
 
