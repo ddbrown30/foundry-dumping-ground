@@ -190,15 +190,6 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         };
     };
 
-    _onRender(context, options) {
-        const allSkillsCheckbox = this.element.querySelector('input[id="all-skills"]');
-        allSkillsCheckbox?.addEventListener("change", event => {
-            //When the all skills option changes, we need to refresh the dialog to get the new list
-            this.showAllSkills = event.target.checked;
-            this.render();
-        });
-    }
-
     submit() {
         this.close();
     }
