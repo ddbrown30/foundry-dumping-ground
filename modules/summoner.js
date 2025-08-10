@@ -2,8 +2,8 @@ import { Utils } from "./utils.js";
 
 export class Summoner {
 
-    static async startSummon(summonerToken) {
-        let selectedActorUuid = await game.actorBrowser.openBrowser({ actorTypes: ["npc", "character"], initialSourceFilter: "swade-ootd.odyssey-bestiary" });
+    static async startSummon(summonerToken, options={}) {
+        let selectedActorUuid = await game.actorBrowser.openBrowser({ actorTypes: ["npc", "character"], initialSourceFilter: "swade-ootd.odyssey-bestiary", searchName: options.searchName });
         if (!selectedActorUuid) return;
 
         const crosshair = await Sequencer.Crosshair.show({ snap: { resolution: 1 } });
