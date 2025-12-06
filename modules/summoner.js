@@ -4,9 +4,13 @@ import { Utils } from "./utils.js";
 export class Summoner {
 
     static async startSummon(summonerToken, options={}) {
-        let dialogResult = await new SummonDialog(options).wait();
-        if (!dialogResult) {
-            return;
+        let traits = {};
+        if (!options.skipDialog) {
+            let dialogResult = await new SummonDialog(options).wait();
+            if (!dialogResult) {
+                return;
+            }
+            traits = dialogResult;
         }
 
         let selectedActorUuid = await game.actorBrowser.openBrowser({ actorTypes: ["npc", "character"], initialSourceFilter: "swade-ootd.odyssey-bestiary", searchName: options.searchName });
@@ -16,9 +20,9 @@ export class Summoner {
         if (!crosshair) return;
 
         if (game.user.isGM) {
-            Summoner.executeSummon(crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id, dialogResult);
+            Summoner.executeSummon(crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id, traits);
         } else {
-            game.foundryDumpingGround.socket.executeAsGM("executeSummon", crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id, dialogResult);
+            game.foundryDumpingGround.socket.executeAsGM("executeSummon", crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id, traits);
         }
     }
 
@@ -62,8 +66,8 @@ export class Summoner {
         let createdTokenDoc = (await canvas.scene.createEmbeddedDocuments("Token", [newTokenDoc]))[0];
         game.foundryDumpingGround.socket.executeForEveryone("toggleVis", createdTokenDoc.uuid, 0);
 
-        //Apply any trait changes
-        if (traits.attributes.length) {
+        //Apply attribute increases changes
+        if (traits?.attributes?.length) {
             let actorUpdateData = {};
             for (const attribute of traits.attributes) {
                 const keyPath = `system.attributes.${attribute.toLowerCase()}.die.sides`;
@@ -72,7 +76,8 @@ export class Summoner {
             await createdTokenDoc.actor.update(actorUpdateData);
         }
 
-        if (traits.skills.length) {
+        //Apply skill increases changes
+        if (traits?.skills?.length) {
             let skillUpdates = [];
             let skillsToAdd = [];
             for (const skillId of traits.skills) {
