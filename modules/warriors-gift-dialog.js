@@ -112,7 +112,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             if (pack.metadata.type !== "Item" || pack.metadata.packageName === "swade") {
                 continue;
             }
-            const index = await pack.getIndex({ fields: ["system.category", "system.requirements"] });
+            const index = await pack.getIndex({ fields: ["system.category", "system.requirements", "system.description"] });
             for (const item of index) {
                 if (item.type != "edge" || !item.system?.category?.toLowerCase().includes("combat")) {
                     continue;
@@ -125,6 +125,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
                         label: `${item.name}, ${rank.name} (${pack.metadata.packageName})`,
                         uuid: item.uuid,
                         favourite: !!this.favourites.find((f) => f == item.uuid),
+                        tooltip: this.cleanDescription(item.system.description),
                         pack: pack,
                     });
                 }
@@ -143,6 +144,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
                     label: `${item.name}, ${rank.name} (World)`,
                     uuid: item.uuid,
                     favourite: !!this.favourites.find((f) => f == item.uuid),
+                    tooltip: this.cleanDescription(item.system.description),
                 });
             }
         }
@@ -235,5 +237,62 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
 
             this.render({ force: true });
         });
+    }
+
+    cleanDescription(description) {
+        let outDesc = description;
+
+        let searchIdx = outDesc.search("<h3>");
+        while (searchIdx >= 0) {
+            const h3Close = outDesc.search("</h3>", searchIdx);
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(h3Close + 6);
+            searchIdx = outDesc.search("<h3>");
+        }
+
+        searchIdx = outDesc.search("@UUID");
+        while (searchIdx >= 0) {
+            const openBrace = outDesc.indexOf("{", searchIdx);
+            const closeBrace = outDesc.indexOf("}", openBrace);
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(openBrace + 1, closeBrace) + outDesc.slice(closeBrace + 1);
+            searchIdx = outDesc.search("@UUID");
+        }
+
+        searchIdx = outDesc.search("@Compendium");
+        while (searchIdx >= 0) {
+            const openBrace = outDesc.indexOf("{", searchIdx);
+            const closeBrace = outDesc.indexOf("}", openBrace);
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(openBrace + 1, closeBrace) + outDesc.slice(closeBrace + 1);
+            searchIdx = outDesc.search("@Compendium");
+        }
+
+        searchIdx = outDesc.search("<img");
+        while (searchIdx >= 0) {
+            const closeChar = outDesc.indexOf(">", searchIdx);
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(closeChar + 1);
+            searchIdx = outDesc.search("<img");
+        }
+
+        searchIdx = outDesc.search("Requirements");
+        if (searchIdx >= 0) {
+            const beforeReq = outDesc.slice(0, searchIdx);
+            const pOpen = beforeReq.lastIndexOf("<p>");
+            const pClose = outDesc.search("</p>", pOpen);
+            outDesc = outDesc.slice(0, pOpen) + outDesc.slice(pClose + 5);
+        }
+
+        searchIdx = outDesc.search("<article");
+        if (searchIdx >= 0) {
+            const articleOpenEnd = outDesc.search(">", searchIdx);
+            const articleClose = outDesc.search("</article>", searchIdx);
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(articleOpenEnd + 1, articleClose) + outDesc.slice(articleClose + "</article>".length);
+        }
+
+        searchIdx = outDesc.search("swpf-core");
+        while (searchIdx >= 0) {
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(searchIdx + "swpf-core".length);
+            searchIdx = outDesc.search("swpf-core");
+        }
+
+        return outDesc;
     }
 }
