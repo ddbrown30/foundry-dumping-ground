@@ -2,6 +2,12 @@
     <div>
         <h4><img src={{img}} width="30" height="30" style="border:0;" />{{title}}</h4>
         <p>Select the Combat Edges you want to grant with <strong>{{title}}</strong>.</p>
+        <div class="filter-row">
+            <label for="rank-filter">Max Rank:</label>
+            <select id="rank-filter" name="rank-filter" type="dropdown">
+                {{selectOptions ranks selected=rankFilter valueAttr="id" labelAttr="label"}}
+            </select>
+        </div>
         <fieldset>
             <legend>Combat Edges</legend>
             <div class="wg-selection" name="edges">

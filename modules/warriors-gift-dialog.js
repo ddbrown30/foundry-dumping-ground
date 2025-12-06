@@ -54,16 +54,17 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         super(options);
         this.options.window.title = options.type == "wg" ? "Warrior's Gift" : "Martial Flexibility";
         this.type = options.type;
+        this.rankFilter = options.rankFilter ?? -1;
         this.favourites = Utils.getSetting(SETTING_KEYS.warriorFavourites);
     }
 
     getEdgeRank(edge) {
         for (const req of edge.system.requirements) {
             if (req.type == "rank") {
-                return foundry.CONFIG.SWADE.ranks[req.value];
+                return { value: req.value, name: CONFIG.SWADE.ranks[req.value] };
             }
         }
-        return "Novice";
+        return { value: 0, name: "Novice" };
     }
 
     static compareEdgePacks(a, b, pref) {
@@ -118,13 +119,15 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
                 }
 
                 const rank = this.getEdgeRank(item);
-                edges.push({
-                    name: item.name,
-                    label: `${item.name}, ${rank} (${pack.metadata.packageName})`,
-                    uuid: item.uuid,
-                    favourite: !!this.favourites.find((f) => f == item.uuid),
-                    pack: pack,
-                });
+                if (this.rankFilter < 0 || rank.value <= this.rankFilter) {
+                    edges.push({
+                        name: item.name,
+                        label: `${item.name}, ${rank.name} (${pack.metadata.packageName})`,
+                        uuid: item.uuid,
+                        favourite: !!this.favourites.find((f) => f == item.uuid),
+                        pack: pack,
+                    });
+                }
             }
         }
 
@@ -134,12 +137,14 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             }
 
             const rank = this.getEdgeRank(item);
-            edges.push({
-                name: item.name,
-                label: `${item.name}, ${rank} (World)`,
-                uuid: item.uuid,
-                favourite: !!this.favourites.find((f) => f == item.uuid),
-            });
+            if (this.rankFilter < 0 || rank.value <= this.rankFilter) {
+                edges.push({
+                    name: item.name,
+                    label: `${item.name}, ${rank.name} (World)`,
+                    uuid: item.uuid,
+                    favourite: !!this.favourites.find((f) => f == item.uuid),
+                });
+            }
         }
 
         if (!edges.length) {
@@ -173,7 +178,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             return a.label.localeCompare(b.label);
         });
 
-        let mfImage = "modules/swpf-core-rules/assets/icons/Pathfinder_Icons_Edge.webp";
+        let mfImage = "assets/icons/martial-flexibility.webp";
         let wgImage = "modules/succ/assets/icons/m-warriors-gift.svg";
         if (game.succ) {
             const wgCond = game.succ.getCondition("warriors-gift");
@@ -182,13 +187,32 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
 
         const img = this.type == "wg" ? wgImage : mfImage;
 
+        let ranks = [];
+        ranks.push({ id: -1, label: "All" });
+        for (let [rank, value] of Object.entries(CONFIG.SWADE.ranks)) {
+            ranks.push({ id: Number(rank), label: value });
+        }
+
         return {
             title: this.options.window.title,
             img: img,
             type: this.type,
             edges: edges,
+            ranks: ranks,
+            rankFilter: this.rankFilter,
         };
     };
+
+    _onRender(context, options) {
+        const selector = this.element.querySelector('select[id="rank-filter"]');
+        if (selector) {
+            selector.addEventListener("change", async event => {
+                const selection = $(event.target).find("option:selected");
+                this.rankFilter = selection.val();
+                this.render();
+            });
+        }
+    }
 
     submit() {
         this.close();

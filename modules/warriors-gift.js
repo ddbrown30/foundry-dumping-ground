@@ -19,7 +19,13 @@ export class WarriorsGift {
             return;
         }
 
-        let result = await new WarriorsGiftDialog({ type: type }).wait();
+        let options = { type: type };
+        if (targets.length == 1 && type == "mf") {
+            const rank = targets[0].actor.system.advances.rank;
+            options.rankFilter = foundry.CONFIG.SWADE.ranks.indexOf(rank);
+        }
+
+        let result = await new WarriorsGiftDialog(options).wait();
         if (!result) {
             return;
         }

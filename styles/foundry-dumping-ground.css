@@ -21,3 +21,20 @@
     max-height: 300px;
     overflow-y: auto;
 }
+
+.fdg .filter-row {
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 0.5rem;
+    max-width: fit-content;
+
+    >label {
+        text-wrap-mode: nowrap;
+    }
+
+    >select {
+        max-height: fit-content;
+    }
+}
