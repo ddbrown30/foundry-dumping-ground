@@ -1,0 +1,34 @@
+<form class="standard-form">
+    <div>
+        <h4><img src="icons/magic/symbols/runes-star-pentagon-blue.webp" width="30" height="30" style="border:0;" />Summon</h4>
+        <p>Optionally select any Traits to increase on the summoned character.</p>
+        <fieldset>
+            <legend>Attributes</legend>
+            <div class="summon-traits attributes" name="attributes">
+                {{#each attributes}}
+                    <div class="attribute">
+                        <label class="checkbox">
+                            <input type="checkbox" value="{{this}}">{{this}}
+                        </label>
+                    </div>
+                {{/each}}
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Skills</legend>
+            <div class="summon-traits skills" name="skills">
+                {{#each skills}}
+                    <div class="skill">
+                        <label class="checkbox">
+                            <input type="checkbox" value="{{uuid}}">{{name}}
+                        </label>
+                    </div>
+                {{/each}}
+            </div>
+        </fieldset>
+    </div>
+    <footer class="form-footer">
+        <button type="button" data-action="continue">{{localize "Continue"}}</button>
+        <button type="button" data-action="cancel">{{localize "Cancel"}}</button>
+    </footer>
+</form>

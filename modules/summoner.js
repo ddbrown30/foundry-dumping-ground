@@ -1,8 +1,14 @@
+import { SummonDialog } from "./summon-dialog.js";
 import { Utils } from "./utils.js";
 
 export class Summoner {
 
     static async startSummon(summonerToken, options={}) {
+        let dialogResult = await new SummonDialog(options).wait();
+        if (!dialogResult) {
+            return;
+        }
+
         let selectedActorUuid = await game.actorBrowser.openBrowser({ actorTypes: ["npc", "character"], initialSourceFilter: "swade-ootd.odyssey-bestiary", searchName: options.searchName });
         if (!selectedActorUuid) return;
 
@@ -10,13 +16,13 @@ export class Summoner {
         if (!crosshair) return;
 
         if (game.user.isGM) {
-            Summoner.executeSummon(crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id);
+            Summoner.executeSummon(crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id, dialogResult);
         } else {
-            game.foundryDumpingGround.socket.executeAsGM("executeSummon", crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id);
+            game.foundryDumpingGround.socket.executeAsGM("executeSummon", crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id, dialogResult);
         }
     }
 
-    static async executeSummon(crosshair, sceneId, selectedActorUuid, summonerTokenUuid, userId) {
+    static async executeSummon(crosshair, sceneId, selectedActorUuid, summonerTokenUuid, userId, traits) {
         let summonedActor;
         if (selectedActorUuid.startsWith("Compendium")) {
             summonedActor = await game.tcal.importTransientActor(selectedActorUuid);
@@ -52,8 +58,44 @@ export class Summoner {
             "delta.ownership": removedOwnership,
             actorLink: false, //We always want to unlink the actor so that we don't modify the original
         });
+
         let createdTokenDoc = (await canvas.scene.createEmbeddedDocuments("Token", [newTokenDoc]))[0];
         game.foundryDumpingGround.socket.executeForEveryone("toggleVis", createdTokenDoc.uuid, 0);
+
+        //Apply any trait changes
+        if (traits.attributes.length) {
+            let actorUpdateData = {};
+            for (const attribute of traits.attributes) {
+                const keyPath = `system.attributes.${attribute.toLowerCase()}.die.sides`;
+                actorUpdateData[keyPath] = foundry.utils.getProperty(createdTokenDoc.actor, keyPath) + 2;
+            }
+            await createdTokenDoc.actor.update(actorUpdateData);
+        }
+
+        if (traits.skills.length) {
+            let skillUpdates = [];
+            let skillsToAdd = [];
+            for (const skillId of traits.skills) {
+                const sourceSkill = await fromUuid(skillId);
+                const actorSkill = createdTokenDoc.actor.items.find(s => s.type == "skill" && s.name.toLowerCase() === sourceSkill.name.toLowerCase());
+                if (actorSkill) {
+                    skillUpdates.push({
+                        _id: actorSkill.id,
+                        "system.die.sides": foundry.utils.getProperty(actorSkill, "system.die.sides") + 2,
+                    });
+                } else {
+                    skillsToAdd.push(sourceSkill);
+                }
+            }
+
+            if (skillUpdates.length > 0) {
+                await createdTokenDoc.actor.updateEmbeddedDocuments("Item", skillUpdates);
+            }
+
+            if (skillsToAdd.length > 0) {
+                await createdTokenDoc.actor.createEmbeddedDocuments("Item", skillsToAdd, { render: false, renderSheet: false });
+            }
+        }
 
         let { x, y, width, height } = newTokenDoc;
 

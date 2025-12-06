@@ -38,3 +38,18 @@
         max-height: fit-content;
     }
 }
+
+.fdg .summon-traits {
+    display: grid;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+
+    &.attributes {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    &.skills {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
