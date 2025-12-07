@@ -1,9 +1,15 @@
 import { SummonDialog } from "./summon-dialog.js";
-import { Utils } from "./utils.js";
 
 export class Summoner {
 
     static async startSummon(summonerToken, options={}) {
+        if (options.activeEffectName) {
+            if (!summonerToken) {
+                ui.notifications.warn("No summoner selected.");
+                return;
+            }
+        }
+
         let traits = {};
         if (!options.skipDialog) {
             let dialogResult = await new SummonDialog(options).wait();
@@ -13,34 +19,49 @@ export class Summoner {
             traits = dialogResult;
         }
 
-        let selectedActorUuid = await game.actorBrowser.openBrowser({ actorTypes: ["npc", "character"], initialSourceFilter: "swade-ootd.odyssey-bestiary", searchName: options.searchName });
+        let selectedActorUuid = await game.actorBrowser.openBrowser({
+            actorTypes: ["npc", "character"],
+            initialSourceFilter: "swade-ootd.odyssey-bestiary",
+            searchName: options.searchName,
+            tags: options.tags,
+        });
         if (!selectedActorUuid) return;
 
         const crosshair = await Sequencer.Crosshair.show({ snap: { resolution: 1 } });
         if (!crosshair) return;
 
+        const args = {
+            options: options,
+            crosshair: crosshair,
+            sceneId: game.canvas.scene.id,
+            selectedActorUuid: selectedActorUuid,
+            summonerTokenUuid: summonerToken?.document.uuid,
+            userId: game.user.id,
+            traits: traits,
+        }
+
         if (game.user.isGM) {
-            Summoner.executeSummon(crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id, traits);
+            Summoner.executeSummon(args);
         } else {
-            game.foundryDumpingGround.socket.executeAsGM("executeSummon", crosshair, game.canvas.scene.id, selectedActorUuid, summonerToken?.uuid, game.user.id, traits);
+            game.foundryDumpingGround.socket.executeAsGM("executeSummon", args);
         }
     }
 
-    static async executeSummon(crosshair, sceneId, selectedActorUuid, summonerTokenUuid, userId, traits) {
+    static async executeSummon(args) {
         let summonedActor;
-        if (selectedActorUuid.startsWith("Compendium")) {
-            summonedActor = await game.tcal.importTransientActor(selectedActorUuid);
+        if (args.selectedActorUuid.startsWith("Compendium")) {
+            summonedActor = await game.tcal.importTransientActor(args.selectedActorUuid);
         } else {
-            summonedActor = fromUuidSync(selectedActorUuid);
+            summonedActor = fromUuidSync(args.selectedActorUuid);
         }
 
         if (!summonedActor) return;
 
-        let scene = game.scenes.find(s => s.id == sceneId);
-        let user = game.users.get(userId);
+        let scene = game.scenes.find(s => s.id == args.sceneId);
+        let user = game.users.get(args.userId);
 
         let disposition = CONST.TOKEN_DISPOSITIONS.SECRET;
-        let summonerTokenDoc = summonerTokenUuid ? fromUuidSync(summonerTokenUuid) : null;
+        let summonerTokenDoc = args.summonerTokenUuid ? fromUuidSync(args.summonerTokenUuid) : null;
         if (summonerTokenDoc) {
             disposition = summonerTokenDoc.disposition;
         } else {
@@ -53,8 +74,8 @@ export class Summoner {
         }
 
         const newTokenDoc = await summonedActor.getTokenDocument({
-            x: crosshair.x - scene.grid.size / 2,
-            y: crosshair.y - scene.grid.size / 2,
+            x: args.crosshair.x - scene.grid.size / 2,
+            y: args.crosshair.y - scene.grid.size / 2,
             disposition: CONST.TOKEN_DISPOSITIONS.SECRET,
             displayBars: CONST.TOKEN_DISPLAY_MODES.NONE,
             "bar1.attribute": "wounds",
@@ -66,10 +87,22 @@ export class Summoner {
         let createdTokenDoc = (await canvas.scene.createEmbeddedDocuments("Token", [newTokenDoc]))[0];
         game.foundryDumpingGround.socket.executeForEveryone("toggleVis", createdTokenDoc.uuid, 0);
 
+        //If we have an AE name, create a new AE on the summoner token
+        if (summonerTokenDoc && args.options.activeEffectName) {
+            const createAEData = [{
+                id: "summon-" + createdTokenDoc.uuid,
+                name: args.options.activeEffectName,
+                img: createdTokenDoc.texture.src,
+                system: { expiration: 3 },
+                duration: { rounds: 5 },
+            }];
+            await summonerTokenDoc.actor.createEmbeddedDocuments("ActiveEffect", createAEData);
+        }
+
         //Apply attribute increases changes
-        if (traits?.attributes?.length) {
+        if (args.traits?.attributes?.length) {
             let actorUpdateData = {};
-            for (const attribute of traits.attributes) {
+            for (const attribute of args.traits.attributes) {
                 const keyPath = `system.attributes.${attribute.toLowerCase()}.die.sides`;
                 actorUpdateData[keyPath] = foundry.utils.getProperty(createdTokenDoc.actor, keyPath) + 2;
             }
@@ -77,10 +110,10 @@ export class Summoner {
         }
 
         //Apply skill increases changes
-        if (traits?.skills?.length) {
+        if (args.traits?.skills?.length) {
             let skillUpdates = [];
             let skillsToAdd = [];
-            for (const skillId of traits.skills) {
+            for (const skillId of args.traits.skills) {
                 const sourceSkill = await fromUuid(skillId);
                 const actorSkill = createdTokenDoc.actor.items.find(s => s.type == "skill" && s.name.toLowerCase() === sourceSkill.name.toLowerCase());
                 if (actorSkill) {
@@ -139,7 +172,7 @@ export class Summoner {
                     delta: { ownership: {} },
                 };
 
-                updateData.delta.ownership[userId] = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+                updateData.delta.ownership[args.userId] = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
 
                 createdTokenDoc.update(updateData);
             });
