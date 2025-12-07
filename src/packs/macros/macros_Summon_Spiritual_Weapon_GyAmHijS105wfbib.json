@@ -1,0 +1,28 @@
+{
+  "name": "Summon Spiritual Weapon",
+  "type": "script",
+  "command": "game.foundryDumpingGround.startSummon(token, {skipDialog: true, activeEffectName: \"Spritual Weapon\", tags:\"summon:spiritual-weapon\"});",
+  "img": "modules/swade-ootd/assets/characters/other/Spiritual%20Weapon%20(Sword)%20Handout.webp",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "sWoyrFbAfYPN80IW",
+  "ownership": {
+    "default": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.0",
+    "createdTime": 1765141400509,
+    "modifiedTime": 1765141400509,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "GyAmHijS105wfbib",
+  "sort": 0,
+  "_key": "!macros!GyAmHijS105wfbib"
+}

@@ -2,28 +2,29 @@
   "name": "Show Token Image",
   "type": "script",
   "scope": "global",
-  "_id": "s8jReb1iGHMpe4LF",
-  "author": "OqoOYpjGAZ5j35VP",
+  "author": "GRUe2ggA3JUMkF0D",
   "img": "icons/svg/ice-aura.svg",
   "command": "let token = canvas.tokens.controlled[0];\nconst ip = new ImagePopout(token.document.texture.src);\nip.render(true);\nip.shareImage();",
-  "folder": "Un40NvcdunD2KEqb",
-  "sort": 150000,
+  "folder": "Ygup3e5YXAXLdfQJ",
   "ownership": {
     "default": 0,
     "imUDcCtCX3TtgvI1": 3,
-    "OqoOYpjGAZ5j35VP": 3
+    "OqoOYpjGAZ5j35VP": 3,
+    "GRUe2ggA3JUMkF0D": 3
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.341",
+    "exportSource": null,
+    "coreVersion": "13.346",
     "systemId": "swade",
-    "systemVersion": "4.3.0",
-    "createdTime": 1738626731555,
-    "modifiedTime": 1738626731555,
-    "lastModifiedBy": "OqoOYpjGAZ5j35VP",
-    "exportSource": null
+    "systemVersion": "5.0.4",
+    "createdTime": 1754365334536,
+    "modifiedTime": 1754365334549,
+    "lastModifiedBy": "GRUe2ggA3JUMkF0D"
   },
-  "_key": "!macros!s8jReb1iGHMpe4LF"
+  "_id": "Pl9i1At1rpGMv31z",
+  "sort": 56250,
+  "_key": "!macros!Pl9i1At1rpGMv31z"
 }

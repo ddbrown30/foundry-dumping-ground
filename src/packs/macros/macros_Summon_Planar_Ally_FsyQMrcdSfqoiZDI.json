@@ -1,0 +1,28 @@
+{
+  "name": "Summon Planar Ally",
+  "type": "script",
+  "command": "game.foundryDumpingGround.startSummon(token, {activeEffectName: \"Summon Planar Ally\", tags:\"summon:planar-ally\"});",
+  "img": "icons/creatures/unholy/demon-fire-horned-clawed.webp",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "sWoyrFbAfYPN80IW",
+  "ownership": {
+    "default": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.0",
+    "createdTime": 1765141398593,
+    "modifiedTime": 1765141398593,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "FsyQMrcdSfqoiZDI",
+  "sort": 0,
+  "_key": "!macros!FsyQMrcdSfqoiZDI"
+}

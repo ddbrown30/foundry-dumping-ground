@@ -1,0 +1,28 @@
+{
+  "folder": "Un40NvcdunD2KEqb",
+  "name": "Clear Movement History",
+  "type": "script",
+  "author": "Za53oo2n0szvIrpy",
+  "img": "assets/icons/clear-movement-history.svg",
+  "scope": "global",
+  "command": "let token = canvas.tokens.controlled[0] ?? canvas.tokens.ownedTokens.find(t => t.actor.id == game.user.character?.id);\n\nif (!token) {\n    ui.notifications.warn('No Selected Token');\n    return;\n}\n\nif (!token.document.movementHistory.length) {\n  ui.notifications.info(token.name + \" has no movement history.\");\n  return;\n}\n\nconst clear = await foundry.applications.api.DialogV2.confirm({\n  window: { title: \"Clear History\" },\n  content: \"<p>Clear movement history for \" + token.name + \"?</p>\"\n});\n\nif (clear) {\n  token.document.clearMovementHistory();\n  ui.notifications.info(\"Cleared movement history for \" + token.name + \".\");\n}",
+  "ownership": {
+    "default": 0,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.347",
+    "systemId": "swade",
+    "systemVersion": "5.0.4",
+    "createdTime": 1755578992202,
+    "modifiedTime": 1755579536671,
+    "lastModifiedBy": "GRUe2ggA3JUMkF0D"
+  },
+  "_id": "i12UJRgLm5fe3AQX",
+  "sort": 0,
+  "_key": "!macros!i12UJRgLm5fe3AQX"
+}

@@ -1,6 +1,6 @@
 {
   "name": "Apply Martial Flexibility",
-  "img": "modules/swpf-core-rules/assets/icons/Pathfinder_Icons_Edge.webp",
+  "img": "assets/icons/martial-flexibility.webp",
   "type": "script",
   "command": "game.foundryDumpingGround.warriorsGift(game.foundryDumpingGround.getSelected(), \"mf\");",
   "scope": "global",
@@ -20,8 +20,8 @@
     "systemId": "swade",
     "systemVersion": "5.0.3",
     "createdTime": 1753497937719,
-    "modifiedTime": 1753497954003,
-    "lastModifiedBy": "26zedh1nuCLjFH0V"
+    "modifiedTime": 1754545286980,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
   },
   "_id": "PVCvqBGSILixWj48",
   "sort": 0,

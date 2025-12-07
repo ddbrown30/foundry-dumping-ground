@@ -1,0 +1,28 @@
+{
+  "name": "Summon Animal",
+  "type": "script",
+  "command": "game.foundryDumpingGround.startSummon(token, {activeEffectName: \"Summon Animal\", tags:\"summon:animal\"});",
+  "img": "icons/creatures/mammals/deer-movement-leap-green.webp",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "sWoyrFbAfYPN80IW",
+  "ownership": {
+    "default": 3,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.0",
+    "createdTime": 1765141394704,
+    "modifiedTime": 1765141394704,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "zYxig7xP7udwT0wQ",
+  "sort": 0,
+  "_key": "!macros!zYxig7xP7udwT0wQ"
+}

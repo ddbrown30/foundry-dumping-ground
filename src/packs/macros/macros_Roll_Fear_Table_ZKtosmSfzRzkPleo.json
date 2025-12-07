@@ -1,0 +1,28 @@
+{
+  "name": "Roll Fear Table",
+  "type": "script",
+  "img": "assets/icons/frightened.webp",
+  "command": "game.swadeCore.macros.coreFearDialog(actor);",
+  "author": "OqoOYpjGAZ5j35VP",
+  "scope": "global",
+  "folder": "Un40NvcdunD2KEqb",
+  "ownership": {
+    "default": 2,
+    "OqoOYpjGAZ5j35VP": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "swade",
+    "systemVersion": "5.0.4",
+    "createdTime": 1753931649281,
+    "modifiedTime": 1753931659827,
+    "lastModifiedBy": "OqoOYpjGAZ5j35VP"
+  },
+  "_id": "ZKtosmSfzRzkPleo",
+  "sort": 0,
+  "_key": "!macros!ZKtosmSfzRzkPleo"
+}
