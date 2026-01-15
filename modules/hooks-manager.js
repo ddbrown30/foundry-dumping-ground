@@ -6,6 +6,7 @@ import { Misc } from "./misc.js";
 import { NAME } from "./module-config.js";
 import { Summoner } from "./summoner.js";
 import { WarriorsGift } from "./warriors-gift.js";
+import { BTeam } from "./b-team.js";
 
 export class HooksManager {
     /**
@@ -52,6 +53,10 @@ export class HooksManager {
 
         Hooks.on("deleteActiveEffect", (effect, options, userId) => {
             WarriorsGift.onDeleteActiveEffect(effect, options, userId);
+        });
+
+        Hooks.on("renderCharacterSheet", (app, html, data) => {
+            BTeam.onRenderCharacterSheet(app, html, data);
         });
     }
 }
