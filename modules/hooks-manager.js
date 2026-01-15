@@ -34,6 +34,12 @@ export class HooksManager {
             registerSettings();
         });
 
+        Hooks.on("ready", () => {
+            if (game.user.name == "TV Display") {
+                document.querySelector("#ui-middle").classList.add("max-carousel-width");
+            }
+        });
+
         Hooks.once("socketlib.ready", () => {
             game.foundryDumpingGround = game.foundryDumpingGround ?? {};
 
