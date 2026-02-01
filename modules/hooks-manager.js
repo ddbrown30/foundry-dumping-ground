@@ -7,6 +7,7 @@ import { NAME } from "./module-config.js";
 import { Summoner } from "./summoner.js";
 import { WarriorsGift } from "./warriors-gift.js";
 import { BTeam } from "./b-team.js";
+import { DiceSoNice } from "./dice-so-nice.js";
 
 export class HooksManager {
     /**
@@ -38,6 +39,10 @@ export class HooksManager {
             if (game.user.name == "TV Display") {
                 document.querySelector("#ui-middle").classList.add("max-carousel-width");
             }
+        });
+
+        Hooks.once('diceSoNiceReady', (dice3d) => {
+            DiceSoNice.addColorSets(dice3d);
         });
 
         Hooks.once("socketlib.ready", () => {
