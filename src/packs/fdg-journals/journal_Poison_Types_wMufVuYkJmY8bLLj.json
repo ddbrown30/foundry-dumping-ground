@@ -1,0 +1,248 @@
+{
+  "folder": "0yRWGeUhaMIIq5Oz",
+  "name": "Poison Types",
+  "pages": [
+    {
+      "sort": 175000,
+      "name": "Knockout",
+      "type": "text",
+      "_id": "ymOyRjuwK5Ds4z08",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>KNOCKOUT: </strong>The victim is knocked out (Incapacitated and unconscious) for 2d6 hours (twice that with a <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03traitrolls0000\" data-id=\"03traitrolls0000\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Critical Failure</a>).</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!wMufVuYkJmY8bLLj.ymOyRjuwK5Ds4z08"
+    },
+    {
+      "sort": 200000,
+      "name": "Mild",
+      "type": "text",
+      "_id": "mN0bX1ghv7kRFUU2",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>MILD: </strong>The victim suffers <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03fatigue0000000\" data-id=\"03fatigue0000000\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Fatigue</a>, or <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03fatigue0000000\" data-id=\"03fatigue0000000\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Exhaustion</a> with a Critical Failure. This cannot cause Incapacitation.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!wMufVuYkJmY8bLLj.mN0bX1ghv7kRFUU2"
+    },
+    {
+      "sort": 187500,
+      "name": "Lethal",
+      "type": "text",
+      "_id": "DNzrKqxS3yMArXUl",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>LETHAL: </strong>The victim is <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03stunned0000000\" data-id=\"03stunned0000000\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Stunned</a>, takes a <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03damageeffect00\" data-id=\"03damageeffect00\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Wound</a> (two with a Critical Failure), and perishes in 2d6 rounds.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!wMufVuYkJmY8bLLj.DNzrKqxS3yMArXUl"
+    },
+    {
+      "sort": 400000,
+      "name": "Paralyzing",
+      "type": "text",
+      "_id": "iY0uAcm4SFVwZIlm",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>PARALYZING: </strong>Treat as <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03stunned0000000\" data-id=\"03stunned0000000\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Stunned</a>. If a Duration is listed, the victim cannot attempt to recover from being Stunned until that amount of time has passed. Otherwise, she may attempt to recover from paralysis on her next turn as usual.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!wMufVuYkJmY8bLLj.iY0uAcm4SFVwZIlm"
+    },
+    {
+      "sort": 150000,
+      "name": "Debilitating",
+      "type": "text",
+      "_id": "RwawI3lNkdhWJA2I",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>DEBILITATING: </strong>The victim becomes <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03distractedan00\" data-id=\"03distractedan00\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Distracted</a> for 5 rounds (twice that with a <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03traitrolls0000\" data-id=\"03traitrolls0000\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Critical Failure</a>).</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!wMufVuYkJmY8bLLj.RwawI3lNkdhWJA2I"
+    },
+    {
+      "sort": 50000,
+      "name": "Damaging",
+      "type": "text",
+      "_id": "NFvly6GX075uoh2x",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>DAMAGING: </strong>The victim must make a Vigor roll as a free action at the beginning of their next turn. Failure causes one <a class=\"content-link\" draggable=\"true\" data-link data-uuid=\"Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03damageeffect00\" data-id=\"03damageeffect00\" data-type=\"JournalEntryPage\" data-pack=\"swade-core-rules.swade-rules\" data-tooltip=\"Text Page\">Wound</a> and the victim must make another Vigor roll next turn. Success means the victim doesn't suffer a Wound, but must make a Vigor roll again next turn. A raise recovers from the poison and no further rolls are required.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!wMufVuYkJmY8bLLj.NFvly6GX075uoh2x"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.1",
+    "createdTime": 1772228173429,
+    "modifiedTime": 1772228173429,
+    "lastModifiedBy": "Za53oo2n0szvIrpy"
+  },
+  "categories": [],
+  "_id": "wMufVuYkJmY8bLLj",
+  "sort": 0,
+  "_key": "!journal!wMufVuYkJmY8bLLj"
+}

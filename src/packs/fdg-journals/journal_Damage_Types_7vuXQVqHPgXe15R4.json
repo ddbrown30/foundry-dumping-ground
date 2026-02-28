@@ -1,0 +1,98 @@
+{
+  "folder": "0yRWGeUhaMIIq5Oz",
+  "name": "Damage Types",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Damage Types",
+      "type": "text",
+      "_id": "kPUwrXgaJLBkUiC0",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p><strong>Physical Damage</strong></p><p>The main types of physical damage are bludgeoning, piercing, and slashing.</p><p><strong>Energy Damage</strong></p><p>The main types of energy damage are acid, cold, electricity, fire, and sonic.</p><p>Holy and death are special, magical damage types.</p><p>Powerful and pure magical energy can manifest itself as force damage.</p><p><strong>Mental Damage</strong></p><p>Sometimes an effect can target the mind with enough psychic force to actually deal damage to the creature. When it does, it deals mental damage.</p><p><strong>Poison Damage</strong></p><p>Venoms, toxins and the like can deal poison damage, which affects creatures by way of contact, ingestion, inhalation, or injury.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!7vuXQVqHPgXe15R4.kPUwrXgaJLBkUiC0"
+    },
+    {
+      "sort": 200000,
+      "name": "Summary",
+      "type": "text",
+      "_id": "W5Wj0vzKzzRaLqNj",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Physical - bludgeoning, piercing, slashing, bleed</p><p>Energy - acid, cold, electricity, fire, sonic, holy, death, force</p><p>Mental - mental</p><p>Poison - poison</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!7vuXQVqHPgXe15R4.W5Wj0vzKzzRaLqNj"
+    }
+  ],
+  "ownership": {
+    "default": 2,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.1",
+    "createdTime": 1772228157995,
+    "modifiedTime": 1772228157995,
+    "lastModifiedBy": "Za53oo2n0szvIrpy"
+  },
+  "categories": [],
+  "_id": "7vuXQVqHPgXe15R4",
+  "sort": 0,
+  "_key": "!journal!7vuXQVqHPgXe15R4"
+}

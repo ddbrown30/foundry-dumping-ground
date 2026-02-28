@@ -1,0 +1,101 @@
+{
+  "folder": "0yRWGeUhaMIIq5Oz",
+  "name": "Incapacitation",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Incapacitation",
+      "type": "text",
+      "_id": "78k4CelfI3b9aOvo",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Incapacitated characters may not perform actions but are still dealt Action Cards for the remainder of the encounter in case they recover or must roll for other effects such as Bleeding Out (below). Edges or Hindrances that affect card draws, such as Quick, Level Headed, or Hesitant are ignored when the hero is Incapacitated.</p><p>If Incapacitated by damage or injury, he must make an immediate Vigor roll:</p><ul><li><strong>CRITICAL FAILURE:</strong> The character dies.</li><li><strong>FAILURE:</strong> Roll on the @UUID[Compendium.swade-core-rules.swade-tables.RollTable.fRhZBtWUt3kKkbCd]{Injury Table}. The Injury is permanent and the character is Bleeding Out, see below.</li><li><strong>SUCCESS:</strong> Roll on the Injury Table. The Injury goes away when all Wounds are healed.</li><li><strong>RAISE:</strong> Roll on the Injury Table. The Injury goes away in 24 hours, or when all Wounds are healed (whichever is sooner).</li></ul><p>Characters cannot take actions and might be unconscious (GM’s call). The victim makes a Vigor roll each day thereafter and is no longer Incapacitated (or unconscious) if successful. They may also heal Wounds during this time (see @UUID[Compendium.swade-core-rules.swade-rules.JournalEntry.swadecor03rules0.JournalEntryPage.03healing0000000#natural-healing]{Natural Healing}).</p><p><strong>Bleeding Out:</strong> The injured character is dying and must make a Vigor roll at the start of his turn. Failure means he perishes. With success he survives but must roll again next turn (or every minute if not in combat). With a raise, he stabilizes and no further rolls are required.</p><p>Other characters may stop a victim’s bleeding by making a Healing roll. This is an action, and if successful the patient is stabilized.</p><p>The <em>healing</em> power can also stabilize Wounds, as can a successful “natural” healing roll by a being with regeneration of some sort.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!NR1UKZeq9jnocBTO.78k4CelfI3b9aOvo"
+    },
+    {
+      "sort": 200000,
+      "name": "Injury Table",
+      "type": "image",
+      "_id": "VNCwlLADaxo7zIwT",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {
+        "caption": ""
+      },
+      "text": {
+        "format": 1
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": "assets/images/Injury%20Table.webp",
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!NR1UKZeq9jnocBTO.VNCwlLADaxo7zIwT"
+    }
+  ],
+  "categories": [],
+  "ownership": {
+    "default": 0,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.1",
+    "createdTime": 1772228162446,
+    "modifiedTime": 1772228162446,
+    "lastModifiedBy": "Za53oo2n0szvIrpy"
+  },
+  "_id": "NR1UKZeq9jnocBTO",
+  "sort": 0,
+  "_key": "!journal!NR1UKZeq9jnocBTO"
+}

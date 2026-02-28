@@ -1,0 +1,63 @@
+{
+  "folder": "0yRWGeUhaMIIq5Oz",
+  "name": "Power Modifiers (PF)",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Power Modifiers",
+      "type": "text",
+      "_id": "BNtwoOKxiVnYoZYl",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<hr /><p><strong>Duration:</strong> Power Modifiers last for the Duration of the spell, or until the end of the target’s next turn in the case of Instant powers.</p><hr /><p><strong>Adaptable Caster (+1):</strong> The caster can spend one extra Power Point when activating a power to alter its Trapping. This can have important consequences if a foe has a particular resistance to the spell’s usual Trapping or weakness to the new one!</p><p><strong>Armor Piercing (+1 to +3):</strong> Each Power Point spent grants the power AP 2 (see page 65), MAX AP 6.</p><p><strong>Fatigue (+2):</strong> This modifier may be attached to any power that can cause damage or is resisted by the target. If she’s affected by the power in any way, she also suffers Fatigue. This cannot cause Incapacitation, however.</p><p><strong>Glow/Shroud (+1):</strong> This creates soft light in a Small Blast Template centered on the target, and lasts until the power expires. It subtracts 2 from her Stealth totals and negates 1 point of Illumination penalties for those attacking the glowing character. Shroud dims and slightly obscures the target so that attacks against her suffer a -1 penalty and she adds +1 to her Stealth rolls.</p><p><strong>Heavy Weapon (+2):</strong> The attack counts as a Heavy Weapon.</p><p><strong>Hinder/Hurry (+1):</strong> Target's base Pace is reduced by 2 until the power expires. A caster can Hurry the recipient instead. He might get increased energy, sure footing, or more powerful muscles. His Pace is increased by 2. Effects of either modifier aren’t cumulative.</p><p><strong>Lingering Damage (+2):</strong> On the victim’s next turn, he suffers the power’s base damage minus one die type (one additional turn only). If hit with a 2d6 bolt, for example, the victim takes 2d4 damage at the start of his next turn. If the base damage is already a d4 die type, it loses a die instead.</p><p><strong>Range (+1/+2):</strong> Double the power’s listed Range for 1 Power Point, or triple it for +2. This modifier may not be used on powers with a Range of Touch or the Cone Template.</p><p><strong>Selective (+1):</strong> With intense focus, the caster can choose not to affect any or all individual targets within a power’s area of effect (picking all enemies instead of allies in a blast, for example).</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!VGksMbdRMfHnmA0C.BNtwoOKxiVnYoZYl"
+    }
+  ],
+  "categories": [],
+  "ownership": {
+    "default": 2,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.1",
+    "createdTime": 1772228177450,
+    "modifiedTime": 1772228177450,
+    "lastModifiedBy": "Za53oo2n0szvIrpy"
+  },
+  "_id": "VGksMbdRMfHnmA0C",
+  "sort": 0,
+  "_key": "!journal!VGksMbdRMfHnmA0C"
+}

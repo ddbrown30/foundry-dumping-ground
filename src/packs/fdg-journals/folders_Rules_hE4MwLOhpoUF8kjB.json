@@ -1,0 +1,23 @@
+{
+  "name": "Rules",
+  "sorting": "a",
+  "folder": null,
+  "type": "JournalEntry",
+  "description": "",
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.1",
+    "createdTime": 1772228141604,
+    "modifiedTime": 1772228141604,
+    "lastModifiedBy": "Za53oo2n0szvIrpy"
+  },
+  "_id": "hE4MwLOhpoUF8kjB",
+  "sort": 0,
+  "_key": "!folders!hE4MwLOhpoUF8kjB"
+}

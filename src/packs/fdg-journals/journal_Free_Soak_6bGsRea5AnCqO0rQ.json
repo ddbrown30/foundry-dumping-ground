@@ -1,0 +1,63 @@
+{
+  "folder": "0yRWGeUhaMIIq5Oz",
+  "name": "Free Soak",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Free Soak",
+      "type": "text",
+      "_id": "j7aY3xU7OxNG6GEv",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>A Free Soak allows the character make a Soak roll without having to spend a Benny. Using a Free Soak does not count as spending a Benny and does not trigger Edges that use Bennies. A character can have a maximum of one Free Soak at any given time.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "Za53oo2n0szvIrpy": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "swade",
+        "systemVersion": "5.1.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6bGsRea5AnCqO0rQ.j7aY3xU7OxNG6GEv"
+    }
+  ],
+  "categories": [],
+  "ownership": {
+    "default": 2,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.1",
+    "createdTime": 1772228159361,
+    "modifiedTime": 1772228159361,
+    "lastModifiedBy": "Za53oo2n0szvIrpy"
+  },
+  "_id": "6bGsRea5AnCqO0rQ",
+  "sort": 0,
+  "_key": "!journal!6bGsRea5AnCqO0rQ"
+}
