@@ -56,4 +56,27 @@
 
 .max-carousel-width {
     width: -webkit-fill-available;
+
+    .tracked-attribute-text-container {
+        opacity: 0;
+    }
+
+    .effects-container {
+        visibility: hidden;
+    }
+}
+
+.max-carousel-width .overlay-ui-container .portrait-initiative {
+    width: 100%;
+    height: 100%;
+    position: unset;
+    font-size: calc(var(--combatant-portrait-size)*.5);
+    opacity: 1;
+    margin-top: unset;
+    margin-left: unset;
+    align-items: end;
+
+    i {
+        opacity: 0;
+    }
 }
