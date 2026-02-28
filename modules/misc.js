@@ -1,3 +1,4 @@
+import { ApplyInjuryDialog } from "./apply-injury-dialog.js";
 import { DEFAULT_CONFIG, PATH } from "./module-config.js";
 import { Utils } from "./utils.js";
 
@@ -9,7 +10,7 @@ export class Misc {
             content: "<label><p>Wounds to remove (put -1 if a critical failure increases the target's wounds level by one)</p><input type='number' id='wounds' value='1'/></label>",
             buttons: [
                 {
-                    icon: '<i class="fa-solid fa-kit-medical"></i>',
+                    icon: 'fa-solid fa-kit-medical',
                     label: "Heal",
                     action: "default",
                     callback: (event, button, dialog) => { return Number(dialog.element.querySelector('#wounds').value); },
@@ -72,7 +73,7 @@ export class Misc {
         }
 
         const damageInfo = await foundry.applications.api.DialogV2.wait({
-            window: { title: "Healing Result" },
+            window: { title: "Deal Damage" },
             content: `
                     <div class="form-group">
                         Damage: <input type='text' id='damage'/>
@@ -85,7 +86,7 @@ export class Misc {
                     </div>`,
             buttons: [
                 {
-                    icon: '<i class="fa-solid fa-kit-medical"></i>',
+                    icon: 'fa-solid fa-axe-battle',
                     label: "Apply",
                     action: "default",
                     callback: (event, button, dialog) => {
@@ -165,5 +166,21 @@ export class Misc {
             content: chatOutput,
         };
         ChatMessage.create(chatData);
+    }
+
+    static async applyInjury(targets) {
+        if (!targets.length) {
+            ui.notifications.warn("No targets selected.");
+            return;
+        }
+
+        let result = await new ApplyInjuryDialog().wait();
+        if (!result) {
+            return;
+        }
+
+        for (let target of targets) {
+            game.brsw.create_injury_effect(target.actor, result.duration, result.baseInjury, result.secondaryInjury);
+        }
     }
 }

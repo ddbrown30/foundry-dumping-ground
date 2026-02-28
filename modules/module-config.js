@@ -17,6 +17,7 @@ export const DEFAULT_CONFIG = {
         summonDialog: `${PATH}/templates/summon-dialog.hbs`,
         exportedItem: `${PATH}/templates/partials/exported-item.hbs`,
         exportedItems: `${PATH}/templates/exported-items.hbs`,
+        applyInjuryDialog: `${PATH}/templates/apply-injury-dialog.hbs`,
     },
     warriorPacks: {
         "swpf-core-rules.swpf-edges": "PF",

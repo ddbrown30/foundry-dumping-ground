@@ -26,6 +26,7 @@ export class HooksManager {
             game.foundryDumpingGround.addConditionAsUser = SUCC.addConditionAsUser;
             game.foundryDumpingGround.healWounds = Misc.healWounds;
             game.foundryDumpingGround.dealDamage = Misc.dealDamage;
+            game.foundryDumpingGround.applyInjury = Misc.applyInjury;
             game.foundryDumpingGround.getSelected = Utils.getSelected;
             game.foundryDumpingGround.blind = SUCC.blind;
             game.foundryDumpingGround.startSummon = Summoner.startSummon;

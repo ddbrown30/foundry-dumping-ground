@@ -1,0 +1,21 @@
+<form class="standard-form">
+    <div>
+        <select id="base-injury" name="base-injury" type="dropdown">
+            {{selectOptions baseOptions selected=selectedBase valueAttr="id" labelAttr="label" localize=true}}
+        </select>
+    </div>
+    {{#if hasSecondary}}
+    <div>
+        <select id="secondary-injury" name="secondary-injury" type="dropdown">
+            {{selectOptions secondaryOptions selected=selectedSecondary valueAttr="id" labelAttr="label" localize=true}}
+        </select>
+    </div>
+    {{/if}}
+    <div>
+        {{radioBoxes "duration" durations checked=selectedDuration localize=true}}
+    </div>
+    <footer class="form-footer">
+        <button type="button" data-action="apply" {{#unless canApply}}disabled{{/unless}}>{{localize "Apply Injury"}}</button>
+        <button type="button" data-action="cancel">{{localize "Cancel"}}</button>
+    </footer>
+</form>
