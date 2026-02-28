@@ -7,7 +7,7 @@
   "img": "modules/swade-ootd/assets/icons/crew_crit.webp",
   "command": "const table = await fromUuid(\"Compendium.swade-core-rules.swade-tables.RollTable.ZLo2xbHyFzoVj8Lh\");\nconst roll = new Roll(\"9\");\nawait table.draw({roll: roll});",
   "folder": "Un40NvcdunD2KEqb",
-  "sort": 101563,
+  "sort": 1100000,
   "ownership": {
     "default": 0,
     "imUDcCtCX3TtgvI1": 3,
@@ -17,12 +17,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.341",
+    "coreVersion": "13.351",
     "systemId": "swade",
     "systemVersion": "4.3.0",
     "createdTime": 1738626731555,
-    "modifiedTime": 1738626731555,
-    "lastModifiedBy": "OqoOYpjGAZ5j35VP",
+    "modifiedTime": 1772249830442,
+    "lastModifiedBy": "26zedh1nuCLjFH0V",
     "exportSource": null
   },
   "_key": "!macros!wttfke1AQzihx41l"

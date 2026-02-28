@@ -7,7 +7,7 @@
   "img": "icons/svg/daze.svg",
   "command": "await token.document.update({\"texture.scaleX\": -token.document.texture.scaleX}, {animation: {duration: 0}});",
   "folder": "Un40NvcdunD2KEqb",
-  "sort": 400000,
+  "sort": 1400000,
   "ownership": {
     "default": 2,
     "OqoOYpjGAZ5j35VP": 3
@@ -16,12 +16,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.341",
+    "coreVersion": "13.351",
     "systemId": "swade",
     "systemVersion": "4.3.0",
     "createdTime": 1738626731555,
-    "modifiedTime": 1738626731555,
-    "lastModifiedBy": "OqoOYpjGAZ5j35VP",
+    "modifiedTime": 1772249830442,
+    "lastModifiedBy": "26zedh1nuCLjFH0V",
     "exportSource": null
   },
   "_key": "!macros!YEnnA4iq2SK3y5Q7"

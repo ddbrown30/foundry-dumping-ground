@@ -1,0 +1,28 @@
+{
+  "name": "Apply Injury",
+  "type": "script",
+  "command": "const selected = game.foundryDumpingGround.getSelected();\ngame.foundryDumpingGround.applyInjury(selected);",
+  "img": "icons/skills/wounds/bone-broken-marrow-red.webp",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "Un40NvcdunD2KEqb",
+  "ownership": {
+    "default": 0,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1.1",
+    "createdTime": 1772249830423,
+    "modifiedTime": 1772249830442,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "R7OLPaRxOUIlJH98",
+  "sort": 400000,
+  "_key": "!macros!R7OLPaRxOUIlJH98"
+}
