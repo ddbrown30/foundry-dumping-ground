@@ -1,6 +1,3 @@
-import { FLAGS } from "./module-config.js";
-import { Utils } from "./utils.js";
-import { WarriorsGiftDialog } from "./warriors-gift-dialog.js";
 
 export class BTeam {
 
