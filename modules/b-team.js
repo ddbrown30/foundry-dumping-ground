@@ -4,16 +4,16 @@ export class BTeam {
     static onRenderCharacterSheet(app, html, data) {
         if (!data.actor.name.includes("B-Team")) return;
 
-        html[0].querySelector(".gridcell.tabs").remove();
-        html[0].querySelectorAll(`[data-tab="summary"]`).forEach(e => e.remove());
-        html[0].querySelectorAll(`[data-tab="edges"]`).forEach(e => e.remove());
-        html[0].querySelectorAll(`[data-tab="effects"]`).forEach(e => e.remove());
-        html[0].querySelectorAll(`[data-tab="actions"]`).forEach(e => e.remove());
-        html[0].querySelectorAll(`[data-tab="about"]`).forEach(e => e.remove());
+        html.querySelector(".sheet-tabs").remove();
+        html.querySelectorAll(`[data-tab="summary"]`).forEach(e => e.remove());
+        html.querySelectorAll(`[data-tab="edges"]`).forEach(e => e.remove());
+        html.querySelectorAll(`[data-tab="effects"]`).forEach(e => e.remove());
+        html.querySelectorAll(`[data-tab="actions"]`).forEach(e => e.remove());
+        html.querySelectorAll(`[data-tab="about"]`).forEach(e => e.remove());
 
-        html[0].querySelectorAll(`[data-tab="inventory"]`).forEach(e => e.classList.add("active"));
+        html.querySelectorAll(`[data-tab="inventory"]`).forEach(e => e.classList.add("active"));
 
-        const gearTab = html[0].querySelector(".gridcell.sheet-body .tab");
+        const gearTab = html.querySelector(".gridcell.sheet-body.tab");
 
         gearTab.querySelector(".encumbrance").parentElement.remove();
 

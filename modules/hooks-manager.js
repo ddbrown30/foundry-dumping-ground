@@ -68,7 +68,7 @@ export class HooksManager {
             WarriorsGift.onDeleteActiveEffect(effect, options, userId);
         });
 
-        Hooks.on("renderCharacterSheet", (app, html, data) => {
+        Hooks.on("renderSwadeActorSheetV2", (app, html, data) => {
             BTeam.onRenderCharacterSheet(app, html, data);
         });
     }
