@@ -1,0 +1,29 @@
+{
+  "name": "Apply Entangled",
+  "img": "assets/icons/entangled.webp",
+  "type": "script",
+  "command": "game.foundryDumpingGround.addCondition(\"entangled\", game.foundryDumpingGround.getSelected());",
+  "scope": "global",
+  "ownership": {
+    "default": 1,
+    "OqoOYpjGAZ5j35VP": 3,
+    "imUDcCtCX3TtgvI1": 3
+  },
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "imUDcCtCX3TtgvI1",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.2.4",
+    "createdTime": 1774720010321,
+    "modifiedTime": 1774720010321,
+    "lastModifiedBy": "imUDcCtCX3TtgvI1"
+  },
+  "_id": "euekI0KCFZ8FeSEg",
+  "sort": 0,
+  "_key": "!macros!euekI0KCFZ8FeSEg"
+}

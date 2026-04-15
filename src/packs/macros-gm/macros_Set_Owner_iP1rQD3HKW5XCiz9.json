@@ -1,0 +1,31 @@
+{
+  "name": "Set Owner",
+  "type": "script",
+  "flags": {
+    "core": {}
+  },
+  "scope": "global",
+  "command": "let actor = canvas.tokens.controlled[0]?.actor;\nif (!actor ) {\n    ui.notifications.warn('NoSelectedActor');\n    return;\n}\n\nnew DocumentOwnershipConfig(actor).render({force: true})",
+  "author": "imUDcCtCX3TtgvI1",
+  "img": "icons/svg/door-locked-outline.svg",
+  "ownership": {
+    "default": 2,
+    "Za53oo2n0szvIrpy": 3,
+    "imUDcCtCX3TtgvI1": 3
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.2.0",
+    "createdTime": 1772915102001,
+    "modifiedTime": 1772915105037,
+    "lastModifiedBy": "imUDcCtCX3TtgvI1"
+  },
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "_id": "iP1rQD3HKW5XCiz9",
+  "sort": 500000,
+  "_key": "!macros!iP1rQD3HKW5XCiz9"
+}

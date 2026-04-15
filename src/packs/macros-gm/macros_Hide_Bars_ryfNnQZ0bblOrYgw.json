@@ -1,0 +1,28 @@
+{
+  "name": "Hide Bars",
+  "type": "script",
+  "command": "const updates = [];\n\nfor (const token of canvas.tokens.placeables) {\n  const actor = token.actor;\n  if (!actor || actor.type !== \"npc\") continue;\n\n  updates.push({\n    _id: token.document.id,\n    displayBars: CONST.TOKEN_DISPLAY_MODES.NEVER\n  });\n}\n\nif (updates.length) {\n  await canvas.scene.updateEmbeddedDocuments(\"Token\", updates);\n}",
+  "img": "icons/svg/blind.svg",
+  "author": "imUDcCtCX3TtgvI1",
+  "scope": "global",
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "ownership": {
+    "default": 0,
+    "imUDcCtCX3TtgvI1": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.2.0",
+    "createdTime": 1772915417105,
+    "modifiedTime": 1772915417105,
+    "lastModifiedBy": "imUDcCtCX3TtgvI1"
+  },
+  "_id": "ryfNnQZ0bblOrYgw",
+  "sort": 0,
+  "_key": "!macros!ryfNnQZ0bblOrYgw"
+}

@@ -6,7 +6,7 @@
   "img": "icons/svg/cancel.svg",
   "command": "async function updateRoles(fromRole, toRole) {\n    const updates = game.users.filter(u => u.role === fromRole).map(u => ({_id: u.id, role: toRole}))\n    await User.updateDocuments(updates)\n}\nnew Dialog({\n    title: `Lock or unlock all players?`,\n    default: 'cancel',\n    buttons: {\n        unlock: {\n            icon: '<i class=\"fas fa-unlock\"></i>',\n            label: 'Unlock',\n            callback: () => updateRoles(CONST.USER_ROLES.NONE, CONST.USER_ROLES.TRUSTED)\n        },\n        lock: {\n            icon: '<i class=\"fas fa-lock\"></i>',\n            label: 'Lock',\n            callback: () => updateRoles(CONST.USER_ROLES.TRUSTED, CONST.USER_ROLES.NONE)\n        },\n        cancel: {\n            icon: '<i class=\"fas fa-eject\"></i>',\n            label: 'Cancel',\n            callback: () => {}\n        }\n    }\n}).render(true)",
   "folder": "Ygup3e5YXAXLdfQJ",
-  "sort": 150000,
+  "sort": 800000,
   "ownership": {
     "default": 0,
     "imUDcCtCX3TtgvI1": 3,
@@ -17,12 +17,12 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.341",
+    "coreVersion": "13.351",
     "systemId": "swade",
     "systemVersion": "4.3.0",
     "createdTime": 1738628161613,
-    "modifiedTime": 1738628161613,
-    "lastModifiedBy": "26zedh1nuCLjFH0V",
+    "modifiedTime": 1772915105037,
+    "lastModifiedBy": "imUDcCtCX3TtgvI1",
     "exportSource": null
   },
   "_id": "CcxzIzVP3YEaxfsS",

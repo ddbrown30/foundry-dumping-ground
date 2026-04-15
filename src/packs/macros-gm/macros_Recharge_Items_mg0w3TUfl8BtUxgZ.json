@@ -1,0 +1,28 @@
+{
+  "name": "Recharge Items",
+  "type": "script",
+  "command": "const rechargeTypes = Object.values(CONFIG.SWADE.CONST.CHARGE_RECHARGE_TYPE).slice(1);;\nconst optionsHTML = rechargeTypes\n  .map((val) => `<option value=\"${val}\">${game.i18n.localize(CONFIG.SWADE.chargeRechargeTypes[val])}</option>`)\n  .join(\"\\n\");\n\nconst content = `\n  <form>\n    <div class=\"form-group\">\n      <label for=\"rechargeType\">Recharge Type:</label>\n      <select id=\"rechargeType\" name=\"rechargeType\">\n        ${optionsHTML}\n      </select>\n    </div>\n  </form>\n`;\n\nlet selected;\nconst recharge = await foundry.applications.api.DialogV2.confirm({\n  window: { title: \"Recharge Items\" },\n  content: content,\n  yes: {\n    label: \"Recharge\",\n    icon: \"fas fa-rotate\",\n    callback:(event, button, dialog) => {\n    selected = dialog.element.querySelector('[name=\"rechargeType\"]').value;\n    }\n  },\n  no: {\n    label: \"Cancel\"\n  }\n});\n\nif (recharge) {\n  for (const token of game.foundryDumpingGround.getSelected()) {\n    for (const item of token.actor.items) {\n      item.rechargeAllChargesOfType(selected);\n    }\n  }\n}",
+  "img": "icons/svg/sun.svg",
+  "author": "imUDcCtCX3TtgvI1",
+  "scope": "global",
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "ownership": {
+    "default": 0,
+    "imUDcCtCX3TtgvI1": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.1-dev",
+    "createdTime": 1773119745820,
+    "modifiedTime": 1773119745820,
+    "lastModifiedBy": "imUDcCtCX3TtgvI1"
+  },
+  "_id": "mg0w3TUfl8BtUxgZ",
+  "sort": 0,
+  "_key": "!macros!mg0w3TUfl8BtUxgZ"
+}
