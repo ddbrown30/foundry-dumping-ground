@@ -1,0 +1,28 @@
+{
+  "name": "Add Static Combatant",
+  "type": "script",
+  "command": "game.foundryDumpingGround.addStaticCombatantDialog();",
+  "img": "icons/tools/navigation/watch-simple-blue.webp",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "ownership": {
+    "default": 0,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.2.4",
+    "createdTime": 1776291006935,
+    "modifiedTime": 1776291006935,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "JOisU65ClQhwjIRs",
+  "sort": 0,
+  "_key": "!macros!JOisU65ClQhwjIRs"
+}

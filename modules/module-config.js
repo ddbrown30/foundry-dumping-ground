@@ -18,6 +18,7 @@ export const DEFAULT_CONFIG = {
         exportedItem: `${PATH}/templates/partials/exported-item.hbs`,
         exportedItems: `${PATH}/templates/exported-items.hbs`,
         applyInjuryDialog: `${PATH}/templates/apply-injury-dialog.hbs`,
+        staticCombatantDialog: `${PATH}/templates/static-combatant-dialog.hbs`,
     },
     warriorPacks: {
         "swpf-core-rules.swpf-edges": "PF",
@@ -27,6 +28,7 @@ export const DEFAULT_CONFIG = {
 
 export const FLAGS = {
     tempEdges: "tempEdges",
+    staticCombatants: "staticCombatants",
 }
 
 export const SETTING_KEYS = {

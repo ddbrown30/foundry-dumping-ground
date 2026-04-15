@@ -8,6 +8,7 @@ import { Summoner } from "./summoner.js";
 import { WarriorsGift } from "./warriors-gift.js";
 import { BTeam } from "./b-team.js";
 import { DiceSoNice } from "./dice-so-nice.js";
+import { CombatTracker } from "./combat-tracker.js";
 
 export class HooksManager {
     /**
@@ -32,6 +33,8 @@ export class HooksManager {
             game.foundryDumpingGround.startSummon = Summoner.startSummon;
             game.foundryDumpingGround.exportItems = Misc.exportItems;
             game.foundryDumpingGround.warriorsGift = WarriorsGift.warriorsGift;
+            game.foundryDumpingGround.addStaticCombatantDialog = CombatTracker.addStaticCombatantDialog;
+            game.foundryDumpingGround.addStaticCombatant = CombatTracker.addStaticCombatant;
 
             Utils.loadTemplates();
             registerSettings();
@@ -70,6 +73,16 @@ export class HooksManager {
 
         Hooks.on("renderSwadeActorSheetV2", (app, html, data) => {
             BTeam.onRenderCharacterSheet(app, html, data);
+        });
+
+        Hooks.on("updateCombatant", CombatTracker.onUpdateCombatant);
+
+        Hooks.on("deleteCombatant", (combatant, options, userId) => {
+            CombatTracker.onDeleteCombatant(combatant, options, userId);
+        });
+
+        Hooks.on("updateCombat", (combat, change, options, userId) => {
+            CombatTracker.onUpdateCombat(combat, change, options, userId);
         });
     }
 }
