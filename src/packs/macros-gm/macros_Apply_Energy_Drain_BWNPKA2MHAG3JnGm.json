@@ -1,0 +1,28 @@
+{
+  "name": "Apply Energy Drain",
+  "type": "script",
+  "command": "const targets = Array.from(game.user.targets);\nif (!targets.length) {\n  ui.notifications.warn('No targets selected');\n  return;\n}\n\ngame.foundryDumpingGround.energyDrain(targets);",
+  "img": "icons/magic/control/debuff-energy-hold-teal-blue.webp",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "ownership": {
+    "default": 0,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.2.6",
+    "createdTime": 1776976623713,
+    "modifiedTime": 1776976623713,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
+  },
+  "_id": "BWNPKA2MHAG3JnGm",
+  "sort": 0,
+  "_key": "!macros!BWNPKA2MHAG3JnGm"
+}
