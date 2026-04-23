@@ -35,6 +35,8 @@ export class HooksManager {
             game.foundryDumpingGround.warriorsGift = WarriorsGift.warriorsGift;
             game.foundryDumpingGround.addStaticCombatantDialog = CombatTracker.addStaticCombatantDialog;
             game.foundryDumpingGround.addStaticCombatant = CombatTracker.addStaticCombatant;
+            game.foundryDumpingGround.energyDrain = Misc.energyDrain;
+            game.foundryDumpingGround.healEnergyDrain = Misc.healEnergyDrain;
 
             Utils.loadTemplates();
             registerSettings();
@@ -58,6 +60,8 @@ export class HooksManager {
             game.foundryDumpingGround.socket.register("executeSummon", Summoner.executeSummon);
             game.foundryDumpingGround.socket.register("toggleVis", Teleporter.toggleVis);
             game.foundryDumpingGround.socket.register("executeHealWounds", Misc.executeHealWounds);
+            game.foundryDumpingGround.socket.register("executeEnergyDrain", Misc.executeEnergyDrain);
+            game.foundryDumpingGround.socket.register("executeHealEnergyDrain", Misc.executeHealEnergyDrain);
             game.foundryDumpingGround.socket.register("executeWarriorsGift", WarriorsGift.executeWarriorsGift);
         });
 

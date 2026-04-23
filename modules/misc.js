@@ -183,4 +183,152 @@ export class Misc {
             game.brsw.create_injury_effect(target.actor, result.duration, result.baseInjury, result.secondaryInjury);
         }
     }
+
+    static async energyDrain(targets) {
+        const attributes = Object.entries(CONFIG.SWADE.attributes).map(([att, val]) => ({
+            value: att,
+            label: val.long
+        }));
+        attributes.sort((a, b) => a.label.localeCompare(b.label));
+
+        const selectGroup = new foundry.data.fields.StringField({
+            label: "Attribute",
+            required: true
+        }).toFormGroup({}, { options: attributes, name: "attributeId" }).outerHTML;
+
+        const attribute = await foundry.applications.api.DialogV2.input({
+            window: { title: "Energy Drain" },
+            content: selectGroup,
+            ok: {
+                icon: "fa-solid fa-bolt",
+                label: "Apply"
+            }
+        });
+
+        if (!attribute) {
+            return;
+        }
+
+        let targetIds = targets.map(t => t.actor.uuid);
+        game.foundryDumpingGround.socket.executeAsGM("executeEnergyDrain", targetIds, attribute.attributeId);
+    }
+
+    static async executeEnergyDrain(targetIds, attributeId) {
+        const effectName = "Energy Drain: " + CONFIG.SWADE.attributes[attributeId].long;
+        const key = `system.attributes.${attributeId}.die.sides`;
+        const img = "icons/magic/control/debuff-energy-hold-teal-blue.webp";
+
+        let targets = targetIds.map(t => fromUuidSync(t));
+        for (let target of targets) {
+            const currentVal = parseInt(foundry.utils.getProperty(target, key));
+            let drainEffect = target.effects.find(e => e.name == effectName);
+
+            if (currentVal <= 4) {
+                game.succ.addCondition("incapacitated", target);
+
+                if (!drainEffect) {
+                    drainEffect = {
+                        name: effectName,
+                        img: img,
+                        duration: { rounds: 999 },
+                    };
+
+                    //If we're draining vigor, the target has to roll or die at the end of their next turn
+                    if (attributeId === "vigor") {
+                        drainEffect.system = { expiration: 3 };
+                        drainEffect.duration = { rounds: 1 };
+                    }
+
+                    await target.createEmbeddedDocuments("ActiveEffect", [drainEffect]);
+                } else if (attributeId === "vigor") {
+                    //If we're draining vigor, the target has to roll or die at the end of their next turn
+                    let updates = drainEffect.toObject();
+                    updates.system.expiration = 3;
+                    updates.duration.rounds = 1;
+                    await drainEffect.update(updates);
+                }
+
+                continue;
+            }
+
+            if (drainEffect) {
+                let updates = drainEffect.toObject().changes;
+                updates[0].value = parseInt(updates[0].value) - 2;
+                await drainEffect.update({ "changes": updates });
+            } else {
+                drainEffect = {
+                    name: effectName,
+                    img: img,
+                    changes: [{
+                        key: key,
+                        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                        value: -2
+                    }],
+                    duration: { rounds: 999 },
+                };
+                await target.createEmbeddedDocuments("ActiveEffect", [drainEffect]);
+            }
+        }
+    }
+
+    static async healEnergyDrain(targets) {
+        const attributes = Object.entries(CONFIG.SWADE.attributes).map(([att, val]) => ({
+            value: att,
+            label: val.long
+        }));
+        attributes.sort((a, b) => a.label.localeCompare(b.label));
+
+        const selectGroup = new foundry.data.fields.StringField({
+            label: "Attribute",
+            required: true
+        }).toFormGroup({}, { options: attributes, name: "attributeId" }).outerHTML;
+
+        const result = await foundry.applications.api.DialogV2.wait({
+            window: { title: "Heal Drain" },
+            content: selectGroup,
+            buttons: [
+                {
+                    label: "Success",
+                    icon: "fa-solid fa-check",
+                    action: "success",
+                    callback: (event, button, dialog) => { return { action: "success", attributeId: dialog.element.querySelector('select[name="attributeId"]').value }; },
+                },
+                {
+                    label: "Raise",
+                    icon: "fa-solid fa-check-double",
+                    action: "raise",
+                    callback: (event, button, dialog) => { return { action: "raise", attributeId: dialog.element.querySelector('select[name="attributeId"]').value }; },
+                },
+            ],
+        });
+
+        if (!result) {
+            return;
+        }
+
+        let targetIds = targets.map(t => t.actor.uuid);
+        game.foundryDumpingGround.socket.executeAsGM("executeHealEnergyDrain", targetIds, result.attributeId, result.action);
+    }
+
+    static async executeHealEnergyDrain(targetIds, attributeId, action) {
+        const effectName = "Energy Drain: " + CONFIG.SWADE.attributes[attributeId].long;
+
+        let targets = targetIds.map(t => fromUuidSync(t));
+        for (let target of targets) {
+            const drainEffect = target.effects.find(e => e.name == effectName);
+            if (!drainEffect) {
+                continue;
+            }
+
+            let updates = drainEffect.toObject().changes;
+            const oldVal = parseInt(updates[0].value);
+            const delta = action === "success" ? 2 : 4;
+            if (Math.abs(oldVal) <= delta) {
+                await target.deleteEmbeddedDocuments('ActiveEffect', [drainEffect.id]);
+            } else {
+                updates[0].value = oldVal + delta;
+                await drainEffect.update({ "changes": updates });
+            }
+        }
+    }
 }
