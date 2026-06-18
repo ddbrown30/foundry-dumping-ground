@@ -9,6 +9,7 @@ import { WarriorsGift } from "./warriors-gift.js";
 import { BTeam } from "./b-team.js";
 import { DiceSoNice } from "./dice-so-nice.js";
 import { CombatTracker } from "./combat-tracker.js";
+import { BR2Actions } from "./br2-actions.js";
 
 export class HooksManager {
     /**
@@ -47,6 +48,8 @@ export class HooksManager {
                 document.querySelector("#ui-middle").classList.add("max-carousel-width");
             }
         });
+
+        Hooks.once('brswReady', BR2Actions.addBR2Actions);
 
         Hooks.once('diceSoNiceReady', (dice3d) => {
             DiceSoNice.addColorSets(dice3d);
