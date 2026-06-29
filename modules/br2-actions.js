@@ -144,8 +144,10 @@ export class BR2Actions {
                 name: "Powerful Blow",
                 button_name: "Powerful Blow",
                 dmgMod: "+2",
-                selector_type: "actor_has_edge",
-                selector_value: "Powerful Blow",
+                and_selector: [
+                    { selector_type: "actor_has_edge", selector_value: "Powerful Blow" },
+                    { selector_type: "skill", selector_value: "Fighting" }
+                ],
                 section: "character",
                 group: "BRSW.Edges"
             },
