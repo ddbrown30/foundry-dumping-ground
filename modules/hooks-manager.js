@@ -10,6 +10,7 @@ import { BTeam } from "./b-team.js";
 import { DiceSoNice } from "./dice-so-nice.js";
 import { CombatTracker } from "./combat-tracker.js";
 import { BR2Actions } from "./br2-actions.js";
+import { DamageTypes } from "./damage-types.js";
 
 export class HooksManager {
     /**
@@ -91,5 +92,8 @@ export class HooksManager {
         Hooks.on("updateCombat", (combat, change, options, userId) => {
             CombatTracker.onUpdateCombat(combat, change, options, userId);
         });
+
+        Hooks.on("renderSwadeItemSheetV2", DamageTypes.onRenderItemSheet);
+        Hooks.on("preUpdateItem", DamageTypes.onPreUpdateItem);
     }
 }
