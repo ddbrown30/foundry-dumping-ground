@@ -96,6 +96,30 @@ export class BR2Actions {
                 group: "BRSW.Edges"
             },
             {
+                id: "ENVIRONMENTALRESISTANCE",
+                name: "Environmental Resistance",
+                button_name: "has Env Resistance",
+                dmgMod: "-4",
+                and_selector: [
+                    { selector_type: "target_has_ability", selector_value: "Environmental Resistance" },
+                    { selector_type: "item_has_damage", selector_value: "true" },
+                ],
+                section: "attack",
+                group: "BRSW.Target"
+            },
+            {
+                id: "ENVIRONMENTALWEAKNESS",
+                name: "Environmental Weakness",
+                button_name: "has Env Weakness",
+                dmgMod: "+4",
+                and_selector: [
+                    { selector_type: "target_has_ability", selector_value: "Environmental Weakness" },
+                    { selector_type: "item_has_damage", selector_value: "true" },
+                ],
+                section: "attack",
+                group: "BRSW.Target"
+            },
+            {
                 id: "ExtraWildAttack",
                 name: "Extra Wild Attack",
                 button_name: "Extra Wild Attack (+4)",
