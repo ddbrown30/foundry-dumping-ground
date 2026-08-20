@@ -22,7 +22,16 @@
     overflow-y: auto;
 }
 
+.fdg .wg-unavailable {
+    color: red;
+}
+
 .fdg .filter-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.fdg .rank-filter-group {
     padding-bottom: 0.5rem;
     display: flex;
     align-items: center;
@@ -80,3 +89,7 @@
         opacity: 0;
     }
 }
+
+#token-hud .palette.status-effects {
+    height: fit-content !important;
+  }

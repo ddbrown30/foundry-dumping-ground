@@ -55,6 +55,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         this.options.window.title = options.type == "wg" ? "Warrior's Gift" : "Martial Flexibility";
         this.type = options.type;
         this.rankFilter = options.rankFilter ?? -1;
+        this.showUnavailableEdges = false;
         this.favourites = Utils.getSetting(SETTING_KEYS.warriorFavourites);
     }
 
@@ -106,6 +107,49 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         return a < b ? -1 : 1;
     }
 
+    requirementString(requirements) {
+        function requirementToString(requirement) {
+            switch (requirement.type) {
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.WILDCARD:
+                    return requirement.value ? game.i18n.localize('SWADE.WildCard') : game.i18n.localize('SWADE.Extra');
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.RANK:
+                    return CONFIG.SWADE.ranks[requirement.value];
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.ATTRIBUTE:
+                    return `${CONFIG.SWADE.attributes[requirement.selector]?.long} d${requirement.value}+`;
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.SKILL:
+                    return `${requirement.label} d${requirement.value}+`;
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.POWER:
+                    return `<i>${requirement.label}</i>`;
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.EDGE:
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.HINDRANCE:
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.ANCESTRY:
+                case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.OTHER:
+                default:
+                    return requirement.label ?? '';
+            }
+        }
+
+        const reqString = (requirements).reduce(
+            (accumulator, current, index, list) => {
+                accumulator += requirementToString(current);
+                if (index !== list.length - 1) {
+                    switch (current.combinator) {
+                        case 'or':
+                            accumulator += ' ' + game.i18n.localize('SWADE.Requirements.Or') + ' ';
+                            break;
+                        case 'and':
+                            accumulator += ', ';
+                            break;
+                    }
+                }
+                return accumulator;
+            },
+            ''
+        );
+
+        return "<b>Requirements: </b>"+ reqString;
+    }
+
     async _prepareContext(options) {
         let edges = [];
         for (const pack of game.packs) {
@@ -118,15 +162,31 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
                     continue;
                 }
 
+                let unavailable = false;
+                if (this.type === "mf") {
+                    const meetsReqs = this.meetsRequirements(item, this.options.sourceToken);
+                    if (!meetsReqs) {
+                        if(this.showUnavailableEdges) {
+                            unavailable = true;
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+
                 const rank = this.getEdgeRank(item);
                 if (this.rankFilter < 0 || rank.value <= this.rankFilter) {
+                    const description = this.cleanDescription(item.system.description);
+                    const requirementString = this.requirementString(item.system.requirements);
+                    const tooltip = this.type === "mf" ? requirementString + "<br><br>" + description : description;
                     edges.push({
                         name: item.name,
                         label: `${item.name}, ${rank.name} (${pack.metadata.packageName})`,
                         uuid: item.uuid,
                         favourite: !!this.favourites.find((f) => f == item.uuid),
-                        tooltip: this.cleanDescription(item.system.description),
+                        tooltip: tooltip,
                         pack: pack,
+                        unavailable: unavailable,
                     });
                 }
             }
@@ -137,14 +197,30 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
                 continue;
             }
 
+            let unavailable = false;
+            if (this.type === "mf") {
+                const meetsReqs = this.meetsRequirements(item, this.options.sourceToken);
+                if (!meetsReqs) {
+                    if (this.showUnavailableEdges) {
+                        unavailable = true;
+                    } else {
+                        continue;
+                    }
+                }
+            }
+
             const rank = this.getEdgeRank(item);
             if (this.rankFilter < 0 || rank.value <= this.rankFilter) {
+                const description = this.cleanDescription(item.system.description);
+                const requirementString = item.system.requirementString;
+                const tooltip = this.type === "mf" ? requirementString + "<br><br>" + description : description;
                 edges.push({
                     name: item.name,
                     label: `${item.name}, ${rank.name} (World)`,
                     uuid: item.uuid,
                     favourite: !!this.favourites.find((f) => f == item.uuid),
-                    tooltip: this.cleanDescription(item.system.description),
+                    tooltip: tooltip,
+                    unavailable: unavailable,
                 });
             }
         }
@@ -171,7 +247,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         //Remove duplicate edges
         edges = edges.filter(function (edge, idx, array) {
             return idx == 0 || edge.name != array[idx - 1].name;
-        })
+        });
 
         edges.sort((a, b) => {
             if (a.favourite != b.favourite) {
@@ -202,6 +278,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             edges: edges,
             ranks: ranks,
             rankFilter: this.rankFilter,
+            showUnavailableEdges: this.showUnavailableEdges,
         };
     };
 
@@ -209,8 +286,16 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         const selector = this.element.querySelector('select[id="rank-filter"]');
         if (selector) {
             selector.addEventListener("change", async event => {
-                const selection = $(event.target).find("option:selected");
-                this.rankFilter = selection.val();
+                const selection = event.target;
+                this.rankFilter = selection.value;
+                this.render();
+            });
+        }
+
+        const showUnavailableCB = this.element.querySelector('input[id="show-unavailable"]');
+        if (showUnavailableCB) {
+            showUnavailableCB.addEventListener("change", async event => {
+                this.showUnavailableEdges = event.target.checked;
                 this.render();
             });
         }
@@ -249,6 +334,13 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             searchIdx = outDesc.search("<h3>");
         }
 
+        searchIdx = outDesc.search("<article");
+        if (searchIdx >= 0) {
+            const articleOpenEnd = outDesc.search(">", searchIdx);
+            const articleClose = outDesc.search("</article>", searchIdx);
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(articleOpenEnd + 1, articleClose) + outDesc.slice(articleClose + "</article>".length);
+        }
+
         searchIdx = outDesc.search("@UUID");
         while (searchIdx >= 0) {
             const openBrace = outDesc.indexOf("{", searchIdx);
@@ -272,19 +364,20 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             searchIdx = outDesc.search("<img");
         }
 
-        searchIdx = outDesc.search("Requirements");
-        if (searchIdx >= 0) {
-            const beforeReq = outDesc.slice(0, searchIdx);
-            const pOpen = beforeReq.lastIndexOf("<p>");
-            const pClose = outDesc.search("</p>", pOpen);
-            outDesc = outDesc.slice(0, pOpen) + outDesc.slice(pClose + 5);
+        searchIdx = outDesc.search("<i");
+        while (searchIdx >= 0) {
+            const closeChar = outDesc.indexOf("/i>", searchIdx);
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(closeChar + 3);
+            searchIdx = outDesc.search("<i");
         }
 
-        searchIdx = outDesc.search("<article");
-        if (searchIdx >= 0) {
-            const articleOpenEnd = outDesc.search(">", searchIdx);
-            const articleClose = outDesc.search("</article>", searchIdx);
-            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(articleOpenEnd + 1, articleClose) + outDesc.slice(articleClose + "</article>".length);
+        searchIdx = outDesc.search("<a");
+        while (searchIdx >= 0) {
+            const closeChar = outDesc.indexOf(">", searchIdx);
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(closeChar + 1);
+            searchIdx = outDesc.search("</a>");
+            outDesc = outDesc.slice(0, searchIdx) + outDesc.slice(searchIdx + 4);
+            searchIdx = outDesc.search("<a");
         }
 
         searchIdx = outDesc.search("swpf-core");
@@ -293,6 +386,73 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             searchIdx = outDesc.search("swpf-core");
         }
 
+        searchIdx = outDesc.search("Requirements:");
+        if (searchIdx >= 0) {
+            const beforeReq = outDesc.slice(0, searchIdx);
+            const pOpen = beforeReq.lastIndexOf("<p>");
+            const pClose = outDesc.search("</p>", pOpen);
+            outDesc = outDesc.slice(0, pOpen) + outDesc.slice(pClose + 5);
+        }
+
         return outDesc;
+    }
+
+    meetsRequirements(edge, target) {
+        const rank = target.actor.system.advances.rank;
+        const rankIndex = foundry.CONFIG.SWADE.ranks.indexOf(rank);
+
+        let checkingOr = false;
+        let currentOrMet = false;
+        for (const req of edge.system.requirements) {
+            if (req.combinator === "and") {
+                if (checkingOr && !currentOrMet) {
+                    //We finished checking all the ors in this group and met none so return false
+                    return false;
+                }
+                checkingOr = false;
+                currentOrMet = false;
+            }
+
+            let meetsReq = true;
+            if (req.type == "rank") {
+                if (rankIndex < req.value) {
+                    return false;
+                }
+                continue;
+            }
+
+            if (req.type == "skill") {
+                const skill = target.actor.items.find(
+                    s => s.type == "skill" &&
+                    (s.name.toLowerCase() === req.selector.toLowerCase() || s.swid === req.selector.toLowerCase())
+                );
+                meetsReq = skill?.system.die.sides >= req.value;
+            } else if (req.type == "attribute") {
+                meetsReq = target.actor.system.attributes[req.selector].die.sides >= req.value
+            } else if (req.type == "edge") {
+                const findEdge = target.actor.items.find(
+                    e => e.type == "edge" &&
+                    (e.name.toLowerCase() === req.selector.toLowerCase() || e.swid === req.selector.toLowerCase())
+                );
+                meetsReq = !!findEdge;
+            }
+
+            if (req.combinator === "and" && !meetsReq) {
+                return false;
+            }
+
+            if (req.combinator === "or") {
+                if (checkingOr && currentOrMet) continue; //We've already met one or more requirements in this or group
+                checkingOr = true;
+                currentOrMet = meetsReq;
+            }
+        }
+
+        if (checkingOr && !currentOrMet) {
+            //We were in an or group at the end of the loop and met none so return false
+            return false;
+        }
+
+        return true;
     }
 }

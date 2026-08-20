@@ -13,17 +13,26 @@ export class WarriorsGift {
         return "Novice";
     }
 
-    static async warriorsGift(targets, type) {
-        if (!targets.length) {
+    static async warriorsGift(sourceToken, targets, type) {
+        if (!sourceToken) {
+            ui.notifications.warn("No source token selected.");
+            return;
+        }
+
+        let options = { type: type, sourceToken: sourceToken };
+        if (type === "mf") {
+            if (!canvas.tokens.controlled.length) {
+                ui.notifications.warn("No token selected.");
+                return;
+            }
+            targets = [canvas.tokens.controlled[0]];
+        } else if (!targets.length) {
             ui.notifications.warn("No targets selected.");
             return;
         }
 
-        let options = { type: type };
-        if (targets.length == 1 && type == "mf") {
-            const rank = targets[0].actor.system.advances.rank;
-            options.rankFilter = foundry.CONFIG.SWADE.ranks.indexOf(rank);
-        }
+        const rank = sourceToken.actor.system.advances.rank;
+        options.rankFilter = foundry.CONFIG.SWADE.ranks.indexOf(rank);
 
         let result = await new WarriorsGiftDialog(options).wait();
         if (!result) {
