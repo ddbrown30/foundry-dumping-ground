@@ -201,6 +201,6 @@ export class BR2Actions {
             },
         ];
 
-        game.brsw.add_actions(BR2_ACTIONS);
+        game.brsw.addActions(BR2_ACTIONS);
     }
 }
