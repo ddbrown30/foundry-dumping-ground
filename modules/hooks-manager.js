@@ -11,6 +11,7 @@ import { DiceSoNice } from "./dice-so-nice.js";
 import { CombatTracker } from "./combat-tracker.js";
 import { BR2Actions } from "./br2-actions.js";
 import { DamageTypes } from "./damage-types.js";
+import { TemplateControls } from "./template-controls.js";
 
 export class HooksManager {
     /**
@@ -103,5 +104,7 @@ export class HooksManager {
                 Misc.onRenderMassRollMessage(message, html);
             }
         });
+
+        Hooks.on("getSceneControlButtons", TemplateControls.onGetSceneControlButtons);
     }
 }
