@@ -1,5 +1,6 @@
 import { ApplyInjuryDialog } from "./apply-injury-dialog.js";
 import { DEFAULT_CONFIG, PATH } from "./module-config.js";
+import { SpellstrikeDialog } from "./spellstrike-dialog.js";
 import { Utils } from "./utils.js";
 
 export class Misc {
@@ -156,7 +157,7 @@ export class Misc {
             chatOutput += `<li>${target.name}: <span class="brsw-damage-roll brsw-blue-text">${damage}</span>${resultString}</li>`;
 
             if (finalDamage >= 0) {
-                await game.brsw.create_damage_card(target.id, finalDamage);
+                await game.brsw.createDamageCard(target.id, finalDamage);
             }
         }
         chatOutput += "</ul>";
@@ -180,7 +181,7 @@ export class Misc {
         }
 
         for (let target of targets) {
-            game.brsw.create_injury_effect(target.actor, result.duration, result.baseInjury, result.secondaryInjury);
+            game.brsw.createInjuryEffect(target.actor, result.duration, result.baseInjury, result.secondaryInjury);
         }
     }
 
@@ -330,5 +331,34 @@ export class Misc {
                 await drainEffect.update({ "changes": updates });
             }
         }
+    }
+
+    static async spellstrike(sourceToken) {
+        sourceToken ??= canvas?.tokens?.controlled[0];
+        if (!sourceToken) {
+            ui.notifications.warn("No source token selected.");
+            return;
+        }
+
+        const weapons = sourceToken.actor.items.filter(el => el.type == "weapon");
+        if (!weapons.length) {
+            ui.notifications.warn('No weapons');
+            return;
+        }
+
+        const powers = sourceToken.actor.items.filter(el => el.type == "power");
+        if (!powers.length) {
+            ui.notifications.warn('No powers');
+            return;
+        }
+
+        const options = { weapons, powers };
+        const result = await new SpellstrikeDialog(options).wait();
+        if (!result) {
+            return;
+        }
+
+        game.brsw.createItemCard(sourceToken.actor, result.weapon);
+        game.brsw.createItemCard(sourceToken.actor, result.power);
     }
 }

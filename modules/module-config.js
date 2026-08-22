@@ -18,6 +18,7 @@ export const DEFAULT_CONFIG = {
         exportedItem: `${PATH}/templates/partials/exported-item.hbs`,
         exportedItems: `${PATH}/templates/exported-items.hbs`,
         applyInjuryDialog: `${PATH}/templates/apply-injury-dialog.hbs`,
+        spellstrikeDialog: `${PATH}/templates/spellstrike-dialog.hbs`,
         staticCombatantDialog: `${PATH}/templates/static-combatant-dialog.hbs`,
         damageTypeGroup: `${PATH}/templates/partials/damage-type-group.hbs`,
     },

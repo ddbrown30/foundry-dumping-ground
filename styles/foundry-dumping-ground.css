@@ -63,6 +63,13 @@
     }
 }
 
+.fdg .ss-selector-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    align-items: center;
+}
+
 .max-carousel-width {
     width: -webkit-fill-available;
 

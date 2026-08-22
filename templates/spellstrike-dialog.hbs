@@ -1,0 +1,17 @@
+<form class="standard-form">
+    <div class="ss-selector-row">
+        <label for="weapon">Weapon:</label>
+        <select id="weapon" name="weapon" type="dropdown">
+            {{selectOptions weaponOptions selected=selectedWeapon valueAttr="id" labelAttr="label" localize=true}}
+        </select>
+
+        <label for="power">Power:</label>
+        <select id="power" name="power" type="dropdown">
+            {{selectOptions powerOptions selected=selectedPower valueAttr="id" labelAttr="label" localize=true}}
+        </select>
+    </div>
+    <footer class="form-footer">
+        <button type="button" data-action="confirm" {{#unless canConfirm}}disabled{{/unless}}>{{localize "Confirm"}}</button>
+        <button type="button" data-action="cancel">{{localize "Cancel"}}</button>
+    </footer>
+</form>

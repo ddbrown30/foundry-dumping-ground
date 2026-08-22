@@ -39,6 +39,7 @@ export class HooksManager {
             game.foundryDumpingGround.addStaticCombatant = CombatTracker.addStaticCombatant;
             game.foundryDumpingGround.energyDrain = Misc.energyDrain;
             game.foundryDumpingGround.healEnergyDrain = Misc.healEnergyDrain;
+            game.foundryDumpingGround.spellstrike = Misc.spellstrike;
 
             Utils.loadTemplates();
             registerSettings();
