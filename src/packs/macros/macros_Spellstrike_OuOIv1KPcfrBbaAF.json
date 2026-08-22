@@ -1,0 +1,28 @@
+{
+  "_id": "OuOIv1KPcfrBbaAF",
+  "flags": {},
+  "name": "Spellstrike",
+  "_stats": {
+    "coreVersion": "14.365",
+    "createdTime": 1787360918817,
+    "lastModifiedBy": "Za53oo2n0szvIrpy",
+    "modifiedTime": 1787360918817,
+    "systemId": "swade",
+    "systemVersion": "6.0.4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "author": "Za53oo2n0szvIrpy",
+  "command": "game.foundryDumpingGround.spellstrike();",
+  "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
+  "ownership": {
+    "default": 0,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "scope": "global",
+  "type": "script",
+  "folder": "Un40NvcdunD2KEqb",
+  "sort": 0,
+  "_key": "!macros!OuOIv1KPcfrBbaAF"
+}

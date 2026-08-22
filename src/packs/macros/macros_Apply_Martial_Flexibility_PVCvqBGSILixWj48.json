@@ -2,7 +2,7 @@
   "name": "Apply Martial Flexibility",
   "img": "assets/icons/martial-flexibility.webp",
   "type": "script",
-  "command": "game.foundryDumpingGround.warriorsGift(game.foundryDumpingGround.getSelected(), \"mf\");",
+  "command": "game.foundryDumpingGround.warriorsGift(canvas.tokens.controlled[0], [canvas.tokens.controlled[0]], \"mf\");",
   "scope": "global",
   "ownership": {
     "default": 1,
@@ -16,11 +16,11 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.365",
     "systemId": "swade",
     "systemVersion": "5.0.3",
     "createdTime": 1753497937719,
-    "modifiedTime": 1772249830442,
+    "modifiedTime": 1787247600885,
     "lastModifiedBy": "26zedh1nuCLjFH0V"
   },
   "_id": "PVCvqBGSILixWj48",

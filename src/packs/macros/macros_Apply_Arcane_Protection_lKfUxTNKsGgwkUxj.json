@@ -1,0 +1,29 @@
+{
+  "name": "Apply Arcane Protection",
+  "img": "modules/succ/assets/icons/m-arcane-protection.svg",
+  "type": "script",
+  "command": "game.foundryDumpingGround.addCondition(\"arcane-protection\", game.foundryDumpingGround.getSelected());",
+  "scope": "global",
+  "ownership": {
+    "default": 1,
+    "OqoOYpjGAZ5j35VP": 3,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "Za53oo2n0szvIrpy",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.2.6",
+    "createdTime": 1779477674308,
+    "modifiedTime": 1779477674308,
+    "lastModifiedBy": "Za53oo2n0szvIrpy"
+  },
+  "_id": "lKfUxTNKsGgwkUxj",
+  "sort": 0,
+  "_key": "!macros!lKfUxTNKsGgwkUxj"
+}

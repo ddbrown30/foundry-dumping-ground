@@ -1,0 +1,28 @@
+{
+  "name": "Random Magic Item",
+  "type": "script",
+  "command": "const folder = game.folders.find(f => f.name === \"Magic Items\" && f.parent === null);\nconst items =[...folder.contents, ...folder.getSubfolders(true).flatMap(f => f.contents)];\nconst item = Math.floor(Math.random() * items.length);\nitems[item].sheet.render(true);",
+  "img": "icons/containers/chest/chest-reinforced-steel-pink.webp",
+  "author": "Za53oo2n0szvIrpy",
+  "scope": "global",
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "ownership": {
+    "default": 0,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "swade",
+    "systemVersion": "5.2.6",
+    "createdTime": 1781286305853,
+    "modifiedTime": 1781286305853,
+    "lastModifiedBy": "Za53oo2n0szvIrpy"
+  },
+  "_id": "AnqTjfZe3WbjzVxF",
+  "sort": 0,
+  "_key": "!macros!AnqTjfZe3WbjzVxF"
+}
