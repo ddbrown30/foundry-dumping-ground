@@ -1,0 +1,16 @@
+<div class="standard-form">
+    <div class="form-group">
+        <label for="selected-trait">Trait: </label>
+        <select id="selected-trait">
+            {{selectOptions traitOptions}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="roll-mod">Roll Mod: </label>
+        <input type='number' id='roll-mod'/>
+    </div>
+    <footer class="form-footer">
+        <button type="button" data-action="roll">Roll</button>
+        <button type="button" data-action="cancel">Cancel</button>
+    </footer>
+</div>

@@ -70,6 +70,53 @@
     align-items: center;
 }
 
+.fdg .mass-roll-results {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.fdg .mass-roll-results .token-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex-shrink: 1;
+}
+
+.fdg .mass-roll-result {
+    font-weight: bold;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.fdg .mass-roll-results li {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.fdg .mass-roll-result .die {
+    height: 25px;
+    min-width: 25px;
+    margin: 2px;
+    display: inline-flex;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.fdg .mass-roll-result .die.discarded {
+    color: inherit;
+    filter: sepia(0.5) contrast(0.75) opacity(0.4);
+}
+
+.fdg .mass-roll-result .crit-fail {
+    color: red;
+}
+
 .max-carousel-width {
     width: -webkit-fill-available;
 

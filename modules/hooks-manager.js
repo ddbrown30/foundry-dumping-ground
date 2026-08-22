@@ -40,6 +40,7 @@ export class HooksManager {
             game.foundryDumpingGround.energyDrain = Misc.energyDrain;
             game.foundryDumpingGround.healEnergyDrain = Misc.healEnergyDrain;
             game.foundryDumpingGround.spellstrike = Misc.spellstrike;
+            game.foundryDumpingGround.massRoll = Misc.massRoll;
 
             Utils.loadTemplates();
             registerSettings();
@@ -96,5 +97,11 @@ export class HooksManager {
 
         Hooks.on("renderSwadeItemSheetV2", DamageTypes.onRenderItemSheet);
         Hooks.on("preUpdateItem", DamageTypes.onPreUpdateItem);
+
+        Hooks.on("renderChatMessageHTML", (message, html, _options) => {
+            if (Utils.getModuleFlag(message, "type") == "mass") {
+                Misc.onRenderMassRollMessage(message, html);
+            }
+        });
     }
 }

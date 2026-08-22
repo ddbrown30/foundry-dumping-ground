@@ -1,5 +1,6 @@
 import { ApplyInjuryDialog } from "./apply-injury-dialog.js";
-import { DEFAULT_CONFIG, PATH } from "./module-config.js";
+import { MassRollDialog } from "./mass-roll-dialog.js";
+import * as MODULE_CONFIG from "./module-config.js";
 import { SpellstrikeDialog } from "./spellstrike-dialog.js";
 import { Utils } from "./utils.js";
 
@@ -63,7 +64,7 @@ export class Misc {
 
             data.items.push(itemData);
         }
-        const content = await foundry.applications.handlebars.renderTemplate(DEFAULT_CONFIG.templates.exportedItems, data);
+        const content = await foundry.applications.handlebars.renderTemplate(MODULE_CONFIG.DEFAULT_CONFIG.templates.exportedItems, data);
         saveDataToFile(content, "text/html", "item-export.html");
     }
 
@@ -360,5 +361,131 @@ export class Misc {
 
         game.brsw.createItemCard(sourceToken.actor, result.weapon);
         game.brsw.createItemCard(sourceToken.actor, result.power);
+    }
+
+    static async massRoll(tokens, options) {
+        if (!tokens.length) {
+            ui.notifications.warn("No tokens selected.");
+            return;
+        }
+
+        const result = await new MassRollDialog({ ...options, tokens }).wait();
+        if (!result) {
+            return;
+        }
+
+        const { trait, rollMod } = result;
+
+        const isAttr = (trait === "agility" || trait === "smarts" || trait === "spirit" || trait === "strength" || trait === "vigor");
+        const rollModString = rollMod > 0 ? ` + ${rollMod}` : ` - ${Math.abs(rollMod)}`;
+
+        let chatOutput = `
+            <section class="fdg">
+                <h5 style="text-transform: capitalize;">${trait}${rollMod ? rollModString : ""}</h5>
+                <hr>
+                <ul class="mass-roll-results" style="list-style-type: none; padding: 0; margin: 0;">
+        `;
+
+        for (const token of tokens) {
+            const actor = token.actor;
+            let skill;
+            let unskilled = false;
+            if (!isAttr) {
+                skill = actor.items.find(s => s.type == "skill" && s.name.toLowerCase() === trait.toLowerCase());
+                if (!skill) {
+                    unskilled = true;
+                    skill = actor.items.find(s => s.type == "skill" && s.name.toLowerCase().includes("unskilled"));
+                    if (!skill) {
+                        ui.notifications.warn("Token does not have the skill nor an unskilled skill");
+                        continue;
+                    }
+                }
+            }
+
+            let brCard;
+            if (isAttr) {
+                brCard = await game.brsw.createAttributeCard(token, trait, { options: { createChatMessage: false } });
+                await game.brsw.rollAttribute(brCard, false);
+            } else {
+                brCard = await game.brsw.createSkillCard(token, skill.id, { options: { createChatMessage: false } });
+                await game.brsw.rollSkill(brCard, false);
+            }
+
+            const dice = brCard.traitRoll.currentRoll.dice;
+            const critFail = brCard.traitRoll.currentRoll.isCritFail;
+
+            let highestDie = 0;
+            if (dice[1] != null) {
+                highestDie = dice[1].raw_total > dice[0].raw_total ? 1 : 0;
+            }
+
+            let modTooltip = unskilled ? "<b>Unskilled<b><br>" : "";
+            for (const mod of brCard.traitRoll.modifiers) {
+                modTooltip += `<b>${mod.name}:</b> ${mod.value}<br>`;
+            }
+
+            chatOutput += `<li data-token="${token.id}" data-tooltip="${modTooltip}"}}><span class="token-name">${token.name}</span>`;
+            chatOutput += `<span class="mass-roll-result">`;
+            chatOutput += `<span class="die ${critFail || highestDie !== 0 ? "discarded" : ""}" style="background-image: url(icons/svg/d${dice[0].sides}-grey.svg);">${dice[0].raw_total}</span>`;
+            if (dice[1] != null) {
+                chatOutput += `<span class="die ${critFail || highestDie !== 1 ? "discarded" : ""}" style="background-image: url(icons/svg/d${dice[1].sides}-grey.svg);">${dice[1].raw_total}</span>`;
+            }
+
+            if (rollMod) {
+                chatOutput += rollModString;
+            }
+
+            const totalModifiers = brCard.traitRoll.total_modifiers;
+            if (totalModifiers) {
+                chatOutput += totalModifiers > 0 ? ` + ${totalModifiers}` : ` - ${Math.abs(totalModifiers)}`;
+            }
+
+            if (critFail) {
+                chatOutput += ` = <span class="crit-fail">Crit Fail</span>`;
+            } else {
+                chatOutput += ` = ${dice[highestDie].final_total + rollMod }`;
+            }
+
+            chatOutput += "</span></li>";
+        }
+
+        chatOutput += "</ul></section>";
+
+        const chatData = {
+            user: game.user,
+            content: chatOutput,
+            flags: { [MODULE_CONFIG.NAME]: { type: "mass" } }
+        };
+        ChatMessage.create(chatData);
+    }
+
+    static async onRenderMassRollMessage(message, html) {
+        html.querySelectorAll(".fdg .mass-roll-result").forEach((e) => {
+            const li = e.closest("li");
+
+            if (game.user.isGM) {
+                li.addEventListener("click", async (ev) => {
+                    const token = game.canvas.tokens.get(ev.currentTarget.dataset.token);
+                    if (token) {
+                        canvas.ping(token.center);
+                        token.control({ releaseOthers: true });
+                    }
+                });
+            }
+
+            li.addEventListener("mouseover", async (ev) => {
+                const token = game.canvas.tokens.get(ev.currentTarget.dataset.token);
+                if (token) {
+                    token._onHoverIn(ev);
+                }
+            });
+
+            li.addEventListener("mouseout", async (ev) => {
+                const token = game.canvas.tokens.get(ev.currentTarget.dataset.token);
+                if (token) {
+                    token._onHoverOut(ev);
+                }
+            });
+        });
     }
 }

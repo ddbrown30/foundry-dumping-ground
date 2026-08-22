@@ -20,6 +20,7 @@ export const DEFAULT_CONFIG = {
         applyInjuryDialog: `${PATH}/templates/apply-injury-dialog.hbs`,
         spellstrikeDialog: `${PATH}/templates/spellstrike-dialog.hbs`,
         staticCombatantDialog: `${PATH}/templates/static-combatant-dialog.hbs`,
+        massRollDialog: `${PATH}/templates/mass-roll-dialog.hbs`,
         damageTypeGroup: `${PATH}/templates/partials/damage-type-group.hbs`,
     },
     warriorPacks: {
