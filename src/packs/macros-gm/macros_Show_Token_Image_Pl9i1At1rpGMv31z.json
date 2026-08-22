@@ -17,14 +17,14 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.351",
+    "coreVersion": "14.365",
     "systemId": "swade",
     "systemVersion": "5.0.4",
     "createdTime": 1754365334536,
-    "modifiedTime": 1772915105037,
-    "lastModifiedBy": "imUDcCtCX3TtgvI1"
+    "modifiedTime": 1787438805177,
+    "lastModifiedBy": "26zedh1nuCLjFH0V"
   },
   "_id": "Pl9i1At1rpGMv31z",
-  "sort": 600000,
+  "sort": 1300000,
   "_key": "!macros!Pl9i1At1rpGMv31z"
 }

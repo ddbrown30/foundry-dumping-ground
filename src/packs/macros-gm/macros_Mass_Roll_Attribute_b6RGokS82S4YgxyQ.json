@@ -1,0 +1,28 @@
+{
+  "name": "Mass Roll Attribute",
+  "type": "script",
+  "command": "game.foundryDumpingGround.massRoll(canvas.tokens.controlled);",
+  "img": "modules/foundry-dumping-ground/assets/mass-roll-attr.svg",
+  "_id": "b6RGokS82S4YgxyQ",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "ownership": {
+    "default": 0,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "swade",
+    "systemVersion": "6.0.4",
+    "createdTime": 1787438803784,
+    "modifiedTime": 1787438805177,
+    "lastModifiedBy": "26zedh1nuCLjFH0V",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 800000,
+  "_key": "!macros!b6RGokS82S4YgxyQ"
+}

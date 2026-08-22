@@ -1,0 +1,28 @@
+{
+  "name": "Mass Roll Skill",
+  "type": "script",
+  "command": "game.foundryDumpingGround.massRoll(canvas.tokens.controlled, { showSkills: true });",
+  "img": "modules/foundry-dumping-ground/assets/mass-roll-skill.svg",
+  "author": "26zedh1nuCLjFH0V",
+  "scope": "global",
+  "folder": "Ygup3e5YXAXLdfQJ",
+  "ownership": {
+    "default": 0,
+    "26zedh1nuCLjFH0V": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.365",
+    "systemId": "swade",
+    "systemVersion": "6.0.4",
+    "createdTime": 1787438805152,
+    "modifiedTime": 1787438805175,
+    "lastModifiedBy": "26zedh1nuCLjFH0V",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "Qv19WxJpe6sFSNBM",
+  "sort": 200000,
+  "_key": "!macros!Qv19WxJpe6sFSNBM"
+}
