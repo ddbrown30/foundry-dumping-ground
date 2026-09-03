@@ -119,8 +119,8 @@ export class Utils {
         const owners = [];
         for (const userId in permissions) {
             if (permissions[userId] === foundry.CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
-                let user = game.users.get(userId);
-                if (!user.isGM) {
+                const user = game.users.get(userId);
+                if (!user?.isGM) {
                     owners.push(user);
                 }
             }
