@@ -34,12 +34,14 @@ export class DamageTypes {
     }
 
     static async onPreUpdateItem(item, change, options, userId) {
-        const damageTypeChanged = Utils.hasModuleFlags(change);
+        const damageTypeChanged = Utils.getModuleFlag(change, "damageType");
         if (change.system?.damage === undefined && !damageTypeChanged) return;
 
         const oldDamageType = Utils.getModuleFlag(item, "damageType") ?? "none";
         const newDamageType = Utils.getModuleFlag(change, "damageType") ?? oldDamageType;
         let newDamage = change.system?.damage ?? item.system.damage;
+        if (!newDamage) return;
+
         if (damageTypeChanged) {
             newDamage = newDamage.replace(new RegExp(`(\\b(?:\\d+)?d\\d+\\b)\\[${oldDamageType}\\]`, "g"), "$1");
         }
