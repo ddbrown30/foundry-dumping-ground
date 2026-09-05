@@ -12,6 +12,7 @@ export class GearTypes {
         let data = {
             gearType: Utils.getModuleFlag(itemSheet.item, "gearType") ?? "misc",
             gearTypeOptions: {
+                accessory: "Accessory",
                 ammo: "Ammunition",
                 clothing: "Clothing",
                 misc: "Misc",
@@ -56,10 +57,11 @@ export class GearTypes {
             return list;
         };
 
-        const armorList = inventory.querySelector("header.armor")?.nextElementSibling;
-        insertGearTypeHeader("clothing", "Clothing", armorList);
+        let cursor = inventory.querySelector("header.armor")?.nextElementSibling;
+        cursor = insertGearTypeHeader("clothing", "Clothing", cursor) ?? cursor;
+        insertGearTypeHeader("accessory", "Accessories", cursor);
 
-        let cursor = inventory.querySelector("header.consumable")?.nextElementSibling;
+        cursor = inventory.querySelector("header.consumable")?.nextElementSibling;
         cursor = insertGearTypeHeader("wand", "Wands", cursor) ?? cursor;
         cursor = insertGearTypeHeader("wondrous", "Wondrous Items", cursor) ?? cursor;
         insertGearTypeHeader("ammo", "Ammunition", cursor);
