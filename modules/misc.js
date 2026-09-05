@@ -465,10 +465,6 @@ export class Misc {
         Misc.addQuickAccessCharges(html.querySelector('section[data-tab="summary"] .quickaccess'), data.actor);
     }
 
-    // Quick Access cards don't render a charges-summary at all, so there's nothing to reshape -
-    // render swade's own partial from the item's charge data, then run it through the same chip
-    // builder used elsewhere. Its value input has no swade-attached change listener (that's only
-    // wired up for inputs present at swade's own initial render), so bind it here ourselves.
     static async addQuickAccessCharges(quickAccess, actor) {
         if (!quickAccess) return;
 

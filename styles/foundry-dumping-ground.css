@@ -210,3 +210,69 @@
 .chip .charge-recharge-manual {
     line-height: 1;
 }
+
+/* Gear tab: drop the Notes column from every section that has one (weapons/armors/shields -
+   consumables and misc never had a notes column). Weight and controls shift left into its slot. */
+.inventory .header.weapon,
+.inventory .item-wrapper.weapon {
+    grid-template-columns: 32px 3fr 2fr 0.5fr 1fr 80px;
+}
+
+.inventory .header.armor,
+.inventory .item-wrapper.armor,
+.inventory .header.shield,
+.inventory .item-wrapper.shield {
+    grid-template-columns: 32px 3fr 1fr 1fr 1fr 80px;
+}
+
+/* Two things throw the header's grid out of sync with the row grid beneath it:
+   1) .item-wrapper's actual computed column-gap is 8px, not the 2px .header used to get.
+   2) A row's grid container is a <summary>, which keeps its native <details> disclosure
+      marker (list-style-type: disclosure-closed) even under display:grid - that marker
+      reserves ~1.2em of space via margin-left that .header has no equivalent for.
+   Match both (plus the row's 2px right padding) so the two grids share the same column
+   boundaries - verified against live computed layout, not just the source deltas. */
+.inventory .header.weapon,
+.inventory .header.armor,
+.inventory .header.shield {
+    column-gap: 8px;
+    padding-left: calc(1.2em + 2px);
+    padding-right: 2px;
+}
+
+/* The damage button is display:flex (from swade's own button reset), so its text-align:center
+   is ignored for its own content - flex defaults to justify-content:flex-start, hugging the
+   button's text to the left. It's also not truly centered as a box within its span (90% width,
+   but no auto margins), so it sits flush left there too. Fix both, independently of the header
+   alignment above - this is what made the header look "too far right" against the values. */
+.inventory .item-wrapper.weapon .damage button {
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.inventory .header.weapon .note,
+.inventory .item-wrapper.weapon .note,
+.inventory .header.armor .note,
+.inventory .item-wrapper.armor .note,
+.inventory .header.shield .note,
+.inventory .item-wrapper.shield .note {
+    display: none;
+}
+
+.inventory .header.weapon .weight,
+.inventory .item-wrapper.weapon .weight,
+.inventory .header.armor .weight,
+.inventory .item-wrapper.armor .weight,
+.inventory .header.shield .weight,
+.inventory .item-wrapper.shield .weight {
+    grid-column: 5;
+}
+
+.inventory .header.weapon .item-controls,
+.inventory .item-wrapper.weapon .item-controls,
+.inventory .header.armor .item-controls,
+.inventory .item-wrapper.armor .item-controls,
+.inventory .header.shield .item-controls,
+.inventory .item-wrapper.shield .item-controls {
+    grid-column: 6;
+}
