@@ -22,6 +22,7 @@ export const DEFAULT_CONFIG = {
         staticCombatantDialog: `${PATH}/templates/static-combatant-dialog.hbs`,
         massRollDialog: `${PATH}/templates/mass-roll-dialog.hbs`,
         damageTypeGroup: `${PATH}/templates/partials/damage-type-group.hbs`,
+        gearTypeGroup: `${PATH}/templates/partials/gear-type-group.hbs`,
     },
     warriorPacks: {
         "swpf-core-rules.swpf-edges": "PF",

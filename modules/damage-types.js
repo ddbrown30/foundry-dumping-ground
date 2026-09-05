@@ -3,7 +3,7 @@ import { Utils } from "./utils.js";
 
 export class DamageTypes {
 
-    static async onRenderItemSheet(itemSheet, html, context, options) {
+    static async onRenderItemSheet(itemSheet, html, context) {
         if (!itemSheet.item.system.damage) return;
 
         const dmgMod = html.querySelector('section .form-group label[for$="-dmgMod"]')?.parentElement;

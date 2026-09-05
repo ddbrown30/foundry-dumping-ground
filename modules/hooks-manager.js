@@ -12,6 +12,7 @@ import { CombatTracker } from "./combat-tracker.js";
 import { BR2Actions } from "./br2-actions.js";
 import { DamageTypes } from "./damage-types.js";
 import { TemplateControls } from "./template-controls.js";
+import { GearTypes } from "./gear-types.js";
 
 export class HooksManager {
     /**
@@ -83,7 +84,8 @@ export class HooksManager {
         });
 
         Hooks.on("renderSwadeActorSheetV2", (app, html, data) => {
-            BTeam.onRenderCharacterSheet(app, html, data);
+            BTeam.onRenderActorSheet(app, html, data);
+            GearTypes.onRenderActorSheet(app, html, data);
         });
 
         Hooks.on("updateCombatant", CombatTracker.onUpdateCombatant);
@@ -96,7 +98,11 @@ export class HooksManager {
             CombatTracker.onUpdateCombat(combat, change, options, userId);
         });
 
-        Hooks.on("renderSwadeItemSheetV2", DamageTypes.onRenderItemSheet);
+        Hooks.on("renderSwadeItemSheetV2", (app, html, data) => {
+            DamageTypes.onRenderItemSheet(app, html, data);
+            GearTypes.onRenderItemSheet(app, html, data);
+        });
+
         Hooks.on("preUpdateItem", DamageTypes.onPreUpdateItem);
 
         Hooks.on("renderChatMessageHTML", (message, html, _options) => {

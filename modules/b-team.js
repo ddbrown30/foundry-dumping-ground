@@ -1,7 +1,7 @@
 
 export class BTeam {
 
-    static onRenderCharacterSheet(app, html, data) {
+    static onRenderActorSheet(app, html, data) {
         if (!data.actor.name.includes("B-Team")) return;
 
         html.querySelector(".sheet-tabs").remove();
