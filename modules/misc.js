@@ -459,6 +459,90 @@ export class Misc {
         ChatMessage.create(chatData);
     }
 
+    static onRenderActorSheet(app, html, data) {
+        Misc.reshapeChargesSummaries(html.querySelector("section.inventory"), data.actor);
+        Misc.reshapeChargesSummaries(html.querySelector('section[data-tab="edges"]'), data.actor);
+    }
+
+    static reshapeChargesSummaries(container, actor) {
+        if (!container) return;
+
+        for (const details of container.querySelectorAll("li.item > details")) {
+            const chargesSummary = details.querySelector(":scope > .charges-summary");
+            if (!chargesSummary) continue;
+
+            const isConsumable = details.querySelector(":scope > summary")?.classList.contains("consumable");
+            if (!isConsumable) details.insertAdjacentElement("afterend", chargesSummary);
+
+            const itemId = details.closest("li.item")?.dataset.itemId;
+            Misc.buildChargeChips(chargesSummary, actor.items.get(itemId));
+        }
+    }
+
+    static RECHARGE_ICONS = {
+        manual: "fa-hand",
+        encounter: "fa-swords",
+        day: "fa-sun",
+    };
+
+    static buildChargeChips(chargesSummary, item) {
+        const chargeList = chargesSummary.querySelector(":scope > ul.charge-list");
+        if (!chargeList) return;
+
+        chargesSummary.classList.add("charge-panel");
+
+        const chipRow = document.createElement("div");
+        chipRow.className = "chip-row";
+
+        for (const row of chargeList.querySelectorAll(":scope > li.charge-row")) {
+            const valueInput = row.querySelector('input[name="value"]');
+            if (!valueInput) continue; // the first row is the column header, which has no inputs
+
+            const maxInput = row.querySelector('input[name="max"]');
+            const rechargeButton = row.querySelector('[data-action="rechargeManual"]');
+            const [nameSpan, rechargeSpan] = row.querySelectorAll(":scope > span");
+
+            const chargeId = valueInput.dataset.chargeId;
+            const rechargeType = item?.system.charges.charges.find(c => c.id === chargeId)?.rechargeType;
+            const iconClass = Misc.RECHARGE_ICONS[rechargeType];
+
+            let icon = null;
+            if (iconClass) {
+                icon = document.createElement("i");
+                icon.className = `fas ${iconClass} chip-icon`;
+                icon.dataset.tooltip = rechargeSpan?.textContent.trim() ?? "";
+            }
+
+            const name = document.createElement("span");
+            name.className = "chip-name";
+            name.textContent = nameSpan?.textContent.trim() ?? "";
+
+            const sep = document.createElement("span");
+            sep.className = "chip-sep";
+            sep.textContent = "/";
+
+            const fields = document.createElement("span");
+            fields.className = "chip-fields";
+            fields.append(valueInput, sep);
+            if (maxInput) {
+                maxInput.readOnly = true;
+                maxInput.tabIndex = -1;
+                maxInput.addEventListener("mousedown", (event) => event.preventDefault());
+                fields.append(maxInput);
+            }
+
+            const chip = document.createElement("span");
+            chip.className = "chip";
+            if (icon) chip.append(icon);
+            chip.append(name, fields);
+            if (rechargeButton) chip.append(rechargeButton);
+
+            chipRow.append(chip);
+        }
+
+        chargeList.replaceWith(chipRow);
+    }
+
     static async onRenderMassRollMessage(message, html) {
         html.querySelectorAll(".fdg .mass-roll-result").forEach((e) => {
             const li = e.closest("li");

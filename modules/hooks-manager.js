@@ -86,6 +86,7 @@ export class HooksManager {
         Hooks.on("renderSwadeActorSheetV2", (app, html, data) => {
             BTeam.onRenderActorSheet(app, html, data);
             GearTypes.onRenderActorSheet(app, html, data);
+            Misc.onRenderActorSheet(app, html, data);
         });
 
         Hooks.on("updateCombatant", CombatTracker.onUpdateCombatant);

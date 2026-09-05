@@ -147,3 +147,66 @@
 #token-hud .palette.status-effects {
     height: fit-content !important;
   }
+
+/* Charges panel (see Misc.buildChargeChips, used on the gear and edges tabs) - a compact chip
+   strip in place of the striped charge-list table, indented to read as detail attached to the
+   item above it. */
+.charge-panel {
+    margin: 2px 0 4px 34px;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 6px;
+    background: rgba(127, 127, 127, 0.12);
+    border: 1px solid rgba(127, 127, 127, 0.2);
+    border-radius: 999px;
+    font-size: var(--font-size-12);
+    line-height: 1.6;
+}
+
+.chip-icon {
+    font-size: 0.85em;
+    opacity: 0.75;
+}
+
+.chip-name {
+    white-space: nowrap;
+}
+
+.chip-fields {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.chip-fields input {
+    width: 2em;
+    text-align: center;
+    padding: 0 2px;
+    background: var(--input-background);
+}
+
+.chip-fields input[readonly] {
+    opacity: 0.6;
+    user-select: none;
+}
+
+.chip-sep {
+    opacity: 0.6;
+}
+
+.chip .charge-recharge-manual {
+    line-height: 1;
+}
