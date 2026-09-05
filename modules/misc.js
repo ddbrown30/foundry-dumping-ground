@@ -462,6 +462,53 @@ export class Misc {
     static onRenderActorSheet(app, html, data) {
         Misc.reshapeChargesSummaries(html.querySelector("section.inventory"), data.actor);
         Misc.reshapeChargesSummaries(html.querySelector('section[data-tab="edges"]'), data.actor);
+        Misc.addQuickAccessCharges(html.querySelector('section[data-tab="summary"] .quickaccess'), data.actor);
+    }
+
+    // Quick Access cards don't render a charges-summary at all, so there's nothing to reshape -
+    // render swade's own partial from the item's charge data, then run it through the same chip
+    // builder used elsewhere. Its value input has no swade-attached change listener (that's only
+    // wired up for inputs present at swade's own initial render), so bind it here ourselves.
+    static async addQuickAccessCharges(quickAccess, actor) {
+        if (!quickAccess) return;
+
+        for (const li of quickAccess.querySelectorAll("li.item[data-item-id]")) {
+            const item = actor.items.get(li.dataset.itemId);
+            if (!item || item.type === "consumable" || !item.system.charges?.hasCharges) continue;
+
+            const details = li.querySelector(":scope > details");
+            if (!details) continue;
+
+            const charges = item.system.charges.charges.map(charge => ({
+                charge,
+                rechargeType: CONFIG.SWADE.chargeRechargeTypes[charge.rechargeType],
+            }));
+            const content = await foundry.applications.handlebars.renderTemplate(
+                "systems/swade/templates/actors/character/partials/charges-summary.hbs",
+                { charges }
+            );
+
+            const wrapper = document.createElement("div");
+            wrapper.innerHTML = content;
+            const chargesSummary = wrapper.firstElementChild;
+            if (!chargesSummary) continue;
+
+            details.insertAdjacentElement("afterend", chargesSummary);
+            Misc.buildChargeChips(chargesSummary, item);
+
+            chargesSummary.querySelectorAll('.chip-fields input[name="value"]').forEach(input => {
+                input.addEventListener("change", () => Misc.onChargeValueChange(input, actor));
+            });
+        }
+    }
+
+    static async onChargeValueChange(input, actor) {
+        const item = actor.items.get(input.closest(".item")?.dataset.itemId);
+        const charge = item?.system.charges.find(input.dataset.chargeId);
+        if (!charge) return;
+
+        charge.value = Number(input.value);
+        await item.update({ "system.charges.charges": item.system.charges.charges });
     }
 
     static reshapeChargesSummaries(container, actor) {
