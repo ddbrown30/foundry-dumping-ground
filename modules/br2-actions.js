@@ -104,6 +104,7 @@ export class BR2Actions {
                     { selector_type: "target_has_ability", selector_value: "Environmental Resistance" },
                     { selector_type: "item_has_damage", selector_value: "true" },
                 ],
+                defaultChecked: { selector_type: "target_has_damage_resistance", selector_value: "true" },
                 section: "attack",
                 group: "BRSW.Target"
             },
@@ -116,6 +117,7 @@ export class BR2Actions {
                     { selector_type: "target_has_ability", selector_value: "Environmental Weakness" },
                     { selector_type: "item_has_damage", selector_value: "true" },
                 ],
+                defaultChecked: { selector_type: "target_has_damage_weakness", selector_value: "true" },
                 section: "attack",
                 group: "BRSW.Target"
             },
