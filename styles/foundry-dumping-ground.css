@@ -276,3 +276,11 @@
 .inventory .item-wrapper.shield .item-controls {
     grid-column: 6;
 }
+
+.fdg-item-flavour {
+    font-style: italic;
+    border-left: 3px solid #c9a24b;
+    padding-left: 10px;
+    margin: 10px 0;
+    color: rgb(119, 111, 95);
+}
