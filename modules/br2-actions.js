@@ -201,6 +201,23 @@ export class BR2Actions {
                 section: "attack",
                 group: "BRSW.Edges"
             },
+            {
+                id: "WTK",
+                name: "BRSW.WildAttack",
+                button_name: "BRSW.WildAttack",
+                skillMod: 2,
+                dmgMod: 2,
+                isWildAttack: true,
+                selector_type: "skill",
+                selector_value: "fighting",
+                self_add_status: "vulnerable",
+                section: "attack",
+                group: "BRSW.AttackOption",
+                defaultChecked: {
+                    selector_type: "actor_has_effect",
+                    selector_value: "Rage",
+                },
+            },
         ];
 
         game.brsw.addActions(BR2_ACTIONS);
