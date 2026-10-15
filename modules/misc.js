@@ -263,7 +263,7 @@ export class Misc {
                     img: img,
                     changes: [{
                         key: key,
-                        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+                        mode: CONST.ACTIVE_EFFECT_CHANGE_TYPES.ADD,
                         value: -2
                     }],
                     duration: { rounds: 999 },
@@ -426,9 +426,9 @@ export class Misc {
 
             chatOutput += `<li data-token="${token.id}" data-tooltip="${modTooltip}"}}><span class="token-name">${token.name}</span>`;
             chatOutput += `<span class="mass-roll-result">`;
-            chatOutput += `<span class="die ${critFail || highestDie !== 0 ? "discarded" : ""}" style="background-image: url(icons/svg/d${dice[0].sides}-grey.svg);">${dice[0].raw_total}</span>`;
+            chatOutput += `<span class="die ${critFail || highestDie !== 0 ? "discarded" : ""}" style="background-image: url(icons/svg/d${dice[0].sides}-grey.svg);">${dice[0].rawTotal}</span>`;
             if (dice[1] != null) {
-                chatOutput += `<span class="die ${critFail || highestDie !== 1 ? "discarded" : ""}" style="background-image: url(icons/svg/d${dice[1].sides}-grey.svg);">${dice[1].raw_total}</span>`;
+                chatOutput += `<span class="die ${critFail || highestDie !== 1 ? "discarded" : ""}" style="background-image: url(icons/svg/d${dice[1].sides}-grey.svg);">${dice[1].rawTotal}</span>`;
             }
 
             if (rollMod) {
@@ -443,7 +443,7 @@ export class Misc {
             if (critFail) {
                 chatOutput += ` = <span class="crit-fail">Crit Fail</span>`;
             } else {
-                chatOutput += ` = ${dice[highestDie].final_total + rollMod }`;
+                chatOutput += ` = ${dice[highestDie].finalTotal + rollMod }`;
             }
 
             chatOutput += "</span></li>";
