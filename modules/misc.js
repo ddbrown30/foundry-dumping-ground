@@ -416,7 +416,7 @@ export class Misc {
 
             let highestDie = 0;
             if (dice[1] != null) {
-                highestDie = dice[1].raw_total > dice[0].raw_total ? 1 : 0;
+                highestDie = dice[1].rawTotal > dice[0].rawTotal ? 1 : 0;
             }
 
             let modTooltip = unskilled ? "<b>Unskilled<b><br>" : "";
