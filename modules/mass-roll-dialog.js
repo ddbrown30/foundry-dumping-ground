@@ -15,7 +15,8 @@ export class MassRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
             roll: function (event, button) {
                 const trait = this.element.querySelector("#selected-trait").value;
                 const rollMod = this.element.querySelector("#roll-mod").value;
-                this.submit({ trait, rollMod: Number(rollMod) });
+                const tn = this.element.querySelector("#tn").value;
+                this.submit({ trait, rollMod: Number(rollMod), tn: Number(tn) });
             },
             cancel: function (event, button) { this.submit(false); }
         },

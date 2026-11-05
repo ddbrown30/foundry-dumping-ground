@@ -381,8 +381,9 @@ export class Misc {
 
         let chatOutput = `
             <section class="fdg">
-                <h5 style="text-transform: capitalize;">${trait}${rollMod ? rollModString : ""}</h5>
-                <hr>
+                <h5 style="text-transform: capitalize; margin-bottom:0.25rem;">${trait}${rollMod ? rollModString : ""}</h5>
+                <span style="text-transform: capitalize; margin-top:0;">TN: ${result.tn}</span>
+                <hr style="margin-top:0.5rem;">
                 <ul class="mass-roll-results" style="list-style-type: none; padding: 0; margin: 0;">
         `;
 
@@ -419,6 +420,8 @@ export class Misc {
                 highestDie = dice[1].rawTotal > dice[0].rawTotal ? 1 : 0;
             }
 
+            dice[highestDie].result = dice[highestDie].finalTotal - result.tn;
+
             let modTooltip = unskilled ? "<b>Unskilled<b><br>" : "";
             for (const mod of brCard.traitRoll.modifiers) {
                 modTooltip += `<b>${mod.name}:</b> ${mod.value}<br>`;
@@ -444,6 +447,9 @@ export class Misc {
                 chatOutput += ` = <span class="crit-fail">Crit Fail</span>`;
             } else {
                 chatOutput += ` = ${dice[highestDie].finalTotal + rollMod }`;
+                if (dice[highestDie].result_icon) {
+                    chatOutput += ` <i class="${dice[highestDie].result_icon} brsw-roll-value-result-icon"></i>`;
+                }
             }
 
             chatOutput += "</span></li>";
