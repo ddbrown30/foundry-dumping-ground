@@ -9,18 +9,16 @@
                     {{selectOptions ranks selected=rankFilter valueAttr="id" labelAttr="label"}}
                 </select>
             </div>
-            {{#if (eq type "mf")}}
-                <label class="checkbox">
-                    <input type="checkbox" id="show-unavailable" {{#if showUnavailableEdges}}checked{{/if}}>Show Unavailable
-                </label>
-            {{/if}}
+            <label class="checkbox">
+                <input type="checkbox" id="show-unavailable" {{#if showUnavailableEdges}}checked{{/if}}>Show Unavailable
+            </label>
         </div>
         <fieldset>
             <legend>Combat Edges</legend>
             <div class="wg-selection" name="edges">
                 {{#each edges}}
-                    <div class="edge" data-uuid="{{uuid}}" data-tooltip="{{tooltip}}">
-                        <label class="checkbox {{#if unavailable}}wg-unavailable{{/if}}">
+                    <div class="edge" data-uuid="{{uuid}}" data-tooltip="{{tooltip}}" data-tooltip-class="fdg-wg-tooltip">
+                        <label class="checkbox {{#if doesNotMeetReqs}}wg-not-meet-reqs{{/if}} {{#if isNotAllowedSource}}wg-not-allowed{{/if}}">
                             <input type="checkbox" value="{{uuid}}">{{label}}
                             <a data-action="toggleFavourite">
                                 <i class="{{#if favourite}}fas{{else}}far{{/if}} fa-star" aria-label="Favorite"></i>

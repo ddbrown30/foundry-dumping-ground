@@ -8,8 +8,8 @@ export function registerSettings() {
         default: []
     });
 
-    Utils.registerSetting(SETTING_KEYS.warriorPack, {
-        name: "Warrior's Gift Pack Preference",
+    Utils.registerSetting(SETTING_KEYS.warriorSource, {
+        name: "Warrior's Gift Source",
         scope: "world",
         type: String,
         default: "swpf-core-rules.swpf-edges",

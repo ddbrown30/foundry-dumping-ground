@@ -31,8 +31,10 @@ export class WarriorsGift {
             return;
         }
 
-        const rank = sourceToken.actor.system.advances.rank;
-        options.rankFilter = foundry.CONFIG.SWADE.ranks.indexOf(rank);
+        if (sourceToken.actor.type === "character") {
+            const rank = sourceToken.actor.system.advances.rank;
+            options.rankFilter = foundry.CONFIG.SWADE.ranks.indexOf(rank);
+        }
 
         let result = await new WarriorsGiftDialog(options).wait();
         if (!result) {

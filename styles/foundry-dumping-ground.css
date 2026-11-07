@@ -22,8 +22,16 @@
     overflow-y: auto;
 }
 
-.fdg .wg-unavailable {
+.fdg .wg-not-meet-reqs {
     color: red;
+}
+
+.fdg .wg-not-allowed {
+    color: orange;
+}
+
+.fdg-wg-tooltip {
+    border: 1px solid gray;
 }
 
 .fdg .filter-row {

@@ -37,6 +37,6 @@ export const FLAGS = {
 
 export const SETTING_KEYS = {
     warriorFavourites: "warriorFavourites",
-    warriorPack: "warriorPack",
+    warriorSource: "warriorPack",
 }
 

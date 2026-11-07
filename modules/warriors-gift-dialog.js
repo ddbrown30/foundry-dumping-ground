@@ -75,10 +75,6 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         if (!a) { return -1; }
         if (!b) { return 1; }
 
-        //Edges from the user's chosen pack are the next highest
-        if (a == pref) { return -1; }
-        if (b == pref) { return 1; }
-
         if (pref == "swade-core-rules.swade-edges") {
             //If our pref is the core then that also means we want to prefer the fc rules
             if (a == "swade-fantasy-companion.swade-fc-edges") { return -1; }
@@ -87,9 +83,16 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
 
         if (pref == "swpf-core-rules.swpf-edges") {
             //If our pref is pf then that also means we want to prefer the apg rules
+            if (a == "swpf-apg-2.edges") { return -1; }
+            if (b == "swpf-apg-2.edges") { return 1; }
+
             if (a == "swpf-apg.swpf-apg-edges") { return -1; }
             if (b == "swpf-apg.swpf-apg-edges") { return 1; }
         }
+
+        //Edges from the user's chosen pack are the next highest
+        if (a == pref) { return -1; }
+        if (b == pref) { return 1; }
 
         //Edges from the swpf come next
         if (a == "swpf-core-rules.swpf-edges") { return -1; }
@@ -107,7 +110,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         return a < b ? -1 : 1;
     }
 
-    requirementString(requirements) {
+    requirementString(requirements, reqsNotMet) {
         function requirementToString(requirement) {
             switch (requirement.type) {
                 case CONFIG.SWADE.CONST.REQUIREMENT_TYPE.WILDCARD:
@@ -129,7 +132,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             }
         }
 
-        const reqString = (requirements).reduce(
+        let reqString = (requirements).reduce(
             (accumulator, current, index, list) => {
                 accumulator += requirementToString(current);
                 if (index !== list.length - 1) {
@@ -147,38 +150,44 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             ''
         );
 
-        return "<b>Requirements: </b>"+ reqString;
+        reqString = "<b>Requirements: </b>" + reqString;
+        if (reqsNotMet) {
+            reqString = `<span style="color:red;">` + reqString + "</span>";
+        }
+        return reqString;
     }
 
     async _prepareContext(options) {
         let edges = [];
+        const warriorSource = Utils.getSetting(SETTING_KEYS.warriorSource);
         for (const pack of game.packs) {
             if (pack.metadata.type !== "Item" || pack.metadata.packageName === "swade") {
                 continue;
             }
+            const isAllowedSource = this.isAllowedSource(pack.metadata.id, warriorSource);
+            if (!isAllowedSource && !this.showUnavailableEdges) {
+                continue;
+            }
+
             const index = await pack.getIndex({ fields: ["system.category", "system.requirements", "system.description"] });
             for (const item of index) {
                 if (item.type != "edge" || !item.system?.category?.toLowerCase().includes("combat")) {
                     continue;
                 }
 
-                let unavailable = false;
+                let meetsReqs = true;
                 if (this.type === "mf") {
-                    const meetsReqs = this.meetsRequirements(item, this.options.sourceToken);
-                    if (!meetsReqs) {
-                        if(this.showUnavailableEdges) {
-                            unavailable = true;
-                        } else {
-                            continue;
-                        }
+                    meetsReqs = this.meetsRequirements(item, this.options.sourceToken);
+                    if (!meetsReqs && !this.showUnavailableEdges) {
+                        continue;
                     }
                 }
 
                 const rank = this.getEdgeRank(item);
                 if (this.rankFilter < 0 || rank.value <= this.rankFilter) {
                     const description = this.cleanDescription(item.system.description);
-                    const requirementString = this.requirementString(item.system.requirements);
-                    const tooltip = this.type === "mf" ? requirementString + "<br><br>" + description : description;
+                    const requirementString = this.requirementString(item.system.requirements, !meetsReqs);
+                    let tooltip = this.type === "mf" ? requirementString + "<br><br>" + description : description;
                     edges.push({
                         name: item.name,
                         label: `${item.name}, ${rank.name} (${pack.metadata.packageName})`,
@@ -186,7 +195,8 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
                         favourite: !!this.favourites.find((f) => f == item.uuid),
                         tooltip: tooltip,
                         pack: pack,
-                        unavailable: unavailable,
+                        doesNotMeetReqs: !meetsReqs,
+                        isNotAllowedSource: !isAllowedSource,
                     });
                 }
             }
@@ -231,8 +241,6 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             return;
         }
 
-        const warriorPackPref = Utils.getSetting(SETTING_KEYS.warriorPack);
-
         edges.sort(function (a, b) {
             let textA = a.name.toUpperCase();
             let textB = b.name.toUpperCase();
@@ -241,7 +249,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
             }
             let packA = a.pack?.metadata?.id;
             let packB = b.pack?.metadata?.id;
-            return WarriorsGiftDialog.compareEdgePacks(packA, packB, warriorPackPref);
+            return WarriorsGiftDialog.compareEdgePacks(packA, packB, warriorSource);
         });
 
         //Remove duplicate edges
@@ -398,7 +406,7 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
     }
 
     meetsRequirements(edge, target) {
-        const rank = target.actor.system.advances.rank;
+        const rank = target.actor.type === "character" ? target.actor.system.advances.rank : "Legendary";
         const rankIndex = foundry.CONFIG.SWADE.ranks.indexOf(rank);
 
         let checkingOr = false;
@@ -454,5 +462,16 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         }
 
         return true;
+    }
+
+    isAllowedSource(packId, warriorSource) {
+        switch (packId) {
+            case "swpf-core-rules.swpf-edges":
+            case "swpf-apg.swpf-apg-edges":
+            case "swpf-apg-2.edges":
+                return warriorSource === "swpf-core-rules.swpf-edges";
+            default:
+                return warriorSource !== "swpf-core-rules.swpf-edges";
+        }
     }
 }
