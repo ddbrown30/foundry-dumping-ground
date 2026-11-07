@@ -79,7 +79,7 @@ export class WarriorsGift {
                 continue;
             }
 
-            const effects = await game.succ.addCondition(conditionId, target);
+            const effects = await game.succ.addCondition(conditionId, target, { allowDuplicates: true });
             if (!effects.length) {
                 ui.notifications.warn("Add condition failed on " + target.name);
                 continue;
