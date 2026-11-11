@@ -409,59 +409,48 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
         const rank = target.actor.type === "character" ? target.actor.system.advances.rank : "Legendary";
         const rankIndex = foundry.CONFIG.SWADE.ranks.indexOf(rank);
 
-        let checkingOr = false;
-        let currentOrMet = false;
-        for (const req of edge.system.requirements) {
-            if (req.combinator === "and") {
-                if (checkingOr && !currentOrMet) {
-                    //We finished checking all the ors in this group and met none so return false
-                    return false;
-                }
-                checkingOr = false;
-                currentOrMet = false;
-            }
-
+        const requirements = edge.system.requirements ?? [];
+        const results = requirements.map((r) => {
             let meetsReq = true;
-            if (req.type == "rank") {
-                if (rankIndex < req.value) {
-                    return false;
-                }
-                continue;
-            }
-
-            if (req.type == "skill") {
+            if (r.type == "skill") {
                 const skill = target.actor.items.find(
                     s => s.type == "skill" &&
-                    (s.name.toLowerCase() === req.selector.toLowerCase() || s.swid === req.selector.toLowerCase())
+                        (s.name.toLowerCase() === r.selector.toLowerCase() || s.swid === r.selector.toLowerCase())
                 );
-                meetsReq = skill?.system.die.sides >= req.value;
-            } else if (req.type == "attribute") {
-                meetsReq = target.actor.system.attributes[req.selector].die.sides >= req.value
-            } else if (req.type == "edge") {
+                meetsReq = skill?.system.die.sides >= r.value;
+            } else if (r.type == "attribute") {
+                meetsReq = target.actor.system.attributes[r.selector].die.sides >= r.value;
+            } else if (r.type == "edge") {
                 const findEdge = target.actor.items.find(
                     e => e.type == "edge" &&
-                    (e.name.toLowerCase() === req.selector.toLowerCase() || e.swid === req.selector.toLowerCase())
+                        (e.name.toLowerCase() === r.selector.toLowerCase() || e.swid === r.selector.toLowerCase())
                 );
                 meetsReq = !!findEdge;
             }
 
-            if (req.combinator === "and" && !meetsReq) {
-                return false;
-            }
+            return {
+                met: meetsReq,
+                combinator: r.combinator,
+            };
+        });
 
-            if (req.combinator === "or") {
-                if (checkingOr && currentOrMet) continue; //We've already met one or more requirements in this or group
-                checkingOr = true;
-                currentOrMet = meetsReq;
+        //Requirements joined with "or" form a group. A group is met if any of its members are met
+        const groups = [];
+        for (let i = 0; i < results.length; ++i) {
+            if (i == 0 || results[i - 1].combinator != "or") {
+                groups.push({ requirements: [] });
+            }
+            groups[groups.length - 1].requirements.push(results[i]);
+        }
+
+        for (const group of groups) {
+            group.met = group.requirements.some((r) => r.met);
+            for (const result of group.requirements) {
+                result.isOr = result.combinator == "or" && result != group.requirements[group.requirements.length - 1];
             }
         }
 
-        if (checkingOr && !currentOrMet) {
-            //We were in an or group at the end of the loop and met none so return false
-            return false;
-        }
-
-        return true;
+        return groups.every((r) => r.met);
     }
 
     isAllowedSource(packId, warriorSource) {
