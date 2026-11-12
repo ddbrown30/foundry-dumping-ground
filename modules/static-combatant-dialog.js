@@ -19,7 +19,7 @@ export class StaticCombatantDialog extends HandlebarsApplicationMixin(Applicatio
         window: { title: "Add Static Combatant", contentClasses: ["fdg-dialog"] },
         position: { width: "300", height: "auto" },
         actions: {
-            add: function (event, button) { this.submit(); },
+            add: function (event, button) { this.submit(); this.close(); },
             cancel: function (event, button) { this.close(); }
         },
     };
