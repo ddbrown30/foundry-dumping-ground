@@ -14,6 +14,10 @@
     gap: 0;
 }
 
+.fdg-agility-group {
+    display: flex;
+}
+
 .fdg .wg-selection {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

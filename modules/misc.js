@@ -446,7 +446,7 @@ export class Misc {
             if (critFail) {
                 chatOutput += ` = <span class="crit-fail">Crit Fail</span>`;
             } else {
-                chatOutput += ` = ${dice[highestDie].finalTotal + rollMod }`;
+                chatOutput += ` = ${dice[highestDie].finalTotal + rollMod}`;
                 if (dice[highestDie].result_icon) {
                     chatOutput += ` <i class="${dice[highestDie].result_icon} brsw-roll-value-result-icon"></i>`;
                 }
@@ -469,6 +469,33 @@ export class Misc {
         Misc.reshapeChargesSummaries(html.querySelector("section.inventory"), data.actor);
         Misc.reshapeChargesSummaries(html.querySelector('section[data-tab="edges"]'), data.actor);
         Misc.addQuickAccessCharges(html.querySelector('section[data-tab="summary"] .quickaccess'), data.actor);
+        Misc.addEvasionButton(html.querySelector('section[data-tab="summary"]'), data.actor);
+    }
+
+    static async addEvasionButton(summaryTab, actor) {
+        if (!summaryTab) return;
+
+        const agilityButton = summaryTab.querySelector(`.attribute button[data-attribute="agility"]`);
+        const agilityGroup = agilityButton.parentElement;
+
+        const div = document.createElement("div");
+        div.classList.add("fdg-agility-group");
+        div.appendChild(agilityButton);
+        agilityGroup.appendChild(div);
+
+        const button = document.createElement("button");
+        button.classList.add("fa-person-running");
+
+        const icon = document.createElement("i");
+        icon.classList.add("fas", "fa-person-running");
+        button.append(icon);
+
+        agilityButton.insertAdjacentElement("afterend", button);
+        button.addEventListener("click", () => Misc.rollEvade(actor));
+    }
+
+    static async rollEvade(actor, evadeTN) {
+        await game.brsw.createEvadeCard(actor, { options: { evadeTN } });
     }
 
     static async addQuickAccessCharges(quickAccess, actor) {
@@ -620,5 +647,41 @@ export class Misc {
                 }
             });
         });
+    }
+
+    static async onRenderItemSheet(app, html, context) {
+        const item = app.item;
+
+        //If we drop a macro on an item, create a macro action
+        async function onDrop(event) {
+            const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+            if (data.type === "Macro") {
+                const target = event.target;
+                const actionId = target.closest('.tab.actions.active .action')?.dataset.actionId;
+                const action = item.system.actions.additional[actionId];
+                if (action) return;
+
+                const macro = await fromUuid(data.uuid);
+
+                const id = foundry.utils.randomID(8);
+                await item.update({
+                    ['system.actions.additional.' + id]: {
+                        name: macro.name,
+                        type: foundry.CONFIG.SWADE.CONST.ACTION_TYPE.MACRO,
+                        uuid: data.uuid,
+                    },
+                });
+            }
+        }
+
+        //Add the drop binding to the item sheet
+        const dragDrop = new foundry.applications.ux.DragDrop.implementation({
+            dragSelector: null,
+            dropSelector: null,
+            callbacks: {
+                drop: onDrop.bind(item)
+            }
+        });
+        dragDrop.bind(app.form);
     }
 }

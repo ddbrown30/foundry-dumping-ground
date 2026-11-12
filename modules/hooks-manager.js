@@ -43,6 +43,7 @@ export class HooksManager {
             game.foundryDumpingGround.healEnergyDrain = Misc.healEnergyDrain;
             game.foundryDumpingGround.spellstrike = Misc.spellstrike;
             game.foundryDumpingGround.massRoll = Misc.massRoll;
+            game.foundryDumpingGround.rollEvade = Misc.rollEvade;
 
             Utils.loadTemplates();
             registerSettings();
@@ -102,6 +103,7 @@ export class HooksManager {
         Hooks.on("renderSwadeItemSheetV2", (app, html, data) => {
             DamageTypes.onRenderItemSheet(app, html, data);
             GearTypes.onRenderItemSheet(app, html, data);
+            Misc.onRenderItemSheet(app, html, data);
         });
 
         Hooks.on("preUpdateItem", DamageTypes.onPreUpdateItem);
