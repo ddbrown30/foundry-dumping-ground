@@ -649,39 +649,33 @@ export class Misc {
         });
     }
 
-    static async onRenderItemSheet(app, html, context) {
+    static async onRenderItemSheet(app, html, context, options) {
         const item = app.item;
+        const form = app.form;
+        if (!form) return;
 
-        //If we drop a macro on an item, create a macro action
-        async function onDrop(event) {
+        // The form element persists between re-renders in ApplicationV2,
+        // so only attach the listener once
+        if (form.dataset.macroDropBound) return;
+        form.dataset.macroDropBound = "true";
+
+        form.addEventListener("drop", async (event) => {
             const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-            if (data.type === "Macro") {
-                const target = event.target;
-                const actionId = target.closest('.tab.actions.active .action')?.dataset.actionId;
-                const action = item.system.actions.additional[actionId];
-                if (action) return;
+            if (data?.type !== "Macro") return; // leave everything else to the sheet
 
-                const macro = await fromUuid(data.uuid);
+            const actionId = event.target.closest(".tab.actions.active .action")?.dataset.actionId;
+            if (item.system.actions.additional[actionId]) return;
 
-                const id = foundry.utils.randomID(8);
-                await item.update({
-                    ['system.actions.additional.' + id]: {
-                        name: macro.name,
-                        type: foundry.CONFIG.SWADE.CONST.ACTION_TYPE.MACRO,
-                        uuid: data.uuid,
-                    },
-                });
-            }
-        }
+            const macro = await fromUuid(data.uuid);
+            if (!macro) return;
 
-        //Add the drop binding to the item sheet
-        const dragDrop = new foundry.applications.ux.DragDrop.implementation({
-            dragSelector: null,
-            dropSelector: null,
-            callbacks: {
-                drop: onDrop.bind(item)
-            }
+            await item.update({
+                [`system.actions.additional.${foundry.utils.randomID(8)}`]: {
+                    name: macro.name,
+                    type: foundry.CONFIG.SWADE.CONST.ACTION_TYPE.MACRO,
+                    uuid: data.uuid,
+                },
+            });
         });
-        dragDrop.bind(app.form);
     }
 }
