@@ -19,9 +19,10 @@
     align-items: center;
 }
 
-.fdg-agility-group button {
+.fdg-agility-group .evade {
     border: none;
     background: none;
+    padding: 0;
 }
 
 .fdg-agility-group .attribute-value {

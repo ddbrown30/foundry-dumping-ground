@@ -484,7 +484,7 @@ export class Misc {
         agilityGroup.appendChild(div);
 
         const button = document.createElement("button");
-        button.classList.add("fa-person-running");
+        button.classList.add("evade");
 
         const icon = document.createElement("i");
         icon.classList.add("fas", "fa-person-running");
