@@ -16,6 +16,16 @@
 
 .fdg-agility-group {
     display: flex;
+    align-items: center;
+}
+
+.fdg-agility-group button {
+    border: none;
+    background: none;
+}
+
+.fdg-agility-group .attribute-value {
+    min-width: max-content;
 }
 
 .fdg .wg-selection {
