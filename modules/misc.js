@@ -485,6 +485,7 @@ export class Misc {
 
         const button = document.createElement("button");
         button.classList.add("evade");
+        button.type = "button";
 
         const icon = document.createElement("i");
         icon.classList.add("fas", "fa-person-running");
