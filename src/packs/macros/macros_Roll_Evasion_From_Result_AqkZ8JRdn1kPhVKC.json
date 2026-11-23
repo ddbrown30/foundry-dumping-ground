@@ -1,0 +1,28 @@
+{
+  "folder": "Un40NvcdunD2KEqb",
+  "name": "Roll Evasion From Result",
+  "type": "script",
+  "author": "Za53oo2n0szvIrpy",
+  "img": "icons/skills/movement/figure-running-gray.webp",
+  "scope": "global",
+  "command": "if (!brCard) return;\n\nconst currentRoll = brCard.traitRoll.currentRoll;\nlet finalTotal = null;\nfor (const die of currentRoll.dice) {\n    if (die.finalTotal !== null) {\n        finalTotal = Math.max(die.finalTotal, finalTotal ?? die.finalTotal);\n    }\n}\nconsole.log(finalTotal)\n\ngame.foundryDumpingGround.rollEvade(actor, finalTotal);",
+  "ownership": {
+    "default": 0,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "swade",
+    "systemVersion": "6.0.4",
+    "createdTime": 1795299488700,
+    "modifiedTime": 1795299488700,
+    "lastModifiedBy": "Za53oo2n0szvIrpy",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "AqkZ8JRdn1kPhVKC",
+  "sort": 0,
+  "_key": "!macros!AqkZ8JRdn1kPhVKC"
+}

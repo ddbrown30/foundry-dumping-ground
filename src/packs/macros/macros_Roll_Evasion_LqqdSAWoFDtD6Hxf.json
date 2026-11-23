@@ -1,0 +1,28 @@
+{
+  "folder": "Un40NvcdunD2KEqb",
+  "name": "Roll Evasion",
+  "type": "script",
+  "_id": "LqqdSAWoFDtD6Hxf",
+  "author": "Za53oo2n0szvIrpy",
+  "img": "icons/skills/movement/figure-running-gray.webp",
+  "scope": "global",
+  "command": "game.foundryDumpingGround.rollEvade(actor)",
+  "ownership": {
+    "default": 0,
+    "Za53oo2n0szvIrpy": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "swade",
+    "systemVersion": "6.0.4",
+    "createdTime": 1794520772394,
+    "modifiedTime": 1794520772394,
+    "lastModifiedBy": "Za53oo2n0szvIrpy",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "_key": "!macros!LqqdSAWoFDtD6Hxf"
+}

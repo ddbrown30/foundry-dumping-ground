@@ -1,0 +1,28 @@
+{
+  "name": "Apply Slumber",
+  "img": "modules/succ/assets/icons/m-slumber.svg",
+  "type": "script",
+  "command": "game.foundryDumpingGround.addCondition(\"slumber\", game.foundryDumpingGround.getSelected());",
+  "scope": "global",
+  "folder": "sWoyrFbAfYPN80IW",
+  "author": "GRUe2ggA3JUMkF0D",
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.368",
+    "systemId": "swade",
+    "systemVersion": "6.0.4",
+    "createdTime": 1790810168484,
+    "modifiedTime": 1790810168484,
+    "lastModifiedBy": "GRUe2ggA3JUMkF0D",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "GRUe2ggA3JUMkF0D": 3
+  },
+  "_id": "jAyBeLIbuwtPkKmO",
+  "sort": 0,
+  "_key": "!macros!jAyBeLIbuwtPkKmO"
+}
