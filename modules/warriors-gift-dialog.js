@@ -171,12 +171,17 @@ export class WarriorsGiftDialog extends HandlebarsApplicationMixin(ApplicationV2
 
             const index = await pack.getIndex({ fields: ["system.category", "system.requirements", "system.description"] });
             for (const item of index) {
-                if (item.type != "edge" || !item.system?.category?.toLowerCase().includes("combat")) {
+                if (item.type !== "edge" || !item.system?.category?.toLowerCase().includes("combat")) {
                     continue;
                 }
 
                 let meetsReqs = true;
                 if (this.type === "mf") {
+                    if (this.options.sourceToken.actor.items.some(i => i.type === "edge" && i.name === item.name)) {
+                        //Target already has this edge
+                        continue;
+                    }
+
                     meetsReqs = this.meetsRequirements(item, this.options.sourceToken);
                     if (!meetsReqs && !this.showUnavailableEdges) {
                         continue;
